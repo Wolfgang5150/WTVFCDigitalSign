@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v3.0</title>
+<title>WTVFC Digital Signage v3.1</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050408;color:#fff;font-family:Arial,Helvetica,sans-serif}body{user-select:none}
 .viewport{position:fixed;inset:0;display:grid;place-items:center;background:#040307}.frame{position:relative;overflow:hidden;background:#09030a}.stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform-origin:top left;overflow:hidden;background:#0a040a}.stage:after{content:"";position:absolute;inset:18px;border:2px solid rgba(255,202,102,.34);box-shadow:inset 0 0 28px rgba(223,102,44,.10),0 0 22px rgba(0,0,0,.65);pointer-events:none;z-index:20}
@@ -37,17 +37,66 @@
 .controls{position:fixed;right:15px;top:15px;z-index:30;display:flex;gap:7px;opacity:.24;transition:opacity .2s}.controls:hover,.controls:focus-within{opacity:1}button{cursor:pointer}.controls button,.panel button{border:1px solid #c5a065;border-radius:6px;background:#161923;color:white;font-weight:bold;padding:10px 14px}.panel{position:fixed;display:none;z-index:40;top:0;right:0;bottom:0;width:min(470px,100vw);background:#101a28;padding:22px;overflow-y:auto;box-shadow:-20px 0 50px rgba(0,0,0,.78)}.panel.open{display:block}.panel h2{margin:0}.panel p{line-height:1.45;font-size:13px;color:#cad4e3}.panel h3{font-size:15px;margin:20px 0 7px;color:#ffe1a5}.panel label{display:block;font-weight:bold;font-size:13px;margin:12px 0 5px}.panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:5px;border:1px solid #6e829e;background:#223047;color:white;font-size:15px;font-family:inherit}.panel textarea{min-height:76px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{display:inline-block;background:#5b1930;padding:6px 10px;color:#ffe5a5;letter-spacing:2px;font-size:12px;font-weight:bold;border-radius:30px;margin-bottom:12px}.hint{border-left:3px solid #ffd36e;padding:10px;background:#293749;font-size:12px;color:#fff0cd}.screen-label{margin:10px 0;color:#eec471;font-size:13px}.mini-note{font-size:12px;color:#bcd}
 @media(prefers-reduced-motion:reduce){.scene{transition:none}.scene-bg .rays,.scene-bg .spark,.scene-bg .neon,.coin{animation:none!important}}
 </style>
-</head>
+<style id="welcome-kitchen-update">
+/* v3.1: Official composite background already contains the department branding.
+   Keep all new information below the baked-in logo to avoid overlap. */
+.welcome .scene-bg {background:url('wtvfc-welcome-banner.png') center center / 100% 100% no-repeat;}
+.welcome .scene-bg:after {display:none;}
+.welcome .content {isolation:isolate}
+.welcome-message {position:absolute;top:375px;left:70px;right:70px;text-align:center;
+ font-size:72px;line-height:1.12;font-weight:900;letter-spacing:-1.5px;
+ color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
+.welcome-date {position:absolute;top:478px;left:80px;right:80px;text-align:center;
+ font-size:36px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#ffd78f;
+ text-shadow:0 4px 12px #000;}
+.welcome-clock {position:absolute;top:558px;left:0;right:0;text-align:center;
+ font-size:78px;line-height:1;font-weight:900;color:#fff7de;
+ text-shadow:0 4px 20px #000,0 0 18px #ffcb6333;font-variant-numeric:tabular-nums;}
+.welcome .weather-wrap {left:100px;right:100px;bottom:72px;height:316px;padding:24px 34px;
+ border:1px solid rgba(255,211,130,.66);border-radius:18px;
+ background:linear-gradient(180deg,rgba(15,10,16,.95),rgba(28,10,14,.96));
+ box-shadow:0 15px 32px #0009, inset 0 0 35px #e66f1410}
+.welcome .weather-head {align-items:center}
+.welcome .weather-title {font-size:30px;letter-spacing:1.2px}
+.welcome .weather-title span {font-size:24px;font-weight:600;color:#f0ddbb;letter-spacing:0;text-transform:none}
+.welcome .weather-updated {font-size:17px;white-space:nowrap}
+.welcome .forecast-row {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:24px;
+ border:1px solid rgba(255,201,113,.30);border-radius:12px;overflow:hidden;background:#1c141a88}
+.welcome .slot {min-height:174px;border:none;border-right:1px solid rgba(255,215,146,.22);
+ border-radius:0;background:transparent;padding:18px 14px 14px;display:flex;flex-direction:column;justify-content:center}
+.welcome .slot:last-child {border-right:0}
+.welcome .wx-top {display:flex;align-items:center;justify-content:center;gap:16px;min-height:95px}
+.welcome .wx-icon {font-size:60px;line-height:1;margin:0;min-width:66px;text-align:center}
+.welcome .wx-metrics {text-align:left;min-width:0}
+.welcome .wx-time {font-size:27px;white-space:nowrap;color:#ffdda3}
+.welcome .wx-temp {font-size:45px;white-space:nowrap;margin-top:8px}
+.welcome .wx-pop {font-size:23px;text-align:center;margin-top:10px}
+.screen-reader-status {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Kitchen gets a cool, appetizing blue/copper vignette without casino coins. */
+.kitchen {background:radial-gradient(ellipse at 50% 46%,#176078 0%,#123c57 38%,#071c35 73%,#030e1a 100%)}
+.kitchen .scene-bg:before {background:radial-gradient(circle at 22% 32%,#81d6e633,transparent 26%),
+ radial-gradient(circle at 79% 74%,#cfaa6633,transparent 30%)}
+.kitchen .overlay {background:radial-gradient(ellipse at 50% 44%,transparent 18%,#061022a8 92%)}
+.kitchen .hero-title {color:#fff0d2;text-shadow:0 4px 0 #39647a,0 12px 0 #142d40,0 17px 30px #0009}
+.kitchen .center-note {color:#e8f5f6}
+.kitchen .bottom-note {color:#f8d49e}
+</style></head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
 
 <section class="scene welcome active" data-scene="welcome">
-  <div class="scene-bg"></div><div class="overlay"></div>
-  <div class="content">
-    <div class="date-top" id="welcomeDateTop">Monday, October 26, 2026</div>
-    <div class="header-logo"><img class="cross" src="wtvfc-cross-crop.png" alt="WTVFC Maltese cross"><div class="lines"><div class="main">Washington<br>Township</div><div class="sub">Volunteer Fire Company</div></div></div>
-    <div class="center-block time-line"><div class="label">Current Time</div><div class="clock" id="clockTime">--:--</div></div>
-    <div class="weather-wrap"><div class="weather-head"><div class="weather-title">Belle Vernon Area • Next 4 Hours</div><div class="weather-updated" id="weatherUpdated">Weather loading…</div></div><div class="forecast-row" id="forecastRow"></div><div class="wx-status" id="weatherStatus">Forecast updates automatically when internet is available.</div></div>
+  <div class="scene-bg"></div><div class="content">
+    <div class="welcome-message">Welcome to Monday Night Bingo!</div>
+    <div class="welcome-date" id="welcomeDateTop">Monday, October 26, 2026</div>
+    <div class="welcome-clock" id="clockTime">--:--</div>
+    <div class="weather-wrap">
+      <div class="weather-head">
+        <div class="weather-title">TONIGHT'S FORECAST <span>• Belle Vernon area • Next 4 hours</span></div>
+        <div class="weather-updated" id="weatherUpdated">Weather loading…</div>
+      </div>
+      <div class="forecast-row" id="forecastRow"></div>
+    </div>
+    <div id="weatherStatus" class="screen-reader-status" aria-live="polite"></div>
   </div>
 </section>
 
@@ -80,7 +129,7 @@
 
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.0 • TYPOGRAPHY & LAYOUT PASS</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
+<aside class="panel" id="panel"><div class="chip">BUILD 3.1 • WELCOME & KITCHEN</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
 <h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div><div><label for="coinCount">Falling coins on featured jackpots screen</label><input id="coinCount" type="number" min="8" max="80"></div></div>
 <h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
 <h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
@@ -97,7 +146,8 @@ function el(id){return document.getElementById(id)}
 function fit(){var scale=Math.min(innerWidth/1920,innerHeight/1080), frame=el('frame'); frame.style.width=(1920*scale)+'px'; frame.style.height=(1080*scale)+'px'; el('stage').style.transform='scale('+scale+')';} window.addEventListener('resize',fit); fit();
 function setText(id,val){el(id).textContent=val}
 function setMoney(id,val){var t=el(id), s=String(val||''); t.textContent=''; if(id==='bankPrize'&&s.endsWith('+')){t.appendChild(document.createTextNode(s.slice(0,-1))); var sup=document.createElement('span'); sup.className='plus'; sup.textContent='+'; t.appendChild(sup);} else t.textContent=s;}
-function apply(){setText('welcomeDateTop', new Date(data.date).toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'})||data.date); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setText('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setText('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
+function formatEveningDate(value){var d=new Date(value+' 12:00:00');return isNaN(d.getTime())?String(value):d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
+function apply(){setText('welcomeDateTop', formatEveningDate(data.date)); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setText('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setText('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
 function duration(){var k=order[pos]; return Math.max(4,Math.min(120,Number(data[k])||8))*1000;}
 function schedule(){clearTimeout(timer); if(data.autoplay && !paused && !panel.classList.contains('open') && !document.hidden) timer=setTimeout(function(){show(pos+1);}, duration());}
 function show(n){pos=(n+scenes.length)%scenes.length; scenes.forEach(function(sc,i){sc.classList.toggle('active',i===pos); sc.setAttribute('aria-hidden',i===pos?'false':'true');}); syncVideos(); schedule();}
@@ -110,8 +160,8 @@ Object.keys(vids).forEach(function(name){vids[name].addEventListener('error',fun
 function formatTime(d){var hr=d.getHours(), m=d.getMinutes(), amp=hr>=12?'PM':'AM'; hr=hr%12||12; return hr+':'+String(m).padStart(2,'0')+' '+amp;}
 function tickClock(){var now=new Date(); el('clockTime').textContent=formatTime(now);} setInterval(tickClock,1000); tickClock();
 function weatherIcon(code){if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️';}
-function renderForecast(slots){var row=el('forecastRow'); row.textContent=''; slots.forEach(function(item){var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell);});}
-async function loadWeather(){var row=el('forecastRow'); row.innerHTML=''; for(var i=0;i<4;i++){var ph=document.createElement('div'); ph.className='slot'; ph.innerHTML='<div class="wx-time">--</div><div class="wx-icon">•</div><div class="wx-temp">--°</div><div class="wx-pop">Precip --%</div>'; row.appendChild(ph);} try{var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&forecast_days=1&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('Weather request failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pop=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length&&slots.length<4;i++){var t=new Date(times[i]); if(t>=now){slots.push({time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pop[i]||0), icon:weatherIcon(Number(codes[i]||0))});}} if(slots.length){renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Forecast for the greater Belle Vernon area.';} else throw new Error('No forecast slots'); }catch(err){el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast right now. Check internet connection.';}}
+function renderForecast(slots){var row=el('forecastRow'); row.textContent=''; slots.forEach(function(item){var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-top"><div class="wx-icon">'+item.icon+'</div><div class="wx-metrics"><div class="wx-time">'+item.time+'</div><div class="wx-temp">'+item.temp+'°F</div></div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell);});}
+async function loadWeather(){var row=el('forecastRow'); row.innerHTML=''; for(var i=0;i<4;i++){var ph=document.createElement('div'); ph.className='slot'; ph.innerHTML='<div class="wx-top"><div class="wx-icon">•</div><div class="wx-metrics"><div class="wx-time">--</div><div class="wx-temp">--°F</div></div></div><div class="wx-pop">Precip --%</div>'; row.appendChild(ph);} try{var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=2&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('Weather request failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pop=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length&&slots.length<4;i++){var t=new Date(times[i]); if(t>=now){slots.push({time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pop[i]||0), icon:weatherIcon(Number(codes[i]||0))});}} if(slots.length){renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Forecast available';} else throw new Error('No forecast slots'); }catch(err){el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast right now. Check internet connection.';}}
 loadWeather(); setInterval(loadWeather,10*60*1000);
 function saveApply(){ids.forEach(function(id){var input=el(id); if(!input) return; data[id]=input.type==='checkbox'?input.checked:input.value;}); try{localStorage.setItem(key,JSON.stringify(data));}catch(e){} apply(); seedCoins(data.coinCount); setSources(); panel.classList.remove('open'); show(pos);} 
 el('prev').addEventListener('click',function(){show(pos-1)}); el('next').addEventListener('click',function(){show(pos+1)}); el('fullscreen').addEventListener('click',fullscreen); el('settings').addEventListener('click',function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click',function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click',saveApply); el('reset').addEventListener('click',function(){data=Object.assign({},defaults); try{localStorage.removeItem(key);}catch(e){} apply(); seedCoins(data.coinCount); setSources(); show(0);}); document.addEventListener('keydown',function(e){if(['INPUT','TEXTAREA'].indexOf(document.activeElement.tagName)>=0) return; if(e.key==='ArrowRight') show(pos+1); else if(e.key==='ArrowLeft') show(pos-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); schedule();} else if(e.key.toLowerCase()==='f') fullscreen(); else if(e.code==='Space'){e.preventDefault(); paused=!paused; schedule();} else if(e.key==='Escape'&&panel.classList.contains('open')){panel.classList.remove('open'); schedule();}}); document.addEventListener('visibilitychange',function(){if(!document.hidden) schedule(); else clearTimeout(timer); syncVideos();});
