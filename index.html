@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v3.1</title>
+<title>WTVFC Digital Signage v3.2</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050408;color:#fff;font-family:Arial,Helvetica,sans-serif}body{user-select:none}
 .viewport{position:fixed;inset:0;display:grid;place-items:center;background:#040307}.frame{position:relative;overflow:hidden;background:#09030a}.stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform-origin:top left;overflow:hidden;background:#0a040a}.stage:after{content:"";position:absolute;inset:18px;border:2px solid rgba(255,202,102,.34);box-shadow:inset 0 0 28px rgba(223,102,44,.10),0 0 22px rgba(0,0,0,.65);pointer-events:none;z-index:20}
@@ -38,7 +38,7 @@
 @media(prefers-reduced-motion:reduce){.scene{transition:none}.scene-bg .rays,.scene-bg .spark,.scene-bg .neon,.coin{animation:none!important}}
 </style>
 <style id="welcome-kitchen-update">
-/* v3.1: Official composite background already contains the department branding.
+/* v3.2: Official composite background already contains the department branding.
    Keep all new information below the baked-in logo to avoid overlap. */
 .welcome .scene-bg {background:url('wtvfc-welcome-banner.png') center center / 100% 100% no-repeat;}
 .welcome .scene-bg:after {display:none;}
@@ -80,6 +80,30 @@
 .kitchen .hero-title {color:#fff0d2;text-shadow:0 4px 0 #39647a,0 12px 0 #142d40,0 17px 30px #0009}
 .kitchen .center-note {color:#e8f5f6}
 .kitchen .bottom-note {color:#f8d49e}
+</style><style id="v32-design">
+/* V3.2: shorter, balanced three-prize display */
+.bank-grid{top:345px;bottom:210px;left:98px;right:98px;gap:24px}
+.bank .top-title{top:105px}
+.bank .top-title .hero-sub{margin-top:16px}
+.jack-card{padding:28px 22px 25px;border-radius:23px}
+.jack-card .label{font-size:34px;letter-spacing:2px}
+.jack-card .amount{font-size:110px;margin-top:20px}
+.jack-card .meta{font-size:28px;margin-top:20px}
+/* Video-backed jackpot ads: subtle depth, glow and sweep without hiding values */
+.jackpot-screen .scene-bg video,.promo .scene-bg video{opacity:.6;filter:saturate(1.35) contrast(1.1)}
+.jackpot-screen .overlay,.promo .overlay{background:radial-gradient(ellipse at 50% 48%,rgba(2,2,10,.32),rgba(3,3,12,.60) 77%,rgba(0,0,0,.78) 100%)}
+.jackpot-screen .big-amount,.promo .big-amount{animation:premiumPulse 3.1s ease-in-out infinite alternate}
+@keyframes premiumPulse{from{filter:drop-shadow(0 0 5px rgba(255,193,83,.18))}to{filter:drop-shadow(0 0 24px rgba(255,220,135,.60))}}
+/* Kitchen: menu style typography / price hierarchy */
+.kitchen .center-stack{padding:0 180px}
+.kitchen .hero-title{font-size:105px;margin-bottom:32px}
+.kitchen #kitchenDish{font-size:106px!important;line-height:1.05!important;margin:0 0 19px!important;color:#fff5e3}
+.kitchen #kitchenDetail{max-width:1360px;font-size:35px;line-height:1.28;margin:14px auto 0}
+.kitchen-price{font-size:91px;color:#ffde97;font-weight:1000;letter-spacing:0;margin-top:29px;text-shadow:0 5px 0 #6e480c,0 12px 20px #0009}
+.kitchen .bottom-note{margin-top:25px;font-size:25px;color:#cbe9ef}
+.kitchen .scene-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 47% 42%,rgba(26,120,167,.17),transparent 47%),linear-gradient(120deg,transparent 10%,rgba(106,203,231,.1) 50%,transparent 90%);animation:seaGlow 9s ease-in-out infinite alternate}
+@keyframes seaGlow{to{opacity:.35;transform:translateX(2%)}}
+@media(prefers-reduced-motion:reduce){.jackpot-screen .big-amount,.promo .big-amount,.kitchen .scene-bg:after{animation:none}}
 </style></head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
@@ -124,30 +148,30 @@
 
 <section class="scene kitchen" data-scene="kitchen">
   <div class="scene-bg"><video class="bgvid" id="kitchenVideo" muted playsinline loop preload="none"></video></div><div class="overlay"></div>
-  <div class="center-stack"><div class="hero-title">Tonight's Kitchen Special</div><div class="big-amount" style="font-size:114px;line-height:1.02;letter-spacing:-3px;margin-top:8px;margin-bottom:10px" id="kitchenDish">Oysters Rockefeller</div><div class="center-note" id="kitchenDetail">paired with a Shaved Fennel and Citrus Salad with Champagne Vinaigrette</div><div class="bottom-note">Kitchen Open Until 9 PM</div></div>
+  <div class="center-stack"><div class="hero-title">Tonight's Kitchen Special</div><div class="big-amount" style="font-size:114px;line-height:1.02;letter-spacing:-3px;margin-top:8px;margin-bottom:10px" id="kitchenDish">Oysters Rockefeller</div><div class="center-note" id="kitchenDetail">with Shaved Fennel and Citrus Salad w/Champagne vinaigrette</div><div class="kitchen-price" id="kitchenPrice">$9.99</div><div class="bottom-note">Kitchen Open Until 9 PM</div></div>
 </section>
 
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.1 • WELCOME & KITCHEN</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
+<aside class="panel" id="panel"><div class="chip">BUILD 3.2 • ANIMATED BACKGROUNDS</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
 <h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div><div><label for="coinCount">Falling coins on featured jackpots screen</label><input id="coinCount" type="number" min="8" max="80"></div></div>
 <h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
 <h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
-<h3>Kitchen</h3><label for="kitchenDishInput">Dish name</label><input id="kitchenDishInput"><label for="kitchenDetailInput">Dish description</label><textarea id="kitchenDetailInput"></textarea>
+<h3>Kitchen</h3><label for="kitchenDishInput">Dish name</label><input id="kitchenDishInput"><label for="kitchenDetailInput">Dish description</label><textarea id="kitchenDetailInput"></textarea><label for="kitchenPriceInput">Kitchen price</label><input id="kitchenPriceInput" value="$9.99">
 <h3>Optional Background MP4s</h3><p class="mini-note">Use repository-relative paths like <code>videos/jackpot.mp4</code>. Leave blank to keep the built-in lush CSS background. Bank defaults to the included <code>bank-atmosphere.mp4</code>.</p><label for="bankVideoSrc">Featured jackpots video</label><input id="bankVideoSrc" placeholder="bank-atmosphere.mp4"><label for="jackpotVideoSrc">Tonight's jackpot video</label><input id="jackpotVideoSrc" placeholder="videos/jackpot.mp4"><label for="promoVideoSrc">Additional jackpot video</label><input id="promoVideoSrc" placeholder="videos/promo.mp4"><label for="kitchenVideoSrc">Kitchen video</label><input id="kitchenVideoSrc" placeholder="videos/kitchen.mp4"><label><input id="autoplay" type="checkbox" style="width:auto;margin-right:8px">Auto-rotate</label>
 <p id="videoState" class="screen-label">Background video status ready.</p><div class="row-buttons"><button id="save">Save & Apply</button><button id="close">Close</button><button id="reset">Reset Demo</button></div><p>Keyboard: ← / → screens • S settings • F fullscreen • Space pause.</p></aside>
 <script>
 (function(){'use strict';
 var key='wtvfc_signage_v3';
-var defaults={date:'October 26, 2026',welcomeSeconds:'12',bankSeconds:'10',jackpotSeconds:'8',promoSeconds:'8',kitchenSeconds:'10',coinCount:'48',bank:'$5,135+',envelopes:'10',quickie:'$1,973.50+',quickieCount:'60',allNighter:'$481+',allNighterCount:'17',jackpot:'$1,350',jackpotCount:'51',promoDateInput:'December 7',promoAmountInput:'$5,000',promoNoteInput:'Collect your vouchers each week leading up to the jackpot!',kitchenDishInput:'Oysters Rockefeller',kitchenDetailInput:'paired with a Shaved Fennel and Citrus Salad with Champagne Vinaigrette',bankVideoSrc:'bank-atmosphere.mp4',jackpotVideoSrc:'',promoVideoSrc:'',kitchenVideoSrc:'',autoplay:true};
-var ids=Object.keys(defaults), data=Object.assign({},defaults); try{var saved=JSON.parse(localStorage.getItem(key)||'null'); if(saved&&typeof saved==='object') data=Object.assign(data,saved);}catch(e){}
+var defaults={date:'October 26, 2026',welcomeSeconds:'12',bankSeconds:'10',jackpotSeconds:'8',promoSeconds:'8',kitchenSeconds:'10',coinCount:'48',bank:'$5,135+',envelopes:'10',quickie:'$1,973.50+',quickieCount:'60',allNighter:'$481+',allNighterCount:'17',jackpot:'$1,350',jackpotCount:'51',promoDateInput:'December 7',promoAmountInput:'$5,000',promoNoteInput:'Collect your vouchers each week leading up to the jackpot!',kitchenDishInput:'Oysters Rockefeller',kitchenDetailInput:'with Shaved Fennel and Citrus Salad w/Champagne vinaigrette',kitchenPriceInput:'$9.99',bankVideoSrc:'bank-atmosphere.mp4',jackpotVideoSrc:'jackpot-lights.mp4',promoVideoSrc:'promo-lights.mp4',kitchenVideoSrc:'',autoplay:true};
+var ids=Object.keys(defaults), data=Object.assign({},defaults); try{var saved=JSON.parse(localStorage.getItem(key)||'null'); if(saved&&typeof saved==='object'){data=Object.assign(data,saved); if(data.kitchenDetailInput==='paired with a Shaved Fennel and Citrus Salad with Champagne Vinaigrette')data.kitchenDetailInput=defaults.kitchenDetailInput; if(!data.jackpotVideoSrc)data.jackpotVideoSrc=defaults.jackpotVideoSrc; if(!data.promoVideoSrc)data.promoVideoSrc=defaults.promoVideoSrc;}}catch(e){}
 var scenes=[].slice.call(document.querySelectorAll('.scene')), order=['welcomeSeconds','bankSeconds','jackpotSeconds','promoSeconds','kitchenSeconds']; var pos=0, timer=null, paused=false, panel=document.getElementById('panel');
 function el(id){return document.getElementById(id)}
 function fit(){var scale=Math.min(innerWidth/1920,innerHeight/1080), frame=el('frame'); frame.style.width=(1920*scale)+'px'; frame.style.height=(1080*scale)+'px'; el('stage').style.transform='scale('+scale+')';} window.addEventListener('resize',fit); fit();
 function setText(id,val){el(id).textContent=val}
 function setMoney(id,val){var t=el(id), s=String(val||''); t.textContent=''; if(id==='bankPrize'&&s.endsWith('+')){t.appendChild(document.createTextNode(s.slice(0,-1))); var sup=document.createElement('span'); sup.className='plus'; sup.textContent='+'; t.appendChild(sup);} else t.textContent=s;}
 function formatEveningDate(value){var d=new Date(value+' 12:00:00');return isNaN(d.getTime())?String(value):d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
-function apply(){setText('welcomeDateTop', formatEveningDate(data.date)); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setText('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setText('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
+function apply(){setText('welcomeDateTop', formatEveningDate(data.date)); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setText('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setText('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); setText('kitchenPrice',data.kitchenPriceInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
 function duration(){var k=order[pos]; return Math.max(4,Math.min(120,Number(data[k])||8))*1000;}
 function schedule(){clearTimeout(timer); if(data.autoplay && !paused && !panel.classList.contains('open') && !document.hidden) timer=setTimeout(function(){show(pos+1);}, duration());}
 function show(n){pos=(n+scenes.length)%scenes.length; scenes.forEach(function(sc,i){sc.classList.toggle('active',i===pos); sc.setAttribute('aria-hidden',i===pos?'false':'true');}); syncVideos(); schedule();}
