@@ -37,18 +37,11 @@
 .controls{position:fixed;right:15px;top:15px;z-index:30;display:flex;gap:7px;opacity:.24;transition:opacity .2s}.controls:hover,.controls:focus-within{opacity:1}button{cursor:pointer}.controls button,.panel button{border:1px solid #c5a065;border-radius:6px;background:#161923;color:white;font-weight:bold;padding:10px 14px}.panel{position:fixed;display:none;z-index:40;top:0;right:0;bottom:0;width:min(470px,100vw);background:#101a28;padding:22px;overflow-y:auto;box-shadow:-20px 0 50px rgba(0,0,0,.78)}.panel.open{display:block}.panel h2{margin:0}.panel p{line-height:1.45;font-size:13px;color:#cad4e3}.panel h3{font-size:15px;margin:20px 0 7px;color:#ffe1a5}.panel label{display:block;font-weight:bold;font-size:13px;margin:12px 0 5px}.panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:5px;border:1px solid #6e829e;background:#223047;color:white;font-size:15px;font-family:inherit}.panel textarea{min-height:76px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{display:inline-block;background:#5b1930;padding:6px 10px;color:#ffe5a5;letter-spacing:2px;font-size:12px;font-weight:bold;border-radius:30px;margin-bottom:12px}.hint{border-left:3px solid #ffd36e;padding:10px;background:#293749;font-size:12px;color:#fff0cd}.screen-label{margin:10px 0;color:#eec471;font-size:13px}.mini-note{font-size:12px;color:#bcd}
 @media(prefers-reduced-motion:reduce){.scene{transition:none}.scene-bg .rays,.scene-bg .spark,.scene-bg .neon,.coin{animation:none!important}}
 
-/* v3.9: identical, compact raised plus signs on all three featured-prize cards */
-.bank-grid .jack-card .amount .plus{
-  display:inline-block;
-  font-size:0.23em;
-  line-height:1;
-  vertical-align:baseline;
-  position:relative;
-  top:-0.82em;
-  margin-left:0.06em;
-  letter-spacing:0;
-  color:#ffca4a;
-  text-shadow:0 2px 9px rgba(255,191,64,.40);
+/* All three jackpot + signs have identical sizing and placement. */
+.bank-grid .jack-card .amount .prize-plus{
+display:inline-block!important;font-size:0.36em!important;font-weight:900!important;line-height:1!important;
+vertical-align:baseline!important;position:relative!important;top:-0.85em!important;margin-left:0.06em!important;
+letter-spacing:0!important;color:#ffca4a!important;
 }
 </style>
 <style id="welcome-kitchen-update">
@@ -161,9 +154,9 @@
   <div class="content">
     <div class="top-title"><div class="hero-title">Tonight's Featured Jackpots</div><div class="hero-sub">All prizes are current for Monday Night Bingo</div></div>
     <div class="bank-grid">
-      <div class="jack-card bank-card"><div class="label">Breakin' Your Bank</div><div class="amount" id="bankPrize">$5,135<span class="plus">+</span></div><div class="meta"><span class="pill" id="bankEnvelopes">10 Envelopes Left!</span></div></div>
-      <div class="jack-card"><div class="label">Quickie</div><div class="amount" id="quickiePrize">$1,973.50<span class="plus">+</span></div><div class="meta" id="quickieNums">in 60 numbers</div></div>
-      <div class="jack-card"><div class="label">All Nighter</div><div class="amount" id="allNighterPrize">$481<span class="plus">+</span></div><div class="meta" id="allNighterNums">in 17 numbers</div></div>
+      <div class="jack-card bank-card"><div class="label">Breakin' Your Bank</div><div class="amount" id="bankPrize">$5,135<span class="prize-plus" style="display:inline-block!important;font-size:0.36em!important;font-weight:900!important;line-height:1!important;vertical-align:baseline!important;position:relative!important;top:-0.85em!important;margin-left:0.06em!important;letter-spacing:0!important;color:#ffca4a!important">+</span></div><div class="meta"><span class="pill" id="bankEnvelopes">10 Envelopes Left!</span></div></div>
+      <div class="jack-card"><div class="label">Quickie</div><div class="amount" id="quickiePrize">$1,973.50<span class="prize-plus" style="display:inline-block!important;font-size:0.36em!important;font-weight:900!important;line-height:1!important;vertical-align:baseline!important;position:relative!important;top:-0.85em!important;margin-left:0.06em!important;letter-spacing:0!important;color:#ffca4a!important">+</span></div><div class="meta" id="quickieNums">in 60 numbers</div></div>
+      <div class="jack-card"><div class="label">All Nighter</div><div class="amount" id="allNighterPrize">$481<span class="prize-plus" style="display:inline-block!important;font-size:0.36em!important;font-weight:900!important;line-height:1!important;vertical-align:baseline!important;position:relative!important;top:-0.85em!important;margin-left:0.06em!important;letter-spacing:0!important;color:#ffca4a!important">+</span></div><div class="meta" id="allNighterNums">in 17 numbers</div></div>
     </div>
   </div>
 </section>
@@ -185,7 +178,7 @@
 
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.10 • CUSTOM JACKPOT VIDEO</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
+<aside class="panel" id="panel"><div class="chip">BUILD 3.11 • CUSTOM JACKPOT VIDEO</div><h2>WTVFC Signage Settings · v3.11</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
 <h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div><div><label for="coinCount">Falling coins on featured jackpots screen</label><input id="coinCount" type="number" min="8" max="80"></div></div>
 <h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
 <h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
@@ -201,7 +194,7 @@ var scenes=[].slice.call(document.querySelectorAll('.scene')), order=['welcomeSe
 function el(id){return document.getElementById(id)}
 function fit(){var scale=Math.min(innerWidth/1920,innerHeight/1080), frame=el('frame'); frame.style.width=(1920*scale)+'px'; frame.style.height=(1080*scale)+'px'; el('stage').style.transform='scale('+scale+')';} window.addEventListener('resize',fit); fit();
 function setText(id,val){el(id).textContent=val}
-function setMoney(id,val){var t=el(id), s=String(val||'').trim(); t.textContent=''; if(s.endsWith('+')){t.appendChild(document.createTextNode(s.slice(0,-1))); var sup=document.createElement('span'); sup.className='plus'; sup.textContent='+'; t.appendChild(sup);} else t.textContent=s;}
+function setMoney(id,val){var t=el(id), s=String(val||'').trim(); t.textContent=''; if(s.endsWith('+')){t.appendChild(document.createTextNode(s.slice(0,-1))); var sup=document.createElement('span'); sup.className='prize-plus'; sup.textContent='+'; sup.style.cssText='display:inline-block!important;font-size:0.36em!important;font-weight:900!important;line-height:1!important;vertical-align:baseline!important;position:relative!important;top:-0.85em!important;margin-left:0.06em!important;letter-spacing:0!important;color:#ffca4a!important;text-shadow:0 2px 9px rgba(255,191,64,.4)!important;'; t.appendChild(sup);} else t.textContent=s;}
 function formatEveningDate(value){var d=new Date(value+' 12:00:00');return isNaN(d.getTime())?String(value):d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
 function apply(){setText('welcomeDateTop', formatEveningDate(data.date)); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setMoney('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setMoney('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); setText('kitchenPrice',data.kitchenPriceInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
 function duration(){var k=order[pos]; return Math.max(4,Math.min(120,Number(data[k])||8))*1000;}
