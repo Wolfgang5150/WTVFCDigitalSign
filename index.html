@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.15</title>
+<title>WTVFC Digital Signage v4.16</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -78,6 +78,7 @@ button,input,textarea{font:inherit}
 .promo .amount{font-size:340px;line-height:.88;margin:0 0 28px}
 .promo .note{font-size:54px;line-height:1.16;font-weight:700;max-width:1700px;margin:0 auto}
 /* Screen 6: kitchen */
+.kitchen .frame-box{position:absolute;left:96px;right:96px;top:96px;bottom:96px;background:rgba(8,18,34,.50);border-radius:46px;border:2px solid rgba(255,255,255,.18);box-shadow:0 18px 54px rgba(0,0,0,.22),inset 0 0 0 1px rgba(255,255,255,.06)}
 .kitchen .headline-wrap{position:absolute;left:150px;right:150px;top:160px;display:flex;align-items:flex-end;gap:26px}
 .kitchen .headline{font-size:145px;line-height:.95;font-weight:700;margin:0;white-space:nowrap}
 .kitchen .headline-line{height:4px;background:rgba(255,255,255,.85);flex:1;transform:translateY(-16px)}
@@ -197,7 +198,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.15: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.16: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -225,19 +226,20 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.15: sharply defined raised lettering, not a diffuse halo.
+/* v4.16: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
-  filter:drop-shadow(3px 4px 0 rgba(32,13,0,.86))
-         drop-shadow(0 0 2px rgba(255,249,214,.64))
-         drop-shadow(0 0 6px rgba(255,239,174,.16)) !important;
+  filter:drop-shadow(4px 5px 0 rgba(24,10,0,.92))
+         drop-shadow(7px 10px 8px rgba(0,0,0,.44))
+         drop-shadow(0 0 3px rgba(255,248,214,.84))
+         drop-shadow(0 0 10px rgba(255,241,178,.34)) !important;
 }
 .scene.play-intro .motion-gold,
 .scene.play-intro .motion-gold .sup-dollar,
 .scene.play-intro .motion-gold .sup-cents,
 .scene.play-intro .motion-gold .amount-plus {
-  -webkit-text-stroke:.65px rgba(69,32,0,.70);
+  -webkit-text-stroke:.8px rgba(63,28,0,.82);
 }
 
 @keyframes wtvfc-casino-gold {
@@ -263,7 +265,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#ffffff !important; }
 
-/* v4.15: crisp dimensional shadows for WHITE non-price copy.
+/* v4.16: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -276,9 +278,19 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note {
   text-shadow:
-    2px 3px 0 rgba(14, 8, 4, .94),
-    4px 6px 3px rgba(0, 0, 0, .76),
-    0 10px 15px rgba(0, 0, 0, .40) !important;
+    3px 4px 0 rgba(14, 8, 4, .96),
+    6px 8px 5px rgba(0, 0, 0, .78),
+    0 14px 22px rgba(0, 0, 0, .46) !important;
+}
+/* v4.16: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+.scene.kitchen .content.serif .headline,
+.scene.kitchen .content.serif .dish-title,
+.scene.kitchen .content.serif .dish-line,
+.scene.kitchen .content.serif .money {
+  text-shadow:
+    3px 4px 0 rgba(14, 8, 4, .96),
+    6px 8px 5px rgba(0, 0, 0, .78),
+    0 14px 22px rgba(0, 0, 0, .46) !important;
 }
 </style>
 </head>
@@ -337,6 +349,7 @@ button,input,textarea{font:inherit}
 <section class="scene kitchen" data-scene="kitchen">
   <div class="scene-bg blue-bg"><video id="kitchenVideo" muted playsinline preload="metadata"><source src="kitchen-background.mp4" type="video/mp4"></video></div>
   <div class="content serif">
+    <div class="frame-box" aria-hidden="true"></div>
     <div class="headline-wrap"><h1 class="headline">Kitchen Special</h1><div class="headline-line"></div></div>
     <div class="dish-wrap">
       <h2 class="dish-title" id="kitchenDish">Prime Rib</h2>
@@ -347,11 +360,11 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.15">v4.15</div></div></div></div>
+<div class="build-version" aria-label="Version 4.16">v4.16</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.15</h2>
-  <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
+  <h2>WTVFC Digital Signage · v4.16</h2>
+  <p>Kitchen background refresh, stronger casino-style dimensional lettering, and a new readable framed kitchen panel.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
     <div><label for="welcomeSeconds">Welcome</label><input id="welcomeSeconds" type="number" min="4" max="120"></div>
