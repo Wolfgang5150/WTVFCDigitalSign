@@ -109,6 +109,14 @@
 .jackpot-screen .scene-bg video{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
 .jackpot-screen .overlay,.jackpot-screen .neon{display:none!important}
 .jackpot-screen .big-amount{animation:none!important}
+</style><style id="video-background-clean-v35">
+/* Respect supplied background footage; do not dim or tint it. */
+.bank .scene-bg video, .jackpot-screen .scene-bg video {
+  opacity:1!important;filter:none!important;mix-blend-mode:normal!important;
+}
+.bank .overlay, .bank .rays,
+.jackpot-screen .overlay, .jackpot-screen .neon {display:none!important}
+/* Jackpot text and bank prize cards stay readable on top of the footage. */
 </style></head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
