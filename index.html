@@ -3,137 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v3.2</title>
+<title>WTVFC Digital Signage v4.0</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050408;color:#fff;font-family:Arial,Helvetica,sans-serif}body{user-select:none}
-.viewport{position:fixed;inset:0;display:grid;place-items:center;background:#040307}.frame{position:relative;overflow:hidden;background:#09030a}.stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform-origin:top left;overflow:hidden;background:#0a040a}.stage:after{content:"";position:absolute;inset:18px;border:2px solid rgba(255,202,102,.34);box-shadow:inset 0 0 28px rgba(223,102,44,.10),0 0 22px rgba(0,0,0,.65);pointer-events:none;z-index:20}
-.scene{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease}.scene.active{opacity:1;pointer-events:auto}.scene-bg{position:absolute;inset:0;overflow:hidden}.scene-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.36;filter:saturate(1.14) contrast(1.06)}.overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center, transparent 22%, rgba(0,0,0,.54) 100%);pointer-events:none;z-index:1}.content{position:absolute;inset:0;z-index:3}
-.date-top{position:absolute;left:0;right:0;top:38px;text-align:center;font-size:28px;letter-spacing:6px;text-transform:uppercase;color:#ffe2a4;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.75)}
-.header-logo{position:absolute;left:0;right:0;top:96px;display:flex;justify-content:center;align-items:center;gap:26px}.header-logo .cross{width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.6))}.header-logo .lines{text-align:left}.header-logo .main{font-size:78px;line-height:.92;font-weight:1000;letter-spacing:1px;text-transform:uppercase;color:#f5d79e;text-shadow:0 4px 0 #7e330e,0 9px 0 #3d1807,0 18px 28px rgba(0,0,0,.8)}.header-logo .sub{margin-top:14px;font-size:30px;letter-spacing:9px;text-transform:uppercase;color:#ffda84;font-weight:800}
-.center-block{position:absolute;left:0;right:0;text-align:center}
-.pill{display:inline-block;padding:14px 30px;border:2px solid rgba(255,216,128,.74);border-radius:12px;background:rgba(78,11,26,.76);color:#fff3cb;font-weight:900;letter-spacing:3px;text-transform:uppercase;box-shadow:0 0 22px rgba(255,188,73,.12)}
-.hero-title{font-size:118px;line-height:.94;font-weight:1000;letter-spacing:-3px;text-transform:uppercase;color:#ffecbc;text-shadow:0 5px 0 #8f370c,0 12px 0 #4b1d07,0 19px 32px rgba(0,0,0,.9),0 0 36px rgba(255,188,71,.24)}
-.hero-sub{font-size:34px;font-weight:900;letter-spacing:8px;text-transform:uppercase;color:#ffd889}
-.big-amount{font-size:236px;line-height:1;font-weight:1000;letter-spacing:-8px;color:#fff2b7;text-shadow:0 8px 0 #a74a0c,0 18px 0 #5a2206,0 28px 46px rgba(0,0,0,.95),0 0 80px rgba(255,194,58,.72)}
-.big-amount .plus{font-size:.42em;vertical-align:top;color:#ffca4a}
-.center-stack{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;padding:0 150px}
-.center-stack .hero-title{margin:0 0 20px}.center-stack .big-amount{margin:18px 0 18px}
-.center-note{font-size:36px;line-height:1.28;color:#f6e8c6;max-width:1180px;margin:24px auto 0;font-weight:700}.bottom-note{margin-top:28px;font-size:28px;letter-spacing:6px;text-transform:uppercase;color:#d8b885;font-weight:900}
-/* welcome */
-.welcome .scene-bg{background:url('wtvfc-brand-screen.png') center center/cover no-repeat}.welcome .scene-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.10) 25%,rgba(0,0,0,.34) 60%,rgba(0,0,0,.42) 100%)}
-.welcome .header-logo{top:94px}.welcome .time-line{top:305px}.welcome .time-line .label{font-size:22px;letter-spacing:7px;text-transform:uppercase;color:#ffde95;font-weight:900}.welcome .time-line .clock{font-size:88px;line-height:1;font-weight:1000;color:#fff4d8;text-shadow:0 0 18px rgba(255,199,84,.16);margin-top:8px}.welcome .weather-wrap{position:absolute;left:95px;right:95px;bottom:108px;height:330px;padding:24px 28px;background:linear-gradient(180deg, rgba(22,14,21,.82), rgba(12,10,17,.88));border:1px solid rgba(255,199,90,.36);border-radius:20px;box-shadow:0 14px 30px rgba(0,0,0,.34), inset 0 0 24px rgba(255,163,52,.04)}
-.welcome .weather-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}.welcome .weather-title{font-size:28px;letter-spacing:6px;text-transform:uppercase;color:#ffd26c;font-weight:1000}.welcome .weather-updated{font-size:18px;color:#e4d0ab}.welcome .forecast-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}.welcome .slot{padding:14px 12px 16px;border-radius:16px;border:1px solid rgba(255,196,88,.20);background:rgba(255,255,255,.03);text-align:center;min-height:176px;display:flex;flex-direction:column;justify-content:center}.welcome .wx-time{font-size:28px;line-height:1;font-weight:1000;color:#fff1c8}.welcome .wx-icon{font-size:52px;line-height:1;margin:8px 0}.welcome .wx-temp{font-size:40px;line-height:1;font-weight:1000;color:#fff}.welcome .wx-pop{font-size:24px;color:#dfd1b4;margin-top:8px}.welcome .wx-status{margin-top:16px;font-size:20px;color:#ecd9b3;text-align:center}
-/* bank */
-.bank{background:radial-gradient(circle at 50% 42%, #8e230f 0%, #4a0710 33%, #0a0408 86%)}
-.bank .scene-bg .rays{position:absolute;inset:-18%;background:conic-gradient(transparent 0 9%, rgba(255,206,102,.16) 10%, transparent 15% 28%, rgba(255,206,102,.14) 29%, transparent 35% 52%, rgba(255,206,102,.16) 53%, transparent 60% 74%, rgba(255,206,102,.14) 75%, transparent 84% 100%);animation:spin 18s linear infinite;opacity:.38;mix-blend-mode:screen}.bank .top-title{position:absolute;left:0;right:0;top:70px;text-align:center}.bank .top-title .hero-title{font-size:86px}.bank .top-title .hero-sub{margin-top:12px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.bank-grid{position:absolute;left:95px;right:95px;top:285px;bottom:135px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.jack-card{position:relative;padding:34px 26px 30px;border-radius:26px;border:2px solid rgba(255,202,95,.52);background:linear-gradient(180deg, rgba(77,10,22,.84), rgba(18,10,17,.90));box-shadow:0 0 28px rgba(255,180,52,.15), inset 0 0 26px rgba(255,164,53,.08);display:flex;flex-direction:column;justify-content:center;text-align:center}.jack-card .label{font-size:34px;letter-spacing:4px;text-transform:uppercase;color:#ffd57a;font-weight:1000}.jack-card .amount{font-size:118px;line-height:.96;font-weight:1000;color:#fff1cc;margin-top:18px;letter-spacing:-5px;text-shadow:0 4px 16px rgba(255,197,86,.18)}.jack-card .amount .plus{font-size:.42em;vertical-align:top;color:#ffca4a}.jack-card .meta{margin-top:18px;font-size:30px;line-height:1.22;color:#f0e2c0;font-weight:700}.jack-card.bank-card .meta .pill{font-size:24px;padding:12px 22px;background:rgba(71,8,21,.84)}
-#bankCoins{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}.coin{position:absolute;border-radius:50%;border:5px ridge #fff0a7;background:radial-gradient(circle at 35% 30%,#fffce8 0 10%,#f3bf47 24%,#d98d18 58%,#8e4b02 100%);box-shadow:inset 0 0 0 6px #fdcb66,0 0 20px rgba(255,168,19,.38);color:#804502;font-weight:1000;display:grid;place-items:center;opacity:0;animation:coinfall var(--dur) linear var(--delay) infinite}.coin:after{content:'$';font-size:65%}@keyframes coinfall{0%{opacity:0;transform:translate3d(0,-160px,0) rotate(0deg) rotateY(0)}7%{opacity:.92}85%{opacity:.86}100%{opacity:0;transform:translate3d(var(--dx),1180px,0) rotate(var(--rot)) rotateY(720deg)}}
-/* jackpot/promo/kitchen backgrounds */
-.jackpot-screen{background:radial-gradient(circle at 50% 42%, #632179 0%, #231142 48%, #080811 90%)}.jackpot-screen .scene-bg .neon{position:absolute;inset:0;background:repeating-linear-gradient(118deg,transparent 0 150px,rgba(196,89,255,.09) 154px 157px,transparent 160px 300px);animation:sweep 4.2s ease-in-out infinite alternate}@keyframes sweep{to{transform:translateX(48px)}}
-.promo{background:radial-gradient(circle at 50% 34%, #1d356e 0%, #21123f 38%, #08060f 90%)}.promo .scene-bg .spark{position:absolute;inset:-12%;background:conic-gradient(transparent 0 12%, rgba(255,211,95,.14) 13%, transparent 18% 28%, rgba(121,178,255,.15) 29%, transparent 36% 52%, rgba(255,211,95,.12) 53%, transparent 58% 74%, rgba(121,178,255,.16) 75%, transparent 82% 100%);animation:spin 24s linear infinite;opacity:.55}
-.kitchen{background:radial-gradient(circle at 50% 14%, rgba(199,147,70,.14), transparent 18%), linear-gradient(145deg,#140f0d 0%,#2b1812 40%,#0a0908 100%)}.kitchen .scene-bg:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(255,205,120,.06), transparent 24%), radial-gradient(circle at 80% 75%, rgba(255,205,120,.05), transparent 20%)}
-/* controls */
-.controls{position:fixed;right:15px;top:15px;z-index:30;display:flex;gap:7px;opacity:.24;transition:opacity .2s}.controls:hover,.controls:focus-within{opacity:1}button{cursor:pointer}.controls button,.panel button{border:1px solid #c5a065;border-radius:6px;background:#161923;color:white;font-weight:bold;padding:10px 14px}.panel{position:fixed;display:none;z-index:40;top:0;right:0;bottom:0;width:min(470px,100vw);background:#101a28;padding:22px;overflow-y:auto;box-shadow:-20px 0 50px rgba(0,0,0,.78)}.panel.open{display:block}.panel h2{margin:0}.panel p{line-height:1.45;font-size:13px;color:#cad4e3}.panel h3{font-size:15px;margin:20px 0 7px;color:#ffe1a5}.panel label{display:block;font-weight:bold;font-size:13px;margin:12px 0 5px}.panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:5px;border:1px solid #6e829e;background:#223047;color:white;font-size:15px;font-family:inherit}.panel textarea{min-height:76px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{display:inline-block;background:#5b1930;padding:6px 10px;color:#ffe5a5;letter-spacing:2px;font-size:12px;font-weight:bold;border-radius:30px;margin-bottom:12px}.hint{border-left:3px solid #ffd36e;padding:10px;background:#293749;font-size:12px;color:#fff0cd}.screen-label{margin:10px 0;color:#eec471;font-size:13px}.mini-note{font-size:12px;color:#bcd}
-@media(prefers-reduced-motion:reduce){.scene{transition:none}.scene-bg .rays,.scene-bg .spark,.scene-bg .neon,.coin{animation:none!important}}
-
-
-#promoDate{font-size:76.5px;letter-spacing:8px;line-height:1.12;display:block;margin-bottom:20px}
+*{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
+body{font-family:Arial,Helvetica,sans-serif;user-select:none}
+button,input,textarea{font:inherit}
+.viewport{position:fixed;inset:0;display:grid;place-items:center;background:#05070b}
+.frame{position:relative;overflow:hidden;background:#000}
+.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:top left;background:#0a0f1f;overflow:hidden}
+.scene{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.scene.active{opacity:1;pointer-events:auto}
+.scene-bg,.scene-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.blue-bg{background:radial-gradient(circle at 30% 20%, #2c69c8 0, #17428d 25%, #0a1f52 58%, #071532 100%)}
+.bg-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.24));}
+.content{position:absolute;inset:0;z-index:3}
+.serif{font-family:Georgia, 'Times New Roman', Times, serif;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.money{font-family:Georgia, 'Times New Roman', Times, serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58)}
+.subtle-box{background:rgba(9,16,32,.50);border:2px solid rgba(255,255,255,.42);border-radius:34px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.amount-plus{display:inline-block;font-size:.42em;position:relative;top:-0.62em;margin-left:.06em;vertical-align:baseline}
+.center-stack{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:1500px;max-width:88%}
+/* Welcome */
+.welcome .scene-bg{background:url('wtvfc-welcome-banner.png') center center/cover no-repeat}
+.welcome .welcome-message{position:absolute;left:0;right:0;top:315px;text-align:center;font-size:62px;font-weight:800;color:#fff3d2;text-shadow:0 4px 14px rgba(0,0,0,.6)}
+.welcome .welcome-date{position:absolute;left:0;right:0;top:395px;text-align:center;font-size:38px;font-weight:700;letter-spacing:2px;color:#fff}
+.welcome .welcome-clock{position:absolute;left:0;right:0;top:455px;text-align:center;font-size:72px;font-weight:900;color:#fff4d8;text-shadow:0 4px 14px rgba(0,0,0,.6)}
+.welcome .weather-wrap{position:absolute;left:92px;right:92px;bottom:84px;padding:20px 26px 18px;background:linear-gradient(180deg, rgba(8,15,30,.70), rgba(8,15,30,.70));border:1px solid rgba(255,255,255,.22);border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.welcome .weather-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.welcome .weather-title{font-size:29px;font-weight:1000;letter-spacing:2px;color:#fff2cc;text-transform:uppercase}.welcome .weather-title span{font-weight:700;text-transform:none;letter-spacing:1px}
+.welcome .weather-updated{font-size:18px;color:#e7edf8}
+.welcome .forecast-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:16px;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+.welcome .slot{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:150px;background:rgba(255,255,255,.04);padding:14px 18px;border-right:1px solid rgba(255,255,255,.12)}
+.welcome .slot:last-child{border-right:none}
+.welcome .wx-time{font-size:28px;font-weight:900;color:#fff;text-align:center}
+.welcome .wx-main{display:flex;align-items:center;justify-content:center;gap:14px}
+.welcome .wx-icon{font-size:46px;line-height:1}
+.welcome .wx-temp{font-size:44px;line-height:1;font-weight:1000;color:#fff6e3}
+.welcome .wx-pop{font-size:24px;color:#e8edf8;text-align:center}
+.screen-reader-status{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* Jackpot */
+.jackpot .title{font-size:126px;line-height:1.02;margin:0 0 18px}
+.jackpot .amount{font-size:385px;line-height:.88;margin:0}
+.jackpot .count{font-size:76px;line-height:1.05;margin-top:24px;font-weight:700}
+/* Top game prizes */
+.games .grid{position:absolute;inset:84px 140px 84px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:38px}
+.games .card{padding:24px 30px 20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center}
+.games .label{font-size:76px;line-height:1.02;font-weight:700;margin-top:4px;margin-bottom:12px}
+.games .amount{font-size:210px;line-height:.88;font-weight:700;letter-spacing:-3px;margin:0}
+.games .amount.small-decimal .decimal{font-size:.54em}
+.games .note{font-size:57px;line-height:1.05;font-weight:700;margin-top:8px}
+.games .station{margin-top:28px}
+/* Early Bird */
+.earlybird .title{font-size:132px;line-height:1;margin:0 0 86px}
+.earlybird .row{display:flex;justify-content:center;gap:52px}
+.earlybird .card{width:690px;min-height:430px;padding:38px 36px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.earlybird .label{font-size:92px;line-height:1.02;font-weight:700;margin-top:0;margin-bottom:10px}
+.earlybird .amount{font-size:235px;line-height:.88;font-weight:700;margin:0}
+/* Additional jackpot */
+.promo .date{font-size:124px;line-height:1;margin:0 0 4px;font-weight:700}
+.promo .title{font-size:138px;line-height:.96;margin:0 0 12px;font-weight:700}
+.promo .amount{font-size:340px;line-height:.88;margin:0 0 28px}
+.promo .note{font-size:54px;line-height:1.16;font-weight:700;max-width:1700px;margin:0 auto}
+/* Kitchen */
+.kitchen .headline-wrap{position:absolute;left:150px;right:150px;top:84px;display:flex;align-items:flex-end;gap:26px}
+.kitchen .headline{font-size:145px;line-height:.95;font-weight:700;margin:0;white-space:nowrap}
+.kitchen .headline-line{height:4px;background:rgba(255,255,255,.85);flex:1;transform:translateY(-16px)}
+.kitchen .bottom-line{position:absolute;left:150px;right:150px;bottom:146px;height:4px;background:rgba(255,255,255,.85)}
+.kitchen .dish-wrap{position:absolute;left:160px;top:355px;width:865px;text-align:center}
+.kitchen .dish-title{font-size:106px;line-height:1;font-weight:700;margin:0 0 18px}
+.kitchen .dish-line{font-size:72px;line-height:1.04;font-weight:700;margin:0}
+.kitchen .price-card{position:absolute;right:166px;top:298px;width:620px;height:410px;display:flex;align-items:center;justify-content:center}
+.kitchen .price{font-size:250px;line-height:.9;font-weight:700;margin:0}
+.kitchen .price .decimal{font-size:.54em}
+/* controls/settings */
+.controls{position:fixed;right:16px;top:16px;z-index:30;display:flex;gap:8px;opacity:.28;transition:opacity .2s}.controls:hover,.controls:focus-within{opacity:1}
+.controls button,.panel button{border:1px solid #6a7dab;border-radius:8px;padding:10px 14px;background:#18233a;color:#fff;font-weight:700;cursor:pointer}
+.panel{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:#0e1728;color:#fff;padding:22px;overflow:auto;z-index:40;display:none;box-shadow:-18px 0 40px rgba(0,0,0,.55)}.panel.open{display:block}
+.panel h2{margin:0 0 4px}.panel h3{margin:20px 0 8px;color:#f2d38a}.panel p{color:#d7deef;font-size:13px;line-height:1.45}
+.panel label{display:block;margin:11px 0 5px;font-size:13px;font-weight:700}
+.panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:6px;border:1px solid #60708f;background:#1d2940;color:#fff}
+.panel textarea{min-height:68px;resize:vertical}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.small{font-size:12px;color:#c8d2ea}
 </style>
-<style id="welcome-kitchen-update">
-/* v3.2: Official composite background already contains the department branding.
-   Keep all new information below the baked-in logo to avoid overlap. */
-.welcome .scene-bg {background:url('wtvfc-welcome-banner.png') center center / 100% 100% no-repeat;}
-.welcome .scene-bg:after {display:none;}
-.welcome .content {isolation:isolate}
-.welcome-message {position:absolute;top:375px;left:70px;right:70px;text-align:center;
- font-size:72px;line-height:1.12;font-weight:900;letter-spacing:-1.5px;
- color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
-.welcome-date {position:absolute;top:478px;left:80px;right:80px;text-align:center;
- font-size:36px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#ffd78f;
- text-shadow:0 4px 12px #000;}
-.welcome-clock {position:absolute;top:558px;left:0;right:0;text-align:center;
- font-size:78px;line-height:1;font-weight:900;color:#fff7de;
- text-shadow:0 4px 20px #000,0 0 18px #ffcb6333;font-variant-numeric:tabular-nums;}
-.welcome .weather-wrap {left:100px;right:100px;bottom:72px;height:316px;padding:24px 34px;
- border:1px solid rgba(255,211,130,.66);border-radius:18px;
- background:linear-gradient(180deg,rgba(15,10,16,.95),rgba(28,10,14,.96));
- box-shadow:0 15px 32px #0009, inset 0 0 35px #e66f1410}
-.welcome .weather-head {align-items:center}
-.welcome .weather-title {font-size:30px;letter-spacing:1.2px}
-.welcome .weather-title span {font-size:24px;font-weight:600;color:#f0ddbb;letter-spacing:0;text-transform:none}
-.welcome .weather-updated {font-size:17px;white-space:nowrap}
-.welcome .forecast-row {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:24px;
- border:1px solid rgba(255,201,113,.30);border-radius:12px;overflow:hidden;background:#1c141a88}
-.welcome .slot {min-height:174px;border:none;border-right:1px solid rgba(255,215,146,.22);
- border-radius:0;background:transparent;padding:18px 14px 14px;display:flex;flex-direction:column;justify-content:center}
-.welcome .slot:last-child {border-right:0}
-.welcome .wx-top {display:flex;align-items:center;justify-content:center;gap:16px;min-height:95px}
-.welcome .wx-icon {font-size:60px;line-height:1;margin:0;min-width:66px;text-align:center}
-.welcome .wx-metrics {text-align:left;min-width:0}
-.welcome .wx-time {font-size:27px;white-space:nowrap;color:#ffdda3}
-.welcome .wx-temp {font-size:45px;white-space:nowrap;margin-top:8px}
-.welcome .wx-pop {font-size:23px;text-align:center;margin-top:10px}
-.screen-reader-status {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-/* Kitchen gets a cool, appetizing blue/copper vignette without casino coins. */
-.kitchen {background:radial-gradient(ellipse at 50% 46%,#176078 0%,#123c57 38%,#071c35 73%,#030e1a 100%)}
-.kitchen .scene-bg:before {background:radial-gradient(circle at 22% 32%,#81d6e633,transparent 26%),
- radial-gradient(circle at 79% 74%,#cfaa6633,transparent 30%)}
-.kitchen .overlay {background:radial-gradient(ellipse at 50% 44%,transparent 18%,#061022a8 92%)}
-.kitchen .hero-title {color:#fff0d2;text-shadow:0 4px 0 #39647a,0 12px 0 #142d40,0 17px 30px #0009}
-.kitchen .center-note {color:#e8f5f6}
-.kitchen .bottom-note {color:#f8d49e}
-</style><style id="v32-design">
-/* V3.2: shorter, balanced three-prize display */
-.bank-grid{top:345px;bottom:210px;left:98px;right:98px;gap:24px}
-.bank .top-title{top:105px}
-.bank .top-title .hero-sub{margin-top:16px}
-.jack-card{padding:28px 22px 25px;border-radius:23px}
-.jack-card .label{font-size:34px;letter-spacing:2px}
-.jack-card .amount{font-size:110px;margin-top:20px}
-.jack-card .meta{font-size:28px;margin-top:20px}
-/* Video-backed jackpot ads: subtle depth, glow and sweep without hiding values */
-.jackpot-screen .scene-bg video,.promo .scene-bg video{opacity:.6;filter:saturate(1.35) contrast(1.1)}
-.jackpot-screen .overlay,.promo .overlay{background:radial-gradient(ellipse at 50% 48%,rgba(2,2,10,.32),rgba(3,3,12,.60) 77%,rgba(0,0,0,.78) 100%)}
-.jackpot-screen .big-amount,.promo .big-amount{animation:premiumPulse 3.1s ease-in-out infinite alternate}
-@keyframes premiumPulse{from{filter:drop-shadow(0 0 5px rgba(255,193,83,.18))}to{filter:drop-shadow(0 0 24px rgba(255,220,135,.60))}}
-/* Kitchen: menu style typography / price hierarchy */
-.kitchen .center-stack{padding:0 180px}
-.kitchen .hero-title{font-size:105px;margin-bottom:32px}
-.kitchen #kitchenDish{font-size:106px!important;line-height:1.05!important;margin:0 0 19px!important;color:#fff5e3}
-.kitchen #kitchenDetail{max-width:1360px;font-size:35px;line-height:1.28;margin:14px auto 0}
-.kitchen-price{font-size:91px;color:#ffde97;font-weight:1000;letter-spacing:0;margin-top:29px;text-shadow:0 5px 0 #6e480c,0 12px 20px #0009}
-.kitchen .bottom-note{margin-top:25px;font-size:25px;color:#cbe9ef}
-.kitchen .scene-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 47% 42%,rgba(26,120,167,.17),transparent 47%),linear-gradient(120deg,transparent 10%,rgba(106,203,231,.1) 50%,transparent 90%);animation:seaGlow 9s ease-in-out infinite alternate}
-@keyframes seaGlow{to{opacity:.35;transform:translateX(2%)}}
-@media(prefers-reduced-motion:reduce){.jackpot-screen .big-amount,.promo .big-amount,.kitchen .scene-bg:after{animation:none}}
-
-/* 20% larger than original inherited 16px pill label. */
-#jackpotNums{font-size:19.2px;}
-</style><style id="supplied-jackpot-video-clean">
-/* Tonight's Jackpot: show the user-supplied MP4 without visual effects. */
-.jackpot-screen .scene-bg video{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.jackpot-screen .overlay,.jackpot-screen .neon{display:none!important}
-.jackpot-screen .big-amount{animation:none!important}
-</style><style id="video-background-clean-v35">
-/* Respect supplied background footage; do not dim or tint it. */
-.bank .scene-bg video, .jackpot-screen .scene-bg video {
-  opacity:1!important;filter:none!important;mix-blend-mode:normal!important;
-}
-.bank .overlay, .bank .rays,
-.jackpot-screen .overlay, .jackpot-screen .neon {display:none!important}
-/* Jackpot text and bank prize cards stay readable on top of the footage. */
-</style><style id="special-jackpot-video-clean-v36">
-/* User-supplied Additional Jackpot footage: full luminance, no tint or overlays. */
-.promo .scene-bg video { opacity:1!important; filter:none!important; mix-blend-mode:normal!important; }
-.promo .overlay, .promo .spark { display:none!important; }
-/* Keep video beneath the editable message. */
-</style></head>
+</head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
 
 <section class="scene welcome active" data-scene="welcome">
-  <div class="scene-bg"></div><div class="content">
+  <div class="scene-bg"></div>
+  <div class="content">
     <div class="welcome-message">Welcome to Monday Night Bingo!</div>
     <div class="welcome-date" id="welcomeDateTop">Monday, October 26, 2026</div>
     <div class="welcome-clock" id="clockTime">--:--</div>
@@ -148,105 +105,246 @@
   </div>
 </section>
 
-<section class="scene bank" data-scene="bank">
-  <div class="scene-bg"><video class="bgvid" id="bankVideo" muted playsinline loop preload="none"><source src="featured.mp4" type="video/mp4"></video><div class="rays"></div></div><div class="overlay"></div>
-  <div class="content">
-    <div class="top-title"><div class="hero-title">Top Game Prizes</div></div>
-    <div class="bank-grid">
-      <div class="jack-card bank-card"><div class="label">Breakin' Your Bank</div><div class="amount" id="bankPrize">$5,135<span class="plus">+</span></div><div class="meta"><span class="pill" id="bankEnvelopes">10 Envelopes Left!</span></div></div>
-      <div class="jack-card"><div class="label">Quickie</div><div class="amount" id="quickiePrize">$1,973.50<span class="plus">+</span></div><div class="meta" id="quickieNums">in 60 numbers</div></div>
-      <div class="jack-card"><div class="label">All Nighter</div><div class="amount" id="allNighterPrize">$481<span class="plus">+</span></div><div class="meta" id="allNighterNums">in 17 numbers</div></div>
+<section class="scene jackpot" data-scene="jackpot">
+  <div class="scene-bg"><video id="jackpotVideo" muted playsinline preload="metadata"><source src="jackpotnew.mp4" type="video/mp4"></video></div>
+  <div class="content serif center-stack">
+    <h1 class="title">Tonight's Jackpot</h1>
+    <div class="money amount" id="jackpotPrize">$1,350</div>
+    <div class="count" id="jackpotNums">in 51 numbers</div>
+  </div>
+</section>
+
+<section class="scene games" data-scene="games">
+  <div class="scene-bg"><video id="gamesVideo" muted playsinline preload="metadata"><source src="featured.mp4" type="video/mp4"></video></div>
+  <div class="content serif">
+    <div class="grid">
+      <div class="card subtle-box">
+        <div class="label">Breakin' Your Bank</div>
+        <div class="money amount" id="bankPrize">$5,135<span class="amount-plus">+</span></div>
+        <div class="note" id="bankEnvelopes">Only 10 envelopes left!</div>
+      </div>
+      <div class="card subtle-box">
+        <div class="label">Quickie</div>
+        <div class="money amount" id="quickiePrize">$1,973<span class="decimal">.50</span><span class="amount-plus">+</span></div>
+        <div class="note" id="quickieNums">in 60 numbers</div>
+      </div>
+      <div class="card subtle-box">
+        <div class="label">All Nighter</div>
+        <div class="money amount" id="allNighterPrize">$481<span class="amount-plus">+</span></div>
+        <div class="note" id="allNighterNums">in 17 numbers</div>
+      </div>
+      <div class="card subtle-box">
+        <div class="label">Station Bonus</div>
+        <div class="money amount station" id="stationBonusPrize">$1,000<span class="amount-plus">+</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="scene jackpot-screen" data-scene="jackpot">
-  <div class="scene-bg"><video class="bgvid" id="jackpotVideo" muted playsinline loop preload="none"></video><div class="neon"></div></div><div class="overlay"></div>
-  <div class="center-stack"><div class="hero-title">Tonight's Bingo Jackpot</div><div class="big-amount" id="jackpotPrize">$1,350</div><div class="pill" id="jackpotNums">in 51 numbers</div></div>
+<section class="scene earlybird" data-scene="earlybird">
+  <div class="scene-bg blue-bg"></div>
+  <div class="content serif center-stack" style="width:1600px;max-width:92%">
+    <h1 class="title">Early Bird Jackpots</h1>
+    <div class="row">
+      <div class="card subtle-box"><div class="label" id="earlyGame4Label">Game 4</div><div class="money amount" id="earlyGame4Prize">$800</div></div>
+      <div class="card subtle-box"><div class="label" id="earlyGame5Label">Game 5</div><div class="money amount" id="earlyGame5Prize">$1000</div></div>
+    </div>
+  </div>
 </section>
 
 <section class="scene promo" data-scene="promo">
-  <div class="scene-bg"><video class="bgvid" id="promoVideo" muted playsinline loop preload="none"></video><div class="spark"></div></div><div class="overlay"></div>
-  <div class="center-stack"><div class="hero-sub" id="promoDate">December 7</div><div class="hero-title">Additional Jackpot</div><div class="big-amount" id="promoAmount">$5,000</div><div class="center-note" id="promoNote">Collect your vouchers each week leading up to the jackpot!</div></div>
+  <div class="scene-bg"><video id="promoVideo" muted playsinline preload="metadata"><source src="specialjackpot.mp4" type="video/mp4"></video></div>
+  <div class="content serif center-stack" style="width:1700px;max-width:94%">
+    <h1 class="date" id="promoDate">December 7th</h1>
+    <h2 class="title">Additional Jackpot</h2>
+    <div class="money amount" id="promoAmount">$5,000</div>
+    <div class="note" id="promoNote">One free play voucher awarded each week leading up to the jackpot!</div>
+  </div>
 </section>
 
 <section class="scene kitchen" data-scene="kitchen">
-  <div class="scene-bg"><video class="bgvid" id="kitchenVideo" muted playsinline loop preload="none"></video></div><div class="overlay"></div>
-  <div class="center-stack"><div class="hero-title">Tonight's Kitchen Special</div><div class="big-amount" style="font-size:114px;line-height:1.02;letter-spacing:-3px;margin-top:8px;margin-bottom:10px" id="kitchenDish">Oysters Rockefeller</div><div class="center-note" id="kitchenDetail">with Shaved Fennel and Citrus Salad w/Champagne vinaigrette</div><div class="kitchen-price" id="kitchenPrice">$9.99</div><div class="bottom-note">Kitchen Open Until 9 PM</div></div>
+  <div class="scene-bg blue-bg"></div>
+  <div class="content serif">
+    <div class="headline-wrap"><h1 class="headline">Kitchen Special</h1><div class="headline-line"></div></div>
+    <div class="dish-wrap">
+      <h2 class="dish-title" id="kitchenDish">Prime Rib</h2>
+      <p class="dish-line" id="kitchenLine1">with mashed potatoes</p>
+      <p class="dish-line" id="kitchenLine2">and steamed vegetable</p>
+    </div>
+    <div class="price-card subtle-box"><div class="money price" id="kitchenPrice">$9<span class="decimal">.99</span></div></div>
+    <div class="bottom-line"></div>
+  </div>
 </section>
 
 </div></div></div>
+
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.17 • FEATURED VIDEO</div><h2>WTVFC Signage Settings · v3.13</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
-<h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div></div>
-<h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
-<h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
-<h3>Kitchen</h3><label for="kitchenDishInput">Dish name</label><input id="kitchenDishInput"><label for="kitchenDetailInput">Dish description</label><textarea id="kitchenDetailInput"></textarea><label for="kitchenPriceInput">Kitchen price</label><input id="kitchenPriceInput" value="$9.99">
-<h3>Optional Background MP4s</h3><p class="mini-note">Use repository-relative paths like <code>videos/jackpot.mp4</code>. Leave blank to keep the built-in lush CSS background. Featured Jackpots defaults to <code>featured.mp4</code>.</p><label for="bankVideoSrc">Featured jackpots video</label><input id="bankVideoSrc" placeholder="featured.mp4"><label for="jackpotVideoSrc">Tonight's jackpot video</label><input id="jackpotVideoSrc" placeholder="jackpotnew.mp4"><label for="promoVideoSrc">Additional jackpot video</label><input id="promoVideoSrc" placeholder="specialjackpot.mp4"><label for="kitchenVideoSrc">Kitchen video</label><input id="kitchenVideoSrc" placeholder="videos/kitchen.mp4"><label><input id="autoplay" type="checkbox" style="width:auto;margin-right:8px">Auto-rotate</label>
-<p id="videoState" class="screen-label">Background video status ready.</p><div class="row-buttons"><button id="save">Save & Apply</button><button id="close">Close</button><button id="reset">Reset Demo</button></div><p>Keyboard: ← / → screens • S settings • F fullscreen • Space pause.</p></aside>
+
+<aside id="panel" class="panel">
+  <h2>WTVFC Digital Signage · v4.0</h2>
+  <p>Layout pass built from your black-and-white typography guides. These are live HTML text overlays on top of your background videos. New screens without background videos use a blue placeholder background for now.</p>
+  <h3>Screen Timing (seconds)</h3>
+  <div class="grid2">
+    <div><label for="welcomeSeconds">Welcome</label><input id="welcomeSeconds" type="number" min="4" max="120"></div>
+    <div><label for="jackpotSeconds">Tonight's Jackpot</label><input id="jackpotSeconds" type="number" min="4" max="120"></div>
+    <div><label for="gamesSeconds">Tonight Games</label><input id="gamesSeconds" type="number" min="4" max="120"></div>
+    <div><label for="earlybirdSeconds">Early Bird</label><input id="earlybirdSeconds" type="number" min="4" max="120"></div>
+    <div><label for="promoSeconds">December 7 Promo</label><input id="promoSeconds" type="number" min="4" max="120"></div>
+    <div><label for="kitchenSeconds">Kitchen</label><input id="kitchenSeconds" type="number" min="4" max="120"></div>
+  </div>
+  <h3>Welcome</h3>
+  <label for="date">Evening date</label><input id="date">
+  <h3>Tonight's Jackpot</h3>
+  <div class="grid2">
+    <div><label for="jackpot">Amount</label><input id="jackpot"></div>
+    <div><label for="jackpotCount">Numbers text</label><input id="jackpotCount"></div>
+  </div>
+  <h3>Tonight Games</h3>
+  <div class="grid2">
+    <div><label for="bank">Breakin' Your Bank</label><input id="bank"></div>
+    <div><label for="envelopes">Envelopes text</label><input id="envelopes"></div>
+    <div><label for="quickie">Quickie</label><input id="quickie"></div>
+    <div><label for="quickieCount">Quickie numbers</label><input id="quickieCount"></div>
+    <div><label for="allNighter">All Nighter</label><input id="allNighter"></div>
+    <div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount"></div>
+    <div><label for="stationBonus">Station Bonus</label><input id="stationBonus"></div>
+    <div></div>
+  </div>
+  <h3>Early Bird</h3>
+  <div class="grid2">
+    <div><label for="earlyGame4LabelInput">Left label</label><input id="earlyGame4LabelInput"></div>
+    <div><label for="earlyGame5LabelInput">Right label</label><input id="earlyGame5LabelInput"></div>
+    <div><label for="earlyGame4">Left amount</label><input id="earlyGame4"></div>
+    <div><label for="earlyGame5">Right amount</label><input id="earlyGame5"></div>
+  </div>
+  <h3>December 7 Additional Jackpot</h3>
+  <div class="grid2">
+    <div><label for="promoDateInput">Date text</label><input id="promoDateInput"></div>
+    <div><label for="promoAmountInput">Amount</label><input id="promoAmountInput"></div>
+  </div>
+  <label for="promoNoteInput">Voucher note</label><textarea id="promoNoteInput"></textarea>
+  <h3>Kitchen Special</h3>
+  <div class="grid2">
+    <div><label for="kitchenDishInput">Dish title</label><input id="kitchenDishInput"></div>
+    <div><label for="kitchenPriceInput">Price</label><input id="kitchenPriceInput"></div>
+  </div>
+  <label for="kitchenLine1Input">Line 1</label><input id="kitchenLine1Input">
+  <label for="kitchenLine2Input">Line 2</label><input id="kitchenLine2Input">
+  <p class="small">Background files in use: <code>jackpotnew.mp4</code>, <code>featured.mp4</code>, and <code>specialjackpot.mp4</code>. Early Bird and Kitchen use blue placeholders for now.</p>
+  <div class="row-buttons"><button id="save">Save & Apply</button><button id="reset">Reset Demo</button><button id="close">Close</button></div>
+</aside>
+
 <script>
-(function(){'use strict';
-var key='wtvfc_signage_v3';
-var defaults={date:'October 26, 2026',welcomeSeconds:'12',bankSeconds:'10',jackpotSeconds:'8',promoSeconds:'8',kitchenSeconds:'10',bank:'$5,135+',envelopes:'10',quickie:'$1,973.50+',quickieCount:'60',allNighter:'$481+',allNighterCount:'17',jackpot:'$1,350',jackpotCount:'51',promoDateInput:'December 7',promoAmountInput:'$5,000',promoNoteInput:'Collect your vouchers each week leading up to the jackpot!',kitchenDishInput:'Oysters Rockefeller',kitchenDetailInput:'with Shaved Fennel and Citrus Salad w/Champagne vinaigrette',kitchenPriceInput:'$9.99',bankVideoSrc:'featured.mp4',jackpotVideoSrc:'jackpotnew.mp4',promoVideoSrc:'specialjackpot.mp4',kitchenVideoSrc:'',autoplay:true};
-var ids=Object.keys(defaults), data=Object.assign({},defaults); try{var saved=JSON.parse(localStorage.getItem(key)||'null'); if(saved&&typeof saved==='object'){data=Object.assign(data,saved); if(!data.bankVideoSrc || data.bankVideoSrc==='bank-atmosphere.mp4')data.bankVideoSrc=defaults.bankVideoSrc; if(data.kitchenDetailInput==='paired with a Shaved Fennel and Citrus Salad with Champagne Vinaigrette')data.kitchenDetailInput=defaults.kitchenDetailInput; if(!data.jackpotVideoSrc || ['jackpot-lights.mp4','jackpotbackground.mp4'].indexOf(data.jackpotVideoSrc)!==-1)data.jackpotVideoSrc=defaults.jackpotVideoSrc; if(!data.promoVideoSrc || data.promoVideoSrc==='promo-lights.mp4')data.promoVideoSrc=defaults.promoVideoSrc;}}catch(e){}
-var scenes=[].slice.call(document.querySelectorAll('.scene')), order=['welcomeSeconds','bankSeconds','jackpotSeconds','promoSeconds','kitchenSeconds']; var pos=0, timer=null, paused=false, panel=document.getElementById('panel');
-function el(id){return document.getElementById(id)}
-function fit(){var scale=Math.min(innerWidth/1920,innerHeight/1080), frame=el('frame'); frame.style.width=(1920*scale)+'px'; frame.style.height=(1080*scale)+'px'; el('stage').style.transform='scale('+scale+')';} window.addEventListener('resize',fit); fit();
-function setText(id,val){el(id).textContent=val}
-function setMoney(id,val){var t=el(id), s=String(val||'').trim(); t.textContent=''; if(s.endsWith('+')){t.appendChild(document.createTextNode(s.slice(0,-1))); var sup=document.createElement('span'); sup.className='plus'; sup.textContent='+';  t.appendChild(sup);} else t.textContent=s;}
-function formatEveningDate(value){var d=new Date(value+' 12:00:00');return isNaN(d.getTime())?String(value):d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
-function apply(){setText('welcomeDateTop', formatEveningDate(data.date)); setMoney('bankPrize',data.bank); setText('bankEnvelopes', data.envelopes+' Envelopes Left!'); setMoney('quickiePrize',data.quickie); setText('quickieNums','in '+data.quickieCount+' numbers'); setMoney('allNighterPrize',data.allNighter); setText('allNighterNums','in '+data.allNighterCount+' numbers'); setText('jackpotPrize',data.jackpot); setText('jackpotNums','in '+data.jackpotCount+' numbers'); setText('promoDate',data.promoDateInput); setText('promoAmount',data.promoAmountInput); setText('promoNote',data.promoNoteInput); setText('kitchenDish',data.kitchenDishInput); setText('kitchenDetail',data.kitchenDetailInput); setText('kitchenPrice',data.kitchenPriceInput); ids.forEach(function(id){var input=el(id); if(!input) return; if(input.type==='checkbox') input.checked=!!data[id]; else input.value=data[id];});}
-function duration(){var k=order[pos]; return Math.max(4,Math.min(120,Number(data[k])||8))*1000;}
-function schedule(){clearTimeout(timer); if(data.autoplay && !paused && !panel.classList.contains('open') && !document.hidden) timer=setTimeout(function(){show(pos+1);}, duration());}
-function show(n){pos=(n+scenes.length)%scenes.length; scenes.forEach(function(sc,i){sc.classList.toggle('active',i===pos); sc.setAttribute('aria-hidden',i===pos?'false':'true');}); syncVideos(); schedule();}
-function fullscreen(){var stage=el('stage'); if(document.fullscreenElement){document.exitFullscreen&&document.exitFullscreen();} else if(stage.requestFullscreen){stage.requestFullscreen().catch(function(){});} else if(stage.webkitRequestFullscreen){stage.webkitRequestFullscreen();}}
-var vids={bank:el('bankVideo'),jackpot:el('jackpotVideo'),promo:el('promoVideo'),kitchen:el('kitchenVideo')};
-function setSources(){var map={bank:data.bankVideoSrc,jackpot:data.jackpotVideoSrc,promo:data.promoVideoSrc,kitchen:data.kitchenVideoSrc}; Object.keys(vids).forEach(function(name){var video=vids[name], path=String(map[name]||'').trim(); if(!path){video.removeAttribute('src'); video.load(); return;} if(/^https?:|^\/\//i.test(path)){video.removeAttribute('src'); video.load(); return;} if(video.getAttribute('src')!==path){video.pause(); video.setAttribute('src',path); video.load();}});}
-// A background video gets one complete play-through per slide, not a fixed rate.
-// The rate comes from the browser-reported duration and the current saved slide duration.
-var videoScene={bank:1,jackpot:2,promo:3,kitchen:4};
-function videoRate(video,sceneIndex){
- var natural=video.duration;
- if(!Number.isFinite(natural)||natural<=0)return false;
- var slideSeconds=Math.max(4,Math.min(120,Number(data[order[sceneIndex]])||8));
- var rate=natural/slideSeconds;
- // Chrome supports varied playback rates; report if an unusual rate isn't accepted.
- try{video.defaultPlaybackRate=rate;video.playbackRate=rate;}catch(e){
-  el('videoState').textContent='Unable to set video speed: '+e.message;return false;
- }
- return true;
-}
-function syncVideos(){
- Object.keys(vids).forEach(function(name){
-  var video=vids[name], sceneIndex=videoScene[name];
-  if(pos!==sceneIndex||document.hidden||!video.getAttribute('src')){video.pause();return;}
-  video.pause();
-  video.loop=false; // Hold the final frame rather than looping before the slide ends.
-  if(video.readyState>=1)videoRate(video,sceneIndex);
-  try{video.currentTime=0;}catch(e){}
-  var promise=video.play();
-  if(promise&&promise.catch)promise.catch(function(){el('videoState').textContent='Video could not play; check its filename and codec.';});
- });
-}
-Object.keys(vids).forEach(function(name){
- var video=vids[name],sceneIndex=videoScene[name];
- video.addEventListener('loadedmetadata',function(){
-  videoRate(video,sceneIndex);
-  if(pos===sceneIndex&&!document.hidden&&video.paused){var p=video.play();if(p&&p.catch)p.catch(function(){});}
- });
- // Playback might be reset to 1x by a new media load; reassert the rate on playback.
- video.addEventListener('playing',function(){videoRate(video,sceneIndex);});
-});
-Object.keys(vids).forEach(function(name){vids[name].addEventListener('error',function(){el('videoState').textContent='A background MP4 is missing or unsupported. CSS fallback remains active.';});});
-function formatTime(d){var hr=d.getHours(), m=d.getMinutes(), amp=hr>=12?'PM':'AM'; hr=hr%12||12; return hr+':'+String(m).padStart(2,'0')+' '+amp;}
-function tickClock(){var now=new Date(); el('clockTime').textContent=formatTime(now);} setInterval(tickClock,1000); tickClock();
-function weatherIcon(code){if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️';}
-function renderForecast(slots){var row=el('forecastRow'); row.textContent=''; slots.forEach(function(item){var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-top"><div class="wx-icon">'+item.icon+'</div><div class="wx-metrics"><div class="wx-time">'+item.time+'</div><div class="wx-temp">'+item.temp+'°F</div></div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell);});}
-async function loadWeather(){var row=el('forecastRow'); row.innerHTML=''; for(var i=0;i<4;i++){var ph=document.createElement('div'); ph.className='slot'; ph.innerHTML='<div class="wx-top"><div class="wx-icon">•</div><div class="wx-metrics"><div class="wx-time">--</div><div class="wx-temp">--°F</div></div></div><div class="wx-pop">Precip --%</div>'; row.appendChild(ph);} try{var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=2&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('Weather request failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pop=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length&&slots.length<4;i++){var t=new Date(times[i]); if(t>=now){slots.push({time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pop[i]||0), icon:weatherIcon(Number(codes[i]||0))});}} if(slots.length){renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Forecast available';} else throw new Error('No forecast slots'); }catch(err){el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast right now. Check internet connection.';}}
-loadWeather(); setInterval(loadWeather,10*60*1000);
-function saveApply(){ids.forEach(function(id){var input=el(id); if(!input) return; data[id]=input.type==='checkbox'?input.checked:input.value;}); try{localStorage.setItem(key,JSON.stringify(data));}catch(e){} apply(); setSources(); panel.classList.remove('open'); show(pos);} 
-el('prev').addEventListener('click',function(){show(pos-1)}); el('next').addEventListener('click',function(){show(pos+1)}); el('fullscreen').addEventListener('click',fullscreen); el('settings').addEventListener('click',function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click',function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click',saveApply); el('reset').addEventListener('click',function(){data=Object.assign({},defaults); try{localStorage.removeItem(key);}catch(e){} apply(); setSources(); show(0);}); document.addEventListener('keydown',function(e){if(['INPUT','TEXTAREA'].indexOf(document.activeElement.tagName)>=0) return; if(e.key==='ArrowRight') show(pos+1); else if(e.key==='ArrowLeft') show(pos-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); schedule();} else if(e.key.toLowerCase()==='f') fullscreen(); else if(e.code==='Space'){e.preventDefault(); paused=!paused; schedule();} else if(e.key==='Escape'&&panel.classList.contains('open')){panel.classList.remove('open'); schedule();}}); document.addEventListener('visibilitychange',function(){if(!document.hidden) schedule(); else clearTimeout(timer); syncVideos();});
-apply(); setSources(); show(0);
+(function(){
+  var defaults={
+    date:'October 26, 2026',
+    welcomeSeconds:'12', jackpotSeconds:'8', gamesSeconds:'10', earlybirdSeconds:'8', promoSeconds:'8', kitchenSeconds:'10',
+    jackpot:'$1,350', jackpotCount:'in 51 numbers',
+    bank:'$5,135+', envelopes:'Only 10 envelopes left!', quickie:'$1,973.50+', quickieCount:'in 60 numbers', allNighter:'$481+', allNighterCount:'in 17 numbers', stationBonus:'$1,000+',
+    earlyGame4LabelInput:'Game 4', earlyGame5LabelInput:'Game 5', earlyGame4:'$800', earlyGame5:'$1000',
+    promoDateInput:'December 7th', promoAmountInput:'$5,000', promoNoteInput:'One free play voucher awarded each week leading up to the jackpot!',
+    kitchenDishInput:'Prime Rib', kitchenLine1Input:'with mashed potatoes', kitchenLine2Input:'and steamed vegetable', kitchenPriceInput:'$9.99'
+  };
+  var storeKey='wtvfc_signage_v40';
+  var data=Object.assign({},defaults);
+  try{var saved=JSON.parse(localStorage.getItem(storeKey)||'null'); if(saved&&typeof saved==='object') data=Object.assign(data,saved);}catch(e){}
+
+  var sceneOrder=['welcome','jackpot','games','earlybird','promo','kitchen'];
+  var durationMap={welcome:'welcomeSeconds', jackpot:'jackpotSeconds', games:'gamesSeconds', earlybird:'earlybirdSeconds', promo:'promoSeconds', kitchen:'kitchenSeconds'};
+  var scenes=[].slice.call(document.querySelectorAll('.scene'));
+  var currentIndex=0,timer=null,paused=false;
+  var panel=document.getElementById('panel');
+  var videos={ jackpot:document.getElementById('jackpotVideo'), games:document.getElementById('gamesVideo'), promo:document.getElementById('promoVideo') };
+  Object.keys(videos).forEach(function(k){videos[k].loop=false; videos[k].muted=true; videos[k].playsInline=true;});
+
+  function el(id){return document.getElementById(id)}
+  function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080),f=el('frame'); f.style.width=(1920*s)+'px'; f.style.height=(1080*s)+'px'; el('stage').style.transform='scale('+s+')';}
+  window.addEventListener('resize',fit); fit();
+
+  function formatDateText(input){ var d=new Date(input); if(!isNaN(d)) return d.toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'}); return input; }
+  function makePlusMoney(raw){
+    raw=String(raw||'').trim();
+    var plus='';
+    if(raw.endsWith('+')){plus='<span class="amount-plus">+</span>'; raw=raw.slice(0,-1);}
+    if(raw.indexOf('.')>-1){
+      var parts=raw.split('.');
+      if(parts[1].length>0) return parts[0]+'<span class="decimal">.'+parts[1]+'</span>'+plus;
+    }
+    return raw+plus;
+  }
+  function setHtml(id, html){ el(id).innerHTML=html; }
+  function setText(id, value){ el(id).textContent=value; }
+  function apply(){
+    setText('welcomeDateTop', formatDateText(data.date));
+    setText('jackpotNums', data.jackpotCount);
+    setHtml('jackpotPrize', makePlusMoney(data.jackpot).replace('<span class="amount-plus">+</span>',''));
+    setHtml('bankPrize', makePlusMoney(data.bank));
+    setText('bankEnvelopes', data.envelopes);
+    setHtml('quickiePrize', makePlusMoney(data.quickie));
+    setText('quickieNums', data.quickieCount);
+    setHtml('allNighterPrize', makePlusMoney(data.allNighter));
+    setText('allNighterNums', data.allNighterCount);
+    setHtml('stationBonusPrize', makePlusMoney(data.stationBonus));
+    setText('earlyGame4Label', data.earlyGame4LabelInput);
+    setText('earlyGame5Label', data.earlyGame5LabelInput);
+    setHtml('earlyGame4Prize', makePlusMoney(data.earlyGame4).replace('<span class="amount-plus">+</span>',''));
+    setHtml('earlyGame5Prize', makePlusMoney(data.earlyGame5).replace('<span class="amount-plus">+</span>',''));
+    setText('promoDate', data.promoDateInput);
+    setHtml('promoAmount', makePlusMoney(data.promoAmountInput).replace('<span class="amount-plus">+</span>',''));
+    setText('promoNote', data.promoNoteInput);
+    setText('kitchenDish', data.kitchenDishInput);
+    setText('kitchenLine1', data.kitchenLine1Input);
+    setText('kitchenLine2', data.kitchenLine2Input);
+    setHtml('kitchenPrice', makePlusMoney(data.kitchenPriceInput).replace('.', '<span class="decimal">.</span>').replace('<span class="amount-plus">+</span>',''));
+    Object.keys(defaults).forEach(function(k){ if(el(k)){ if(el(k).type==='number') el(k).value=data[k]; else el(k).value=data[k]; } });
+  }
+
+  function getDuration(sceneName){ var key=durationMap[sceneName]; return Math.max(4,Math.min(120,Number(data[key])||8)); }
+  function schedule(){ clearTimeout(timer); if(paused||panel.classList.contains('open')||document.hidden) return; timer=setTimeout(function(){show(currentIndex+1);}, getDuration(sceneOrder[currentIndex])*1000); }
+
+  function stopAllVideos(){ Object.keys(videos).forEach(function(k){ var v=videos[k]; if(v){v.pause();} }); }
+  function activateSceneVideo(sceneName){ stopAllVideos(); var v=videos[sceneName]; if(!v) return; var dur=getDuration(sceneName); function go(){ try{v.currentTime=0;}catch(e){} var vd=(v.duration && isFinite(v.duration))?v.duration:dur; v.playbackRate=vd/dur; v.loop=false; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+    if(v.readyState>=1 && v.duration) go(); else {v.addEventListener('loadedmetadata', go, {once:true}); v.load();}
+  }
+  function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.toggle('active', i===currentIndex); }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
+
+  function saveData(){ Object.keys(defaults).forEach(function(k){ if(el(k)){ data[k]=el(k).value; } }); try{localStorage.setItem(storeKey, JSON.stringify(data));}catch(e){} apply(); panel.classList.remove('open'); show(currentIndex); }
+  function resetData(){ data=Object.assign({},defaults); try{localStorage.removeItem(storeKey);}catch(e){} apply(); panel.classList.remove('open'); show(0); }
+
+  function formatTime(d){ var h=d.getHours(), m=d.getMinutes(), am=h>=12?'PM':'AM'; h=h%12||12; return h+':'+String(m).padStart(2,'0')+' '+am; }
+  function tickClock(){ el('clockTime').textContent=formatTime(new Date()); }
+  setInterval(tickClock,1000); tickClock();
+
+  function weatherIcon(code){ if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️'; }
+  function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item,idx){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
+  async function loadWeather(){
+    try{
+      var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=1&timezone=America%2FNew_York';
+      var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed');
+      var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[];
+      var now=new Date(); var slots=[];
+      for(var i=0;i<times.length && slots.length<4;i++){
+        var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); }
+      }
+      if(!slots.length) throw new Error('no data');
+      renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.';
+    }catch(e){
+      renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]);
+      el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.';
+    }
+  }
+  loadWeather(); setInterval(loadWeather, 10*60*1000);
+
+  el('prev').addEventListener('click', function(){show(currentIndex-1)});
+  el('next').addEventListener('click', function(){show(currentIndex+1)});
+  el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);});
+  el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();});
+  el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData);
+  el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
+  document.addEventListener('keydown', function(e){ if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if(e.key==='ArrowRight') show(currentIndex+1); else if(e.key==='ArrowLeft') show(currentIndex-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); if(!panel.classList.contains('open')) schedule(); else clearTimeout(timer);} else if(e.key.toLowerCase()==='f'){el('fullscreen').click();} else if(e.code==='Space'){ e.preventDefault(); paused=!paused; if(!paused) schedule(); else clearTimeout(timer); } });
+  document.addEventListener('visibilitychange', function(){ if(document.hidden){clearTimeout(timer); stopAllVideos();} else {show(currentIndex);} });
+
+  apply(); show(0);
 })();
 </script>
 </body>
