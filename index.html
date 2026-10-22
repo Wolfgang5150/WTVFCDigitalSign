@@ -16,8 +16,8 @@ button,input,textarea{font:inherit}
 .scene-bg,.scene-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .blue-bg{background:radial-gradient(circle at 30% 20%, #2c69c8 0, #17428d 25%, #0a1f52 58%, #071532 100%)}
 .content{position:absolute;inset:0;z-index:3}
-.serif{font-family:Georgia, 'Times New Roman', Times, serif;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.money{font-family:Georgia, 'Times New Roman', Times, serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58);white-space:nowrap}
+.serif{font-family:'Times New Roman', Times, serif;font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.money{font-family:'Times New Roman', Times, serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58);white-space:nowrap}
 .sup-dollar{display:inline-block;font-size:.42em;position:relative;top:-0.56em;margin-right:.04em;vertical-align:baseline}
 .sup-cents{display:inline-block;font-size:.42em;position:relative;top:-0.52em;margin-left:.03em;vertical-align:baseline}
 .amount-plus{display:inline-block;font-size:.42em;position:relative;top:-0.55em;margin-left:.06em;vertical-align:baseline}
@@ -50,6 +50,8 @@ button,input,textarea{font:inherit}
 .welcome .wx-icon{font-size:52px;line-height:1;margin:8px 0}
 .welcome .wx-temp{font-size:40px;line-height:1;font-weight:900;color:#fff7e5}
 .welcome .wx-pop{margin-top:10px;font-size:20px;line-height:1;font-weight:700;color:#e8edf8}
+/* Times New Roman Bold on every screen except Welcome. */
+.scene:not(.welcome) .content{font-family:'Times New Roman',Times,serif;font-weight:700}
 /* Screen 2: Tonight's Jackpot */
 .jackpot .title{font-size:120px;line-height:1.02;margin:0 0 14px;font-weight:700}
 .jackpot .amount{font-size:360px;line-height:.86;margin:0}
@@ -161,7 +163,7 @@ button,input,textarea{font:inherit}
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.1</h2>
+  <h2>WTVFC Digital Signage · v4.2</h2>
   <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
