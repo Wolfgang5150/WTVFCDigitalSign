@@ -94,6 +94,21 @@ button,input,textarea{font:inherit}
 .panel label{display:block;margin:11px 0 5px;font-size:13px;font-weight:700}
 .panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:6px;border:1px solid #60708f;background:#1d2940;color:#fff}
 .panel textarea{min-height:68px;resize:vertical}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.small{font-size:12px;color:#c8d2ea}
+
+/* v4.5: Gold typographic hierarchy; welcome styling unchanged. */
+.scene:not(.welcome) .content.serif,
+.scene:not(.welcome) .content.serif .title,
+.scene:not(.welcome) .content.serif .date,
+.scene:not(.welcome) .content.serif .count,
+.scene:not(.welcome) .content.serif .label,
+.scene:not(.welcome) .content.serif .note,
+.scene:not(.welcome) .content.serif .headline,
+.scene:not(.welcome) .content.serif .dish-title,
+.scene:not(.welcome) .content.serif .dish-line { color:#ffd78f; }
+.scene:not(.welcome) .money,
+.scene:not(.welcome) .money .sup-dollar,
+.scene:not(.welcome) .money .sup-cents,
+.scene:not(.welcome) .money .amount-plus { color:#fff; }
 </style>
 </head>
 <body>
@@ -148,7 +163,7 @@ button,input,textarea{font:inherit}
   </div>
 </section>
 <section class="scene kitchen" data-scene="kitchen">
-  <div class="scene-bg blue-bg"></div>
+  <div class="scene-bg blue-bg"><video id="kitchenVideo" muted playsinline preload="metadata"><source src="kitchen-background.mp4" type="video/mp4"></video></div>
   <div class="content serif">
     <div class="headline-wrap"><h1 class="headline">Kitchen Special</h1><div class="headline-line"></div></div>
     <div class="dish-wrap">
@@ -224,7 +239,7 @@ button,input,textarea{font:inherit}
   var scenes=[].slice.call(document.querySelectorAll('.scene'));
   var currentIndex=0,timer=null,paused=false;
   var panel=document.getElementById('panel');
-  var videos={ jackpot:document.getElementById('jackpotVideo'), games:document.getElementById('gamesVideo'), promo:document.getElementById('promoVideo') };
+  var videos={ jackpot:document.getElementById('jackpotVideo'), games:document.getElementById('gamesVideo'), promo:document.getElementById('promoVideo'), kitchen:document.getElementById('kitchenVideo') };
   Object.keys(videos).forEach(function(k){videos[k].loop=false; videos[k].muted=true; videos[k].playsInline=true;});
   function el(id){return document.getElementById(id)}
   function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080),f=el('frame'); f.style.width=(1920*s)+'px'; f.style.height=(1080*s)+'px'; el('stage').style.transform='scale('+s+')';}
