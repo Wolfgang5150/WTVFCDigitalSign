@@ -127,16 +127,28 @@ button,input,textarea{font:inherit}
 .scene:not(.welcome) .motion-gold { animation:none; }
 .scene.play-intro .motion-slam {animation: wtvfc-slam 1.05s cubic-bezier(.19,.95,.27,1) both;transform-origin:center center;}
 .scene.play-intro .motion-rise {animation: wtvfc-rise 1.2s cubic-bezier(.16,1,.3,1) both;}
-/* Metallic sweep runs after the title arrives, without changing the price position or scale. */
+/* v4.8: Bright gold glint on white amounts.
+   Important: don't let the dark price text-shadow show through the clipped
+   transparent gradient (it created a muddy grey/silver fill in v4.7). */
 .scene.play-intro .motion-gold,
 .scene.play-intro .motion-gold .sup-dollar,
 .scene.play-intro .motion-gold .sup-cents,
 .scene.play-intro .motion-gold .amount-plus {
-  background-image:linear-gradient(100deg,#fff 0%,#fff 32%,#f1c65e 42%,#fff7c5 49%,#fff 56%,#fff 100%);
-  background-size:300% 100%;background-position:100% 0;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  background-image:linear-gradient(100deg,
+    #ffffff 0%, #ffffff 36%,
+    #fff0b8 42%, #ffce46 46%, #fffce7 50%,
+    #ffcb37 54%, #ffeaa6 58%,
+    #ffffff 64%, #ffffff 100%);
+  background-size:300% 100%;
+  background-position:100% 0;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
   animation:wtvfc-metallic 2.2s ease-in-out .35s 1 both;
 }
+/* Keep just a subtle silhouette shadow separate from the transparent text fill. */
+.scene.play-intro .motion-gold {filter:drop-shadow(0 4px 4px rgba(0,0,0,.30));}
 @keyframes wtvfc-slam {
   0%{opacity:0;transform:scale(1.6);filter:blur(8px)}
   29%{opacity:1;transform:scale(.94);filter:blur(0)}
