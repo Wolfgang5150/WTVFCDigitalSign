@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.0</title>
+<title>WTVFC Digital Signage v4.1</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -15,55 +15,67 @@ button,input,textarea{font:inherit}
 .scene.active{opacity:1;pointer-events:auto}
 .scene-bg,.scene-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .blue-bg{background:radial-gradient(circle at 30% 20%, #2c69c8 0, #17428d 25%, #0a1f52 58%, #071532 100%)}
-.bg-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.24));}
 .content{position:absolute;inset:0;z-index:3}
 .serif{font-family:Georgia, 'Times New Roman', Times, serif;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.money{font-family:Georgia, 'Times New Roman', Times, serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58)}
-.subtle-box{background:rgba(9,16,32,.50);border:2px solid rgba(255,255,255,.42);border-radius:34px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);box-shadow:0 10px 30px rgba(0,0,0,.15)}
-.amount-plus{display:inline-block;font-size:.42em;position:relative;top:-0.62em;margin-left:.06em;vertical-align:baseline}
+.money{font-family:Georgia, 'Times New Roman', Times, serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58);white-space:nowrap}
+.sup-dollar{display:inline-block;font-size:.42em;position:relative;top:-0.56em;margin-right:.04em;vertical-align:baseline}
+.sup-cents{display:inline-block;font-size:.42em;position:relative;top:-0.52em;margin-left:.03em;vertical-align:baseline}
+.amount-plus{display:inline-block;font-size:.42em;position:relative;top:-0.55em;margin-left:.06em;vertical-align:baseline}
+.tint-box{background:rgba(4,17,48,.50);border:2px solid rgba(255,255,255,.42);border-radius:34px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);box-shadow:0 10px 30px rgba(0,0,0,.14)}
 .center-stack{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:1500px;max-width:88%}
-/* Welcome */
-.welcome .scene-bg{background:url('wtvfc-welcome-banner.png') center center/cover no-repeat}
-.welcome .welcome-message{position:absolute;left:0;right:0;top:315px;text-align:center;font-size:62px;font-weight:800;color:#fff3d2;text-shadow:0 4px 14px rgba(0,0,0,.6)}
-.welcome .welcome-date{position:absolute;left:0;right:0;top:395px;text-align:center;font-size:38px;font-weight:700;letter-spacing:2px;color:#fff}
-.welcome .welcome-clock{position:absolute;left:0;right:0;top:455px;text-align:center;font-size:72px;font-weight:900;color:#fff4d8;text-shadow:0 4px 14px rgba(0,0,0,.6)}
-.welcome .weather-wrap{position:absolute;left:92px;right:92px;bottom:84px;padding:20px 26px 18px;background:linear-gradient(180deg, rgba(8,15,30,.70), rgba(8,15,30,.70));border:1px solid rgba(255,255,255,.22);border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
-.welcome .weather-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-.welcome .weather-title{font-size:29px;font-weight:1000;letter-spacing:2px;color:#fff2cc;text-transform:uppercase}.welcome .weather-title span{font-weight:700;text-transform:none;letter-spacing:1px}
-.welcome .weather-updated{font-size:18px;color:#e7edf8}
-.welcome .forecast-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:16px;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
-.welcome .slot{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:150px;background:rgba(255,255,255,.04);padding:14px 18px;border-right:1px solid rgba(255,255,255,.12)}
-.welcome .slot:last-child{border-right:none}
-.welcome .wx-time{font-size:28px;font-weight:900;color:#fff;text-align:center}
-.welcome .wx-main{display:flex;align-items:center;justify-content:center;gap:14px}
-.welcome .wx-icon{font-size:46px;line-height:1}
-.welcome .wx-temp{font-size:44px;line-height:1;font-weight:1000;color:#fff6e3}
-.welcome .wx-pop{font-size:24px;color:#e8edf8;text-align:center}
 .screen-reader-status{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-/* Jackpot */
-.jackpot .title{font-size:126px;line-height:1.02;margin:0 0 18px}
-.jackpot .amount{font-size:385px;line-height:.88;margin:0}
-.jackpot .count{font-size:76px;line-height:1.05;margin-top:24px;font-weight:700}
-/* Top game prizes */
-.games .grid{position:absolute;inset:84px 140px 84px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:38px}
-.games .card{padding:24px 30px 20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center}
-.games .label{font-size:76px;line-height:1.02;font-weight:700;margin-top:4px;margin-bottom:12px}
-.games .amount{font-size:210px;line-height:.88;font-weight:700;letter-spacing:-3px;margin:0}
-.games .amount.small-decimal .decimal{font-size:.54em}
-.games .note{font-size:57px;line-height:1.05;font-weight:700;margin-top:8px}
-.games .station{margin-top:28px}
-/* Early Bird */
-.earlybird .title{font-size:132px;line-height:1;margin:0 0 86px}
-.earlybird .row{display:flex;justify-content:center;gap:52px}
-.earlybird .card{width:690px;min-height:430px;padding:38px 36px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
-.earlybird .label{font-size:92px;line-height:1.02;font-weight:700;margin-top:0;margin-bottom:10px}
-.earlybird .amount{font-size:235px;line-height:.88;font-weight:700;margin:0}
-/* Additional jackpot */
+/* Welcome screen restored */
+.welcome .scene-bg{background:url('wtvfc-welcome-banner.png') center center/cover no-repeat}
+.welcome-message {position:absolute;top:375px;left:70px;right:70px;text-align:center;
+ font-size:72px;line-height:1.12;font-weight:900;letter-spacing:-1.5px;
+ color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
+.welcome-date {position:absolute;top:478px;left:80px;right:80px;text-align:center;
+ font-size:36px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#ffd78f;
+ text-shadow:0 4px 12px #000;}
+.welcome-clock {position:absolute;top:558px;left:0;right:0;text-align:center;
+ font-size:78px;line-height:1;font-weight:900;color:#fff7de;
+ text-shadow:0 4px 20px #000,0 0 18px #ffcb6333;font-variant-numeric:tabular-nums;}
+.welcome .weather-wrap {position:absolute;left:100px;right:100px;bottom:72px;height:316px;padding:24px 34px;
+ border:1px solid rgba(255,211,130,.66);border-radius:18px;
+ background:linear-gradient(180deg,rgba(15,10,16,.95),rgba(28,10,14,.96));
+ box-shadow:0 15px 32px #0009, inset 0 0 35px #e66f2424;}
+.welcome .weather-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.welcome .weather-title{font-size:28px;letter-spacing:6px;text-transform:uppercase;color:#ffd26c;font-weight:1000}
+.welcome .weather-title span{text-transform:none;letter-spacing:1px;color:#fff1cd;font-weight:700}
+.welcome .weather-updated{font-size:18px;color:#e4d0ab}
+.welcome .forecast-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.welcome .slot{padding:14px 12px 16px;border-radius:16px;border:1px solid rgba(255,196,88,.20);background:rgba(255,255,255,.03);text-align:center;min-height:176px;display:flex;flex-direction:column;justify-content:center}
+.welcome .wx-time{font-size:28px;line-height:1;font-weight:1000;color:#fff1c8}
+.welcome .wx-main{display:flex;align-items:center;justify-content:center;gap:12px}
+.welcome .wx-icon{font-size:52px;line-height:1;margin:8px 0}
+.welcome .wx-temp{font-size:40px;line-height:1;font-weight:900;color:#fff7e5}
+.welcome .wx-pop{margin-top:10px;font-size:20px;line-height:1;font-weight:700;color:#e8edf8}
+/* Screen 2: Tonight's Jackpot */
+.jackpot .title{font-size:120px;line-height:1.02;margin:0 0 14px;font-weight:700}
+.jackpot .amount{font-size:360px;line-height:.86;margin:0}
+.jackpot .count{font-size:72px;line-height:1.05;margin-top:18px;font-weight:700}
+/* Screen 3: Tonight games, fixed explicit layout */
+.games .box{position:absolute;width:760px;height:338px;padding:22px 28px;text-align:center}
+.games .box.bank{left:150px;top:88px}.games .box.quickie{left:1010px;top:88px}
+.games .box.all{left:150px;top:474px}.games .box.station{left:1010px;top:474px}
+.games .label{font-size:62px;line-height:1.02;font-weight:700;margin:0 0 6px}
+.games .label.single{margin-top:4px}
+.games .amount{display:flex;align-items:flex-end;justify-content:center;gap:0;line-height:.84;margin-top:2px}
+.games .amount.bankamt{font-size:186px}.games .amount.quickieamt{font-size:158px}.games .amount.allamt{font-size:186px}.games .amount.stationamt{font-size:174px}
+.games .note{position:absolute;left:26px;right:26px;bottom:26px;font-size:54px;line-height:1.02;font-weight:700}
+.games .note.small{font-size:50px}
+/* Screen 4: Early bird, fixed explicit layout */
+.earlybird .title{position:absolute;left:0;right:0;top:106px;text-align:center;font-size:118px;line-height:1;font-weight:700;margin:0}
+.earlybird .card{position:absolute;width:680px;height:360px;padding:26px 30px;text-align:center}
+.earlybird .card.left{left:240px;top:364px}.earlybird .card.right{left:1000px;top:364px}
+.earlybird .label{font-size:86px;line-height:1;font-weight:700;margin:0 0 12px}
+.earlybird .amount{font-size:226px;line-height:.84;margin:0}
+/* Screen 5: promo */
 .promo .date{font-size:124px;line-height:1;margin:0 0 4px;font-weight:700}
 .promo .title{font-size:138px;line-height:.96;margin:0 0 12px;font-weight:700}
 .promo .amount{font-size:340px;line-height:.88;margin:0 0 28px}
 .promo .note{font-size:54px;line-height:1.16;font-weight:700;max-width:1700px;margin:0 auto}
-/* Kitchen */
+/* Screen 6: kitchen */
 .kitchen .headline-wrap{position:absolute;left:150px;right:150px;top:84px;display:flex;align-items:flex-end;gap:26px}
 .kitchen .headline{font-size:145px;line-height:.95;font-weight:700;margin:0;white-space:nowrap}
 .kitchen .headline-line{height:4px;background:rgba(255,255,255,.85);flex:1;transform:translateY(-16px)}
@@ -73,24 +85,19 @@ button,input,textarea{font:inherit}
 .kitchen .dish-line{font-size:72px;line-height:1.04;font-weight:700;margin:0}
 .kitchen .price-card{position:absolute;right:166px;top:298px;width:620px;height:410px;display:flex;align-items:center;justify-content:center}
 .kitchen .price{font-size:250px;line-height:.9;font-weight:700;margin:0}
-.kitchen .price .decimal{font-size:.54em}
-/* controls/settings */
 .controls{position:fixed;right:16px;top:16px;z-index:30;display:flex;gap:8px;opacity:.28;transition:opacity .2s}.controls:hover,.controls:focus-within{opacity:1}
 .controls button,.panel button{border:1px solid #6a7dab;border-radius:8px;padding:10px 14px;background:#18233a;color:#fff;font-weight:700;cursor:pointer}
 .panel{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:#0e1728;color:#fff;padding:22px;overflow:auto;z-index:40;display:none;box-shadow:-18px 0 40px rgba(0,0,0,.55)}.panel.open{display:block}
 .panel h2{margin:0 0 4px}.panel h3{margin:20px 0 8px;color:#f2d38a}.panel p{color:#d7deef;font-size:13px;line-height:1.45}
 .panel label{display:block;margin:11px 0 5px;font-size:13px;font-weight:700}
 .panel input,.panel textarea{width:100%;padding:9px 10px;border-radius:6px;border:1px solid #60708f;background:#1d2940;color:#fff}
-.panel textarea{min-height:68px;resize:vertical}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.small{font-size:12px;color:#c8d2ea}
+.panel textarea{min-height:68px;resize:vertical}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.small{font-size:12px;color:#c8d2ea}
 </style>
 </head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
-
 <section class="scene welcome active" data-scene="welcome">
-  <div class="scene-bg"></div>
-  <div class="content">
+  <div class="scene-bg"></div><div class="content">
     <div class="welcome-message">Welcome to Monday Night Bingo!</div>
     <div class="welcome-date" id="welcomeDateTop">Monday, October 26, 2026</div>
     <div class="welcome-clock" id="clockTime">--:--</div>
@@ -104,7 +111,6 @@ button,input,textarea{font:inherit}
     <div id="weatherStatus" class="screen-reader-status" aria-live="polite"></div>
   </div>
 </section>
-
 <section class="scene jackpot" data-scene="jackpot">
   <div class="scene-bg"><video id="jackpotVideo" muted playsinline preload="metadata"><source src="jackpotnew.mp4" type="video/mp4"></video></div>
   <div class="content serif center-stack">
@@ -113,45 +119,23 @@ button,input,textarea{font:inherit}
     <div class="count" id="jackpotNums">in 51 numbers</div>
   </div>
 </section>
-
 <section class="scene games" data-scene="games">
   <div class="scene-bg"><video id="gamesVideo" muted playsinline preload="metadata"><source src="featured.mp4" type="video/mp4"></video></div>
   <div class="content serif">
-    <div class="grid">
-      <div class="card subtle-box">
-        <div class="label">Breakin' Your Bank</div>
-        <div class="money amount" id="bankPrize">$5,135<span class="amount-plus">+</span></div>
-        <div class="note" id="bankEnvelopes">Only 10 envelopes left!</div>
-      </div>
-      <div class="card subtle-box">
-        <div class="label">Quickie</div>
-        <div class="money amount" id="quickiePrize">$1,973<span class="decimal">.50</span><span class="amount-plus">+</span></div>
-        <div class="note" id="quickieNums">in 60 numbers</div>
-      </div>
-      <div class="card subtle-box">
-        <div class="label">All Nighter</div>
-        <div class="money amount" id="allNighterPrize">$481<span class="amount-plus">+</span></div>
-        <div class="note" id="allNighterNums">in 17 numbers</div>
-      </div>
-      <div class="card subtle-box">
-        <div class="label">Station Bonus</div>
-        <div class="money amount station" id="stationBonusPrize">$1,000<span class="amount-plus">+</span></div>
-      </div>
-    </div>
+    <div class="box bank tint-box"><div class="label single">Breakin' Your Bank</div><div class="money amount bankamt" id="bankPrize"></div><div class="note" id="bankEnvelopes">Only 10 envelopes left!</div></div>
+    <div class="box quickie tint-box"><div class="label single">Quickie</div><div class="money amount quickieamt" id="quickiePrize"></div><div class="note small" id="quickieNums">in 60 numbers</div></div>
+    <div class="box all tint-box"><div class="label single">All Nighter</div><div class="money amount allamt" id="allNighterPrize"></div><div class="note small" id="allNighterNums">in 17 numbers</div></div>
+    <div class="box station tint-box"><div class="label single">Station Bonus</div><div class="money amount stationamt" id="stationBonusPrize"></div></div>
   </div>
 </section>
-
 <section class="scene earlybird" data-scene="earlybird">
   <div class="scene-bg blue-bg"></div>
-  <div class="content serif center-stack" style="width:1600px;max-width:92%">
+  <div class="content serif">
     <h1 class="title">Early Bird Jackpots</h1>
-    <div class="row">
-      <div class="card subtle-box"><div class="label" id="earlyGame4Label">Game 4</div><div class="money amount" id="earlyGame4Prize">$800</div></div>
-      <div class="card subtle-box"><div class="label" id="earlyGame5Label">Game 5</div><div class="money amount" id="earlyGame5Prize">$1000</div></div>
-    </div>
+    <div class="card left tint-box"><div class="label" id="earlyGame4Label">Game 4</div><div class="money amount" id="earlyGame4Prize"></div></div>
+    <div class="card right tint-box"><div class="label" id="earlyGame5Label">Game 5</div><div class="money amount" id="earlyGame5Prize"></div></div>
   </div>
 </section>
-
 <section class="scene promo" data-scene="promo">
   <div class="scene-bg"><video id="promoVideo" muted playsinline preload="metadata"><source src="specialjackpot.mp4" type="video/mp4"></video></div>
   <div class="content serif center-stack" style="width:1700px;max-width:94%">
@@ -161,7 +145,6 @@ button,input,textarea{font:inherit}
     <div class="note" id="promoNote">One free play voucher awarded each week leading up to the jackpot!</div>
   </div>
 </section>
-
 <section class="scene kitchen" data-scene="kitchen">
   <div class="scene-bg blue-bg"></div>
   <div class="content serif">
@@ -171,18 +154,15 @@ button,input,textarea{font:inherit}
       <p class="dish-line" id="kitchenLine1">with mashed potatoes</p>
       <p class="dish-line" id="kitchenLine2">and steamed vegetable</p>
     </div>
-    <div class="price-card subtle-box"><div class="money price" id="kitchenPrice">$9<span class="decimal">.99</span></div></div>
+    <div class="price-card tint-box"><div class="money price" id="kitchenPrice"></div></div>
     <div class="bottom-line"></div>
   </div>
 </section>
-
 </div></div></div>
-
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.0</h2>
-  <p>Layout pass built from your black-and-white typography guides. These are live HTML text overlays on top of your background videos. New screens without background videos use a blue placeholder background for now.</p>
+  <h2>WTVFC Digital Signage · v4.1</h2>
+  <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
     <div><label for="welcomeSeconds">Welcome</label><input id="welcomeSeconds" type="number" min="4" max="120"></div>
@@ -195,10 +175,7 @@ button,input,textarea{font:inherit}
   <h3>Welcome</h3>
   <label for="date">Evening date</label><input id="date">
   <h3>Tonight's Jackpot</h3>
-  <div class="grid2">
-    <div><label for="jackpot">Amount</label><input id="jackpot"></div>
-    <div><label for="jackpotCount">Numbers text</label><input id="jackpotCount"></div>
-  </div>
+  <div class="grid2"><div><label for="jackpot">Amount</label><input id="jackpot"></div><div><label for="jackpotCount">Numbers text</label><input id="jackpotCount"></div></div>
   <h3>Tonight Games</h3>
   <div class="grid2">
     <div><label for="bank">Breakin' Your Bank</label><input id="bank"></div>
@@ -211,29 +188,15 @@ button,input,textarea{font:inherit}
     <div></div>
   </div>
   <h3>Early Bird</h3>
-  <div class="grid2">
-    <div><label for="earlyGame4LabelInput">Left label</label><input id="earlyGame4LabelInput"></div>
-    <div><label for="earlyGame5LabelInput">Right label</label><input id="earlyGame5LabelInput"></div>
-    <div><label for="earlyGame4">Left amount</label><input id="earlyGame4"></div>
-    <div><label for="earlyGame5">Right amount</label><input id="earlyGame5"></div>
-  </div>
+  <div class="grid2"><div><label for="earlyGame4LabelInput">Left label</label><input id="earlyGame4LabelInput"></div><div><label for="earlyGame5LabelInput">Right label</label><input id="earlyGame5LabelInput"></div><div><label for="earlyGame4">Left amount</label><input id="earlyGame4"></div><div><label for="earlyGame5">Right amount</label><input id="earlyGame5"></div></div>
   <h3>December 7 Additional Jackpot</h3>
-  <div class="grid2">
-    <div><label for="promoDateInput">Date text</label><input id="promoDateInput"></div>
-    <div><label for="promoAmountInput">Amount</label><input id="promoAmountInput"></div>
-  </div>
+  <div class="grid2"><div><label for="promoDateInput">Date text</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Amount</label><input id="promoAmountInput"></div></div>
   <label for="promoNoteInput">Voucher note</label><textarea id="promoNoteInput"></textarea>
   <h3>Kitchen Special</h3>
-  <div class="grid2">
-    <div><label for="kitchenDishInput">Dish title</label><input id="kitchenDishInput"></div>
-    <div><label for="kitchenPriceInput">Price</label><input id="kitchenPriceInput"></div>
-  </div>
-  <label for="kitchenLine1Input">Line 1</label><input id="kitchenLine1Input">
-  <label for="kitchenLine2Input">Line 2</label><input id="kitchenLine2Input">
-  <p class="small">Background files in use: <code>jackpotnew.mp4</code>, <code>featured.mp4</code>, and <code>specialjackpot.mp4</code>. Early Bird and Kitchen use blue placeholders for now.</p>
+  <div class="grid2"><div><label for="kitchenDishInput">Dish title</label><input id="kitchenDishInput"></div><div><label for="kitchenPriceInput">Price</label><input id="kitchenPriceInput"></div></div>
+  <label for="kitchenLine1Input">Line 1</label><input id="kitchenLine1Input"><label for="kitchenLine2Input">Line 2</label><input id="kitchenLine2Input">
   <div class="row-buttons"><button id="save">Save & Apply</button><button id="reset">Reset Demo</button><button id="close">Close</button></div>
 </aside>
-
 <script>
 (function(){
   var defaults={
@@ -245,10 +208,15 @@ button,input,textarea{font:inherit}
     promoDateInput:'December 7th', promoAmountInput:'$5,000', promoNoteInput:'One free play voucher awarded each week leading up to the jackpot!',
     kitchenDishInput:'Prime Rib', kitchenLine1Input:'with mashed potatoes', kitchenLine2Input:'and steamed vegetable', kitchenPriceInput:'$9.99'
   };
-  var storeKey='wtvfc_signage_v40';
+  var storeKey='wtvfc_signage_v41';
+  var legacyKeys=['wtvfc_signage_v40'];
   var data=Object.assign({},defaults);
-  try{var saved=JSON.parse(localStorage.getItem(storeKey)||'null'); if(saved&&typeof saved==='object') data=Object.assign(data,saved);}catch(e){}
-
+  try{
+    var saved=null;
+    saved=JSON.parse(localStorage.getItem(storeKey)||'null');
+    if(!saved){ for(var i=0;i<legacyKeys.length;i++){ var test=JSON.parse(localStorage.getItem(legacyKeys[i])||'null'); if(test){ saved=test; break; } } }
+    if(saved&&typeof saved==='object') data=Object.assign(data,saved);
+  }catch(e){}
   var sceneOrder=['welcome','jackpot','games','earlybird','promo','kitchen'];
   var durationMap={welcome:'welcomeSeconds', jackpot:'jackpotSeconds', games:'gamesSeconds', earlybird:'earlybirdSeconds', promo:'promoSeconds', kitchen:'kitchenSeconds'};
   var scenes=[].slice.call(document.querySelectorAll('.scene'));
@@ -256,94 +224,58 @@ button,input,textarea{font:inherit}
   var panel=document.getElementById('panel');
   var videos={ jackpot:document.getElementById('jackpotVideo'), games:document.getElementById('gamesVideo'), promo:document.getElementById('promoVideo') };
   Object.keys(videos).forEach(function(k){videos[k].loop=false; videos[k].muted=true; videos[k].playsInline=true;});
-
   function el(id){return document.getElementById(id)}
   function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080),f=el('frame'); f.style.width=(1920*s)+'px'; f.style.height=(1080*s)+'px'; el('stage').style.transform='scale('+s+')';}
   window.addEventListener('resize',fit); fit();
-
   function formatDateText(input){ var d=new Date(input); if(!isNaN(d)) return d.toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'}); return input; }
-  function makePlusMoney(raw){
+  function moneyHTML(raw, withPlus){
     raw=String(raw||'').trim();
     var plus='';
-    if(raw.endsWith('+')){plus='<span class="amount-plus">+</span>'; raw=raw.slice(0,-1);}
-    if(raw.indexOf('.')>-1){
-      var parts=raw.split('.');
-      if(parts[1].length>0) return parts[0]+'<span class="decimal">.'+parts[1]+'</span>'+plus;
-    }
-    return raw+plus;
+    if(raw.endsWith('+')){ plus='<span class="amount-plus">+</span>'; raw=raw.slice(0,-1); }
+    var hasDollar=raw.startsWith('$');
+    if(hasDollar) raw=raw.slice(1);
+    var whole=raw, cents='';
+    if(raw.indexOf('.')>-1){ var parts=raw.split('.'); whole=parts[0]; cents=parts[1]; }
+    var out='';
+    if(hasDollar) out+='<span class="sup-dollar">$</span>';
+    out+=whole;
+    if(cents) out+='<span class="sup-cents">.'+cents+'</span>';
+    if(plus) out+=plus;
+    return out;
   }
   function setHtml(id, html){ el(id).innerHTML=html; }
   function setText(id, value){ el(id).textContent=value; }
   function apply(){
     setText('welcomeDateTop', formatDateText(data.date));
+    setHtml('jackpotPrize', moneyHTML(data.jackpot));
     setText('jackpotNums', data.jackpotCount);
-    setHtml('jackpotPrize', makePlusMoney(data.jackpot).replace('<span class="amount-plus">+</span>',''));
-    setHtml('bankPrize', makePlusMoney(data.bank));
-    setText('bankEnvelopes', data.envelopes);
-    setHtml('quickiePrize', makePlusMoney(data.quickie));
-    setText('quickieNums', data.quickieCount);
-    setHtml('allNighterPrize', makePlusMoney(data.allNighter));
-    setText('allNighterNums', data.allNighterCount);
-    setHtml('stationBonusPrize', makePlusMoney(data.stationBonus));
-    setText('earlyGame4Label', data.earlyGame4LabelInput);
-    setText('earlyGame5Label', data.earlyGame5LabelInput);
-    setHtml('earlyGame4Prize', makePlusMoney(data.earlyGame4).replace('<span class="amount-plus">+</span>',''));
-    setHtml('earlyGame5Prize', makePlusMoney(data.earlyGame5).replace('<span class="amount-plus">+</span>',''));
-    setText('promoDate', data.promoDateInput);
-    setHtml('promoAmount', makePlusMoney(data.promoAmountInput).replace('<span class="amount-plus">+</span>',''));
-    setText('promoNote', data.promoNoteInput);
-    setText('kitchenDish', data.kitchenDishInput);
-    setText('kitchenLine1', data.kitchenLine1Input);
-    setText('kitchenLine2', data.kitchenLine2Input);
-    setHtml('kitchenPrice', makePlusMoney(data.kitchenPriceInput).replace('.', '<span class="decimal">.</span>').replace('<span class="amount-plus">+</span>',''));
-    Object.keys(defaults).forEach(function(k){ if(el(k)){ if(el(k).type==='number') el(k).value=data[k]; else el(k).value=data[k]; } });
+    setHtml('bankPrize', moneyHTML(data.bank)); setText('bankEnvelopes', data.envelopes);
+    setHtml('quickiePrize', moneyHTML(data.quickie)); setText('quickieNums', data.quickieCount);
+    setHtml('allNighterPrize', moneyHTML(data.allNighter)); setText('allNighterNums', data.allNighterCount);
+    setHtml('stationBonusPrize', moneyHTML(data.stationBonus));
+    setText('earlyGame4Label', data.earlyGame4LabelInput); setText('earlyGame5Label', data.earlyGame5LabelInput);
+    setHtml('earlyGame4Prize', moneyHTML(data.earlyGame4)); setHtml('earlyGame5Prize', moneyHTML(data.earlyGame5));
+    setText('promoDate', data.promoDateInput); setHtml('promoAmount', moneyHTML(data.promoAmountInput)); setText('promoNote', data.promoNoteInput);
+    setText('kitchenDish', data.kitchenDishInput); setText('kitchenLine1', data.kitchenLine1Input); setText('kitchenLine2', data.kitchenLine2Input); setHtml('kitchenPrice', moneyHTML(data.kitchenPriceInput));
+    Object.keys(defaults).forEach(function(k){ if(el(k)) el(k).value=data[k]; });
   }
-
   function getDuration(sceneName){ var key=durationMap[sceneName]; return Math.max(4,Math.min(120,Number(data[key])||8)); }
   function schedule(){ clearTimeout(timer); if(paused||panel.classList.contains('open')||document.hidden) return; timer=setTimeout(function(){show(currentIndex+1);}, getDuration(sceneOrder[currentIndex])*1000); }
-
-  function stopAllVideos(){ Object.keys(videos).forEach(function(k){ var v=videos[k]; if(v){v.pause();} }); }
-  function activateSceneVideo(sceneName){ stopAllVideos(); var v=videos[sceneName]; if(!v) return; var dur=getDuration(sceneName); function go(){ try{v.currentTime=0;}catch(e){} var vd=(v.duration && isFinite(v.duration))?v.duration:dur; v.playbackRate=vd/dur; v.loop=false; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
-    if(v.readyState>=1 && v.duration) go(); else {v.addEventListener('loadedmetadata', go, {once:true}); v.load();}
-  }
+  function stopAllVideos(){ Object.keys(videos).forEach(function(k){ videos[k].pause(); }); }
+  function activateSceneVideo(sceneName){ stopAllVideos(); var v=videos[sceneName]; if(!v) return; var dur=getDuration(sceneName); function go(){ try{v.currentTime=0;}catch(e){} var vd=(v.duration && isFinite(v.duration))?v.duration:dur; v.playbackRate=vd/dur; v.loop=false; var p=v.play(); if(p&&p.catch)p.catch(function(){});} if(v.readyState>=1 && v.duration) go(); else {v.addEventListener('loadedmetadata', go, {once:true}); v.load();} }
   function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.toggle('active', i===currentIndex); }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
-
-  function saveData(){ Object.keys(defaults).forEach(function(k){ if(el(k)){ data[k]=el(k).value; } }); try{localStorage.setItem(storeKey, JSON.stringify(data));}catch(e){} apply(); panel.classList.remove('open'); show(currentIndex); }
+  function saveData(){ Object.keys(defaults).forEach(function(k){ if(el(k)) data[k]=el(k).value; }); try{localStorage.setItem(storeKey, JSON.stringify(data));}catch(e){} apply(); panel.classList.remove('open'); show(currentIndex); }
   function resetData(){ data=Object.assign({},defaults); try{localStorage.removeItem(storeKey);}catch(e){} apply(); panel.classList.remove('open'); show(0); }
-
   function formatTime(d){ var h=d.getHours(), m=d.getMinutes(), am=h>=12?'PM':'AM'; h=h%12||12; return h+':'+String(m).padStart(2,'0')+' '+am; }
   function tickClock(){ el('clockTime').textContent=formatTime(new Date()); }
   setInterval(tickClock,1000); tickClock();
-
   function weatherIcon(code){ if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️'; }
-  function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item,idx){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
-  async function loadWeather(){
-    try{
-      var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=1&timezone=America%2FNew_York';
-      var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed');
-      var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[];
-      var now=new Date(); var slots=[];
-      for(var i=0;i<times.length && slots.length<4;i++){
-        var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); }
-      }
-      if(!slots.length) throw new Error('no data');
-      renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.';
-    }catch(e){
-      renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]);
-      el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.';
-    }
-  }
+  function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
+  async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=1&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
   loadWeather(); setInterval(loadWeather, 10*60*1000);
-
-  el('prev').addEventListener('click', function(){show(currentIndex-1)});
-  el('next').addEventListener('click', function(){show(currentIndex+1)});
-  el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);});
-  el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();});
-  el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData);
-  el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
+  el('prev').addEventListener('click', function(){show(currentIndex-1)}); el('next').addEventListener('click', function(){show(currentIndex+1)}); el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData); el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
   document.addEventListener('keydown', function(e){ if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if(e.key==='ArrowRight') show(currentIndex+1); else if(e.key==='ArrowLeft') show(currentIndex-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); if(!panel.classList.contains('open')) schedule(); else clearTimeout(timer);} else if(e.key.toLowerCase()==='f'){el('fullscreen').click();} else if(e.code==='Space'){ e.preventDefault(); paused=!paused; if(!paused) schedule(); else clearTimeout(timer); } });
   document.addEventListener('visibilitychange', function(){ if(document.hidden){clearTimeout(timer); stopAllVideos();} else {show(currentIndex);} });
-
   apply(); show(0);
 })();
 </script>
