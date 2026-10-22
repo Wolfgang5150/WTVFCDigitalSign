@@ -104,6 +104,11 @@
 .kitchen .scene-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 47% 42%,rgba(26,120,167,.17),transparent 47%),linear-gradient(120deg,transparent 10%,rgba(106,203,231,.1) 50%,transparent 90%);animation:seaGlow 9s ease-in-out infinite alternate}
 @keyframes seaGlow{to{opacity:.35;transform:translateX(2%)}}
 @media(prefers-reduced-motion:reduce){.jackpot-screen .big-amount,.promo .big-amount,.kitchen .scene-bg:after{animation:none}}
+</style><style id="supplied-jackpot-video-clean">
+/* Tonight's Jackpot: show the user-supplied MP4 without visual effects. */
+.jackpot-screen .scene-bg video{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.jackpot-screen .overlay,.jackpot-screen .neon{display:none!important}
+.jackpot-screen .big-amount{animation:none!important}
 </style></head>
 <body>
 <div class="viewport"><div id="frame" class="frame"><div id="stage" class="stage">
@@ -153,7 +158,7 @@
 
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.2 • ANIMATED BACKGROUNDS</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
+<aside class="panel" id="panel"><div class="chip">BUILD 3.4 • ANIMATED BACKGROUNDS</div><h2>WTVFC Signage Settings</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
 <h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div><div><label for="coinCount">Falling coins on featured jackpots screen</label><input id="coinCount" type="number" min="8" max="80"></div></div>
 <h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
 <h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
