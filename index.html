@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.14</title>
+<title>WTVFC Digital Signage v4.15</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -197,7 +197,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.14: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.15: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -225,7 +225,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.14: sharply defined raised lettering, not a diffuse halo.
+/* v4.15: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -262,6 +262,24 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .date,
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#ffffff !important; }
+
+/* v4.15: crisp dimensional shadows for WHITE non-price copy.
+   No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
+   Welcome, Kitchen, and metallic price nodes are not targeted. */
+.scene.jackpot .content.serif .title,
+.scene.jackpot .content.serif .count,
+.scene.games .content.serif .label,
+.scene.games .content.serif .note,
+.scene.earlybird .content.serif .title,
+.scene.earlybird .content.serif .label,
+.scene.promo .content.serif .date,
+.scene.promo .content.serif .title,
+.scene.promo .content.serif .note {
+  text-shadow:
+    2px 3px 0 rgba(14, 8, 4, .94),
+    4px 6px 3px rgba(0, 0, 0, .76),
+    0 10px 15px rgba(0, 0, 0, .40) !important;
+}
 </style>
 </head>
 <body>
@@ -329,10 +347,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.14">v4.14</div></div></div></div>
+<div class="build-version" aria-label="Version 4.15">v4.15</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.14</h2>
+  <h2>WTVFC Digital Signage · v4.15</h2>
   <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
