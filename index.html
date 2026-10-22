@@ -127,7 +127,7 @@ button,input,textarea{font:inherit}
 .scene:not(.welcome) .motion-gold { animation:none; }
 .scene.play-intro .motion-slam {animation: wtvfc-slam 1.05s cubic-bezier(.19,.95,.27,1) both;transform-origin:center center;}
 .scene.play-intro .motion-rise {animation: wtvfc-rise 1.2s cubic-bezier(.16,1,.3,1) both;}
-/* v4.8: Original glint (superseded by v4.9 gold shimmer).
+/* v4.8: Original glint (superseded by v4.10 gold shimmer).
    Important: don't let the dark price text-shadow show through the clipped
    transparent gradient (it created a muddy grey/silver fill in v4.7). */
 .scene.play-intro .motion-gold,
@@ -189,31 +189,46 @@ button,input,textarea{font:inherit}
  .scene.play-intro .motion-gold .amount-plus{animation:none!important;filter:none!important;opacity:1!important}
 }
 
-/* v4.9: One continuous shared video across jackpot, games and earlybird. */
+/* v4.9+: One continuous shared video across jackpot, games and earlybird. */
 .gold-sequence-video {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;}
 .scene {z-index:1;}
 .scene.jackpot .scene-bg,.scene.games .scene-bg,.scene.earlybird .scene-bg {background:transparent!important;}
 /* The title gets only the assigned gold color and Slam animation. No added glow or other shadow. */
 .scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
-.build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:9.3px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* Rich gold-on-gold recurring sheen: base gold throughout, bright reflected glint. */
+.build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
+/* v4.10: richer layered gold body with a continuous medium-speed shimmer sweep. */
 .scene.play-intro .motion-gold,
 .scene.play-intro .motion-gold .sup-dollar,
 .scene.play-intro .motion-gold .sup-cents,
 .scene.play-intro .motion-gold .amount-plus {
  background-image:linear-gradient(104deg,
- #e0a52d 0%, #e9b43c 30%, #f8ca57 39%,
- #fff0ad 46%, #fff9d5 49%, #ffe27b 52%,
- #d99a18 59%, #f4c351 68%, #e4ad35 100%)!important;
- background-size:350% 100%!important;
+ #7f4c00 0%,
+ #a96705 8%,
+ #d08a0c 16%,
+ #f0bb3f 24%,
+ #b87505 31%,
+ #f5cf63 38%,
+ #d59714 45%,
+ #fff0a8 50%,
+ #f7d87d 54%,
+ #bf7c08 60%,
+ #f2c149 68%,
+ #9c6203 76%,
+ #e0a92c 84%,
+ #ffe49a 90%,
+ #b06f05 96%,
+ #805100 100%)!important;
+ background-size:500% 100%!important;
+ background-position:140% 0!important;
  background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
  color:#efc14e!important;text-shadow:none!important;
- animation:wtvfc-metallic 3.8s linear 0s infinite!important;
+ filter:drop-shadow(0 2px 2px rgba(0,0,0,.32)) drop-shadow(0 0 10px rgba(255,214,102,.14));
+ animation:wtvfc-metallic 4.4s linear 0s infinite!important;
 }
-@keyframes wtvfc-metallic {0%{background-position:125% 0}100%{background-position:-45% 0}}
+@keyframes wtvfc-metallic {0%{background-position:140% 0}100%{background-position:-70% 0}}
 @media(prefers-reduced-motion:reduce){
- .scene.play-intro .motion-gold,.scene.play-intro .motion-gold .sup-dollar,.scene.play-intro .motion-gold .sup-cents,.scene.play-intro .motion-gold .amount-plus{animation:none!important;background-position:50% 0!important;}
+ .scene.play-intro .motion-gold,.scene.play-intro .motion-gold .sup-dollar,.scene.play-intro .motion-gold .sup-cents,.scene.play-intro .motion-gold .amount-plus{animation:none!important;background-position:52% 0!important;}
 }
 </style>
 </head>
@@ -282,10 +297,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.9">v.4.9</div></div></div></div>
+<div class="build-version" aria-label="Version 4.9">v4.10</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.9</h2>
+  <h2>WTVFC Digital Signage · v4.10</h2>
   <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
