@@ -173,7 +173,7 @@
 
 </div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
-<aside class="panel" id="panel"><div class="chip">BUILD 3.13 • FEATURED VIDEO</div><h2>WTVFC Signage Settings · v3.13</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
+<aside class="panel" id="panel"><div class="chip">BUILD 3.15 • FEATURED VIDEO</div><h2>WTVFC Signage Settings · v3.13</h2><p>This build removes the marquee slide and refines the layouts for cleaner, more professional typography, more centered compositions, and richer backgrounds.</p><div class="hint">Welcome screen uses the supplied department art as the full-screen background, with the cross and department text rebuilt as a cleaner top header. Live weather requires internet access.</div>
 <h3>General</h3><label for="date">Evening Date</label><input id="date" value="October 26, 2026"><div class="fields"><div><label for="welcomeSeconds">Welcome seconds</label><input id="welcomeSeconds" type="number" min="4" max="120"></div><div><label for="bankSeconds">Featured jackpots seconds</label><input id="bankSeconds" type="number" min="4" max="120"></div><div><label for="jackpotSeconds">Tonight's jackpot seconds</label><input id="jackpotSeconds" type="number" min="4" max="120"></div><div><label for="promoSeconds">Additional jackpot seconds</label><input id="promoSeconds" type="number" min="4" max="120"></div><div><label for="kitchenSeconds">Kitchen seconds</label><input id="kitchenSeconds" type="number" min="4" max="120"></div><div><label for="coinCount">Falling coins on featured jackpots screen</label><input id="coinCount" type="number" min="8" max="80"></div></div>
 <h3>Prizes</h3><div class="fields"><div><label for="bank">Breakin' Your Bank</label><input id="bank"></div><div><label for="envelopes">Envelopes left</label><input id="envelopes" type="number" min="0"></div><div><label for="quickie">Quickie</label><input id="quickie"></div><div><label for="quickieCount">Quickie numbers</label><input id="quickieCount" type="number" min="0"></div><div><label for="allNighter">All Nighter</label><input id="allNighter"></div><div><label for="allNighterCount">All Nighter numbers</label><input id="allNighterCount" type="number" min="0"></div><div><label for="jackpot">Tonight's Jackpot</label><input id="jackpot"></div><div><label for="jackpotCount">Jackpot numbers</label><input id="jackpotCount" type="number" min="0"></div></div>
 <h3>Additional Jackpot Promo</h3><div class="fields"><div><label for="promoDateInput">Promo date</label><input id="promoDateInput"></div><div><label for="promoAmountInput">Promo amount</label><input id="promoAmountInput"></div></div><label for="promoNoteInput">Promo note</label><textarea id="promoNoteInput"></textarea>
@@ -199,7 +199,27 @@ function fullscreen(){var stage=el('stage'); if(document.fullscreenElement){docu
 function seedCoins(count){var root=el('bankCoins'); root.textContent=''; var n=Math.max(8,Math.min(80,parseInt(count,10)||48)); for(var i=0;i<n;i++){ var coin=document.createElement('span'); coin.className='coin'; var lane=i%20, round=Math.floor(i/20); var x=2.5+lane*4.85+((round*13+i*7)%7-3)*.55; var size=26+((i*37)%52); coin.style.left=x+'%'; coin.style.top='-120px'; coin.style.width=size+'px'; coin.style.height=size+'px'; coin.style.fontSize=(size*.55)+'px'; coin.style.setProperty('--dur',(2.1+(i*11%23)/10)+'s'); coin.style.setProperty('--delay',(-i*.18-(round*.42))+'s'); coin.style.setProperty('--dx',(((i*17)%70)-35)+'px'); coin.style.setProperty('--rot',(360+(i*67%720))+'deg'); root.appendChild(coin);} }
 var vids={bank:el('bankVideo'),jackpot:el('jackpotVideo'),promo:el('promoVideo'),kitchen:el('kitchenVideo')};
 function setSources(){var map={bank:data.bankVideoSrc,jackpot:data.jackpotVideoSrc,promo:data.promoVideoSrc,kitchen:data.kitchenVideoSrc}; Object.keys(vids).forEach(function(name){var video=vids[name], path=String(map[name]||'').trim(); if(!path){video.removeAttribute('src'); video.load(); return;} if(/^https?:|^\/\//i.test(path)){video.removeAttribute('src'); video.load(); return;} if(video.getAttribute('src')!==path){video.pause(); video.setAttribute('src',path); video.load();}});}
-function syncVideos(){Object.keys(vids).forEach(function(name){var video=vids[name], sceneIndex={bank:1,jackpot:2,promo:3,kitchen:4}[name]; if(pos===sceneIndex && !document.hidden && video.getAttribute('src')){var p=video.play(); if(p&&p.catch) p.catch(function(){el('videoState').textContent='A background MP4 could not play. CSS fallback remains active.';});} else video.pause();});}
+function syncVideos(){
+ Object.keys(vids).forEach(function(name){
+  var video=vids[name],sceneIndex={bank:1,jackpot:2,promo:3,kitchen:4}[name];
+  if(pos===sceneIndex && !document.hidden && video.getAttribute('src')){
+   if(name==='bank'||name==='jackpot'){
+    // Match exactly one complete playback to the configured screen duration.
+    // This also recalculates when a user changes the duration in Settings.
+    var seconds=Math.max(4,Math.min(120,Number(data[order[sceneIndex]])||8));
+    var naturalSeconds=(isFinite(video.duration)&&video.duration>0)?video.duration:(name==='bank'?7.428333:14.8);
+    video.playbackRate=naturalSeconds/seconds;
+   }else video.playbackRate=1;
+   try{video.currentTime=0;}catch(e){}
+   var promise=video.play();
+   if(promise&&promise.catch)promise.catch(function(){el('videoState').textContent='A background MP4 could not play. CSS fallback remains active.';});
+  }else video.pause();
+ });
+}
+['bank','jackpot'].forEach(function(name){vids[name].addEventListener('loadedmetadata',function(){
+ var sceneIndex=name==='bank'?1:2;
+ if(pos===sceneIndex){var seconds=Math.max(4,Math.min(120,Number(data[order[sceneIndex]])||8));vids[name].playbackRate=vids[name].duration/seconds;}
+});});
 Object.keys(vids).forEach(function(name){vids[name].addEventListener('error',function(){el('videoState').textContent='A background MP4 is missing or unsupported. CSS fallback remains active.';});});
 function formatTime(d){var hr=d.getHours(), m=d.getMinutes(), amp=hr>=12?'PM':'AM'; hr=hr%12||12; return hr+':'+String(m).padStart(2,'0')+' '+amp;}
 function tickClock(){var now=new Date(); el('clockTime').textContent=formatTime(now);} setInterval(tickClock,1000); tickClock();
