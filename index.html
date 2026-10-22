@@ -236,6 +236,18 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .sup-cents,
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
+
+/* v4.12: white secondary typography on promotional panels only.
+   Intentionally excludes Welcome, Kitchen and all animated dollar amounts. */
+.scene.jackpot .content.serif .title,
+.scene.jackpot .content.serif .count,
+.scene.games .content.serif .label,
+.scene.games .content.serif .note,
+.scene.earlybird .content.serif .title,
+.scene.earlybird .content.serif .label,
+.scene.promo .content.serif .date,
+.scene.promo .content.serif .title,
+.scene.promo .content.serif .note { color:#ffffff !important; }
 </style>
 </head>
 <body>
@@ -303,10 +315,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.11">v4.11</div></div></div></div>
+<div class="build-version" aria-label="Version 4.11">v4.12</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.11</h2>
+  <h2>WTVFC Digital Signage · v4.12</h2>
   <p>Layout refinement pass: welcome screen restored, explicit box sizing/placement tightened on Tonight Games and Early Bird, and all currency now uses superscript dollars and cents.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
