@@ -120,6 +120,62 @@ button,input,textarea{font:inherit}
               0 0 42px rgba(255,255,255,.32),
               0 5px 10px rgba(0,0,0,.85);
 }
+
+/* v4.7: entrance motion. Each effect runs once when a scene becomes active. */
+.scene:not(.welcome) .motion-slam,
+.scene:not(.welcome) .motion-rise,
+.scene:not(.welcome) .motion-gold { animation:none; }
+.scene.play-intro .motion-slam {animation: wtvfc-slam 1.05s cubic-bezier(.19,.95,.27,1) both;transform-origin:center center;}
+.scene.play-intro .motion-rise {animation: wtvfc-rise 1.2s cubic-bezier(.16,1,.3,1) both;}
+/* Metallic sweep runs after the title arrives, without changing the price position or scale. */
+.scene.play-intro .motion-gold,
+.scene.play-intro .motion-gold .sup-dollar,
+.scene.play-intro .motion-gold .sup-cents,
+.scene.play-intro .motion-gold .amount-plus {
+  background-image:linear-gradient(100deg,#fff 0%,#fff 32%,#f1c65e 42%,#fff7c5 49%,#fff 56%,#fff 100%);
+  background-size:300% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:wtvfc-metallic 2.2s ease-in-out .35s 1 both;
+}
+@keyframes wtvfc-slam {
+  0%{opacity:0;transform:scale(1.6);filter:blur(8px)}
+  29%{opacity:1;transform:scale(.94);filter:blur(0)}
+  43%{transform:scale(1.035)}
+  59%,100%{opacity:1;transform:scale(1);filter:blur(0)}
+}
+@keyframes wtvfc-rise {
+  0%{opacity:0;transform:translateY(56px)}
+  38%{opacity:1;transform:translateY(-5px)}
+  56%,100%{opacity:1;transform:translateY(0)}
+}
+@keyframes wtvfc-metallic {
+  0%{background-position:100% 0}
+  100%{background-position:0% 0}
+}
+/* Stagger titles in the four fixed game cards. Never animate the boxes themselves. */
+.scene.games.play-intro .box:nth-of-type(2) .motion-slam{animation-delay:.12s}
+.scene.games.play-intro .box:nth-of-type(3) .motion-slam{animation-delay:.24s}
+.scene.games.play-intro .box:nth-of-type(4) .motion-slam{animation-delay:.36s}
+.scene.games.play-intro .box:nth-of-type(2) .motion-gold,
+.scene.games.play-intro .box:nth-of-type(2) .motion-gold .sup-dollar,
+.scene.games.play-intro .box:nth-of-type(2) .motion-gold .sup-cents,
+.scene.games.play-intro .box:nth-of-type(2) .motion-gold .amount-plus{animation-delay:.55s}
+.scene.games.play-intro .box:nth-of-type(3) .motion-gold,
+.scene.games.play-intro .box:nth-of-type(3) .motion-gold .sup-dollar,
+.scene.games.play-intro .box:nth-of-type(3) .motion-gold .sup-cents,
+.scene.games.play-intro .box:nth-of-type(3) .motion-gold .amount-plus{animation-delay:.75s}
+.scene.games.play-intro .box:nth-of-type(4) .motion-gold,
+.scene.games.play-intro .box:nth-of-type(4) .motion-gold .sup-dollar,
+.scene.games.play-intro .box:nth-of-type(4) .motion-gold .sup-cents,
+.scene.games.play-intro .box:nth-of-type(4) .motion-gold .amount-plus{animation-delay:.95s}
+.scene.promo.play-intro .motion-rise{animation-delay:.26s}
+.scene.promo.play-intro .motion-rise:last-child{animation-delay:.65s}
+.scene.promo.play-intro .motion-gold{animation-delay:.54s}
+@media (prefers-reduced-motion:reduce){
+ .scene.play-intro .motion-slam,.scene.play-intro .motion-rise,.scene.play-intro .motion-gold,
+ .scene.play-intro .motion-gold .sup-dollar,.scene.play-intro .motion-gold .sup-cents,
+ .scene.play-intro .motion-gold .amount-plus{animation:none!important;filter:none!important;opacity:1!important}
+}
 </style>
 </head>
 <body>
@@ -142,18 +198,18 @@ button,input,textarea{font:inherit}
 <section class="scene jackpot" data-scene="jackpot">
   <div class="scene-bg"><video id="jackpotVideo" muted playsinline preload="metadata"><source src="jackpotnew.mp4" type="video/mp4"></video></div>
   <div class="content serif center-stack">
-    <h1 class="title">Tonight's Jackpot</h1>
-    <div class="money amount" id="jackpotPrize">$1,350</div>
+    <h1 class="title motion-slam">Tonight's Jackpot</h1>
+    <div class="money amount motion-gold" id="jackpotPrize">$1,350</div>
     <div class="count" id="jackpotNums">in 51 numbers</div>
   </div>
 </section>
 <section class="scene games" data-scene="games">
   <div class="scene-bg"><video id="gamesVideo" muted playsinline preload="metadata"><source src="featured.mp4" type="video/mp4"></video></div>
   <div class="content serif">
-    <div class="box bank tint-box"><div class="label single">Breakin' Your Bank</div><div class="money amount bankamt" id="bankPrize"></div><div class="note" id="bankEnvelopes">Only 10 envelopes left!</div></div>
-    <div class="box quickie tint-box"><div class="label single">Quickie</div><div class="money amount quickieamt" id="quickiePrize"></div><div class="note small" id="quickieNums">in 60 numbers</div></div>
-    <div class="box all tint-box"><div class="label single">All Nighter</div><div class="money amount allamt" id="allNighterPrize"></div><div class="note small" id="allNighterNums">in 17 numbers</div></div>
-    <div class="box station tint-box"><div class="label single">Station Bonus</div><div class="money amount stationamt" id="stationBonusPrize"></div></div>
+    <div class="box bank tint-box"><div class="label single motion-slam">Breakin' Your Bank</div><div class="money amount bankamt motion-gold" id="bankPrize"></div><div class="note" id="bankEnvelopes">Only 10 envelopes left!</div></div>
+    <div class="box quickie tint-box"><div class="label single motion-slam">Quickie</div><div class="money amount quickieamt motion-gold" id="quickiePrize"></div><div class="note small" id="quickieNums">in 60 numbers</div></div>
+    <div class="box all tint-box"><div class="label single motion-slam">All Nighter</div><div class="money amount allamt motion-gold" id="allNighterPrize"></div><div class="note small" id="allNighterNums">in 17 numbers</div></div>
+    <div class="box station tint-box"><div class="label single motion-slam">Station Bonus</div><div class="money amount stationamt motion-gold" id="stationBonusPrize"></div></div>
   </div>
 </section>
 <section class="scene earlybird" data-scene="earlybird">
@@ -167,10 +223,10 @@ button,input,textarea{font:inherit}
 <section class="scene promo" data-scene="promo">
   <div class="scene-bg"><video id="promoVideo" muted playsinline preload="metadata"><source src="specialjackpot.mp4" type="video/mp4"></video></div>
   <div class="content serif center-stack" style="width:1700px;max-width:94%">
-    <h1 class="date" id="promoDate">December 7th</h1>
-    <h2 class="title">Additional Jackpot</h2>
-    <div class="money amount" id="promoAmount">$5,000</div>
-    <div class="note" id="promoNote">One free play voucher awarded each week leading up to the jackpot!</div>
+    <h1 class="date motion-slam" id="promoDate">December 7th</h1>
+    <h2 class="title motion-rise">Additional Jackpot</h2>
+    <div class="money amount motion-gold" id="promoAmount">$5,000</div>
+    <div class="note motion-rise" id="promoNote">One free play voucher awarded each week leading up to the jackpot!</div>
   </div>
 </section>
 <section class="scene kitchen" data-scene="kitchen">
@@ -291,7 +347,7 @@ button,input,textarea{font:inherit}
   function schedule(){ clearTimeout(timer); if(paused||panel.classList.contains('open')||document.hidden) return; timer=setTimeout(function(){show(currentIndex+1);}, getDuration(sceneOrder[currentIndex])*1000); }
   function stopAllVideos(){ Object.keys(videos).forEach(function(k){ videos[k].pause(); }); }
   function activateSceneVideo(sceneName){ stopAllVideos(); var v=videos[sceneName]; if(!v) return; var dur=getDuration(sceneName); function go(){ try{v.currentTime=0;}catch(e){} var vd=(v.duration && isFinite(v.duration))?v.duration:dur; v.playbackRate=vd/dur; v.loop=false; var p=v.play(); if(p&&p.catch)p.catch(function(){});} if(v.readyState>=1 && v.duration) go(); else {v.addEventListener('loadedmetadata', go, {once:true}); v.load();} }
-  function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.toggle('active', i===currentIndex); }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
+  function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.remove('play-intro'); sc.classList.toggle('active', i===currentIndex); if(i===currentIndex && sceneOrder[i]!=='welcome'){ void sc.offsetWidth; sc.classList.add('play-intro'); } }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
   function saveData(){ Object.keys(defaults).forEach(function(k){ if(el(k)) data[k]=el(k).value; }); try{localStorage.setItem(storeKey, JSON.stringify(data));}catch(e){} apply(); panel.classList.remove('open'); show(currentIndex); }
   function resetData(){ data=Object.assign({},defaults); try{localStorage.removeItem(storeKey);}catch(e){} apply(); panel.classList.remove('open'); show(0); }
   function formatTime(d){ var h=d.getHours(), m=d.getMinutes(), am=h>=12?'PM':'AM'; h=h%12||12; return h+':'+String(m).padStart(2,'0')+' '+am; }
