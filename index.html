@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.19</title>
+<title>WTVFC Digital Signage v4.20</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -17,7 +17,7 @@ button,input,textarea{font:inherit}
 .blue-bg{background:radial-gradient(circle at 30% 20%, #2c69c8 0, #17428d 25%, #0a1f52 58%, #071532 100%)}
 .content{position:absolute;inset:0;z-index:3}
 .serif{font-family:Times, 'Times New Roman', serif;font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.money{font-family:Times, 'Times New Roman', serif;font-weight:700;color:#fff;line-height:.9;text-shadow:0 4px 14px rgba(0,0,0,.58);white-space:nowrap}
+.money{font-family:Times, 'Times New Roman', serif;font-weight:700;color:#fff;line-height:1;text-shadow:0 4px 14px rgba(0,0,0,.58);white-space:nowrap;display:inline-block;overflow:visible;padding-bottom:.10em}
 .sup-dollar{display:inline-block;font-size:.42em;position:relative;top:-0.56em;margin-right:.04em;vertical-align:baseline}
 .sup-cents{display:inline-block;font-size:.42em;position:relative;top:-0.52em;margin-left:.03em;vertical-align:baseline}
 .amount-plus{display:inline-block;font-size:.42em;position:relative;top:-0.55em;margin-left:.06em;vertical-align:baseline}
@@ -54,7 +54,7 @@ button,input,textarea{font:inherit}
 .scene:not(.welcome) .content{font-family:Times,'Times New Roman',serif;font-weight:700}
 /* Screen 2: Tonight's Jackpot */
 .jackpot .title{font-size:120px;line-height:1.02;margin:0 0 14px;font-weight:700}
-.jackpot .amount{font-size:360px;line-height:.86;margin:0}
+.jackpot .amount{font-size:360px;line-height:.92;margin:0;overflow:visible}
 .jackpot .count{font-size:72px;line-height:1.05;margin-top:44px;font-weight:700}
 /* Screen 3: Tonight games, fixed explicit layout */
 .games .box{position:absolute;width:760px;height:338px;padding:22px 28px;text-align:center}
@@ -62,7 +62,7 @@ button,input,textarea{font:inherit}
 .games .box.all{left:150px;top:554px}.games .box.station{left:1010px;top:554px}
 .games .label{font-size:62px;line-height:1.02;font-weight:700;margin:0 0 6px}
 .games .label.single{margin-top:4px}
-.games .amount{display:flex;align-items:flex-end;justify-content:center;gap:0;line-height:.84;margin-top:2px}
+.games .amount{display:flex;align-items:flex-end;justify-content:center;gap:0;line-height:.92;margin-top:2px;overflow:visible}
 .games .amount.bankamt{font-size:178px}.games .amount.quickieamt{font-size:152px}.games .amount.allamt{font-size:178px}.games .amount.stationamt{font-size:174px}
 .games .note{position:absolute;left:26px;right:26px;bottom:12px;font-size:54px;line-height:1.02;font-weight:700}
 .games .note.small{font-size:50px}
@@ -71,7 +71,7 @@ button,input,textarea{font:inherit}
 .earlybird .card{position:absolute;width:680px;height:360px;padding:26px 30px;text-align:center}
 .earlybird .card.left{left:240px;top:364px}.earlybird .card.right{left:1000px;top:364px}
 .earlybird .label{font-size:86px;line-height:1;font-weight:700;margin:0 0 12px}
-.earlybird .amount{font-size:226px;line-height:.84;margin:0}
+.earlybird .amount{font-size:226px;line-height:.92;margin:0;overflow:visible}
 /* Screen 5: promo */
 .promo .date{font-size:124px;line-height:1;margin:0 0 4px;font-weight:700}
 .promo .title{font-size:138px;line-height:.96;margin:0 0 12px;font-weight:700}
@@ -194,11 +194,11 @@ button,input,textarea{font:inherit}
 .gold-sequence-video {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;}
 .scene {z-index:1;}
 .scene.jackpot .scene-bg,.scene.games .scene-bg,.scene.earlybird .scene-bg {background:transparent!important;}
-/* The title gets only the assigned gold color and Slam animation. No added glow or other shadow. */
-.scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
+/* Jackpot title stays in the secondary warm light-gold family, with depth but no extra animation beyond Slam. */
+.scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.19: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.20: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -226,7 +226,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.19: sharply defined raised lettering, not a diffuse halo.
+/* v4.20: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -253,8 +253,8 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.12: white secondary typography on promotional panels only.
-   Intentionally excludes Welcome, Kitchen and all animated dollar amounts. */
+/* v4.20: non-price copy on the metallic-gold screens shifts from pure
+   white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
 .scene.games .content.serif .label,
@@ -263,9 +263,9 @@ button,input,textarea{font:inherit}
 .scene.earlybird .content.serif .label,
 .scene.promo .content.serif .date,
 .scene.promo .content.serif .title,
-.scene.promo .content.serif .note { color:#ffffff !important; }
+.scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.19: crisp dimensional shadows for WHITE non-price copy.
+/* v4.20: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -282,7 +282,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.19: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.20: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -360,11 +360,11 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.19">v4.19</div></div></div></div>
+<div class="build-version" aria-label="Version 4.20">v4.20</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.19</h2>
-  <p>Kitchen background refresh, stronger casino-style dimensional lettering, and a new readable framed kitchen panel.</p>
+  <h2>WTVFC Digital Signage · v4.20</h2>
+  <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
     <div><label for="welcomeSeconds">Welcome</label><input id="welcomeSeconds" type="number" min="4" max="120"></div>
