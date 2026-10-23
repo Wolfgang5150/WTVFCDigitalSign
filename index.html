@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.25</title>
+<title>WTVFC Digital Signage v4.26</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -29,6 +29,17 @@ button,input,textarea{font:inherit}
 .welcome-message {position:absolute;top:417px;left:72px;right:72px;text-align:center;
  font-size:98px;line-height:1.12;font-weight:900;letter-spacing:-2.8px;white-space:nowrap;
  color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
+/* v4.26: Neon sign illumination effect plays once each time the welcome screen appears. */
+.welcome.play-intro .welcome-message{animation:wtvfc-neon-illum 1.65s linear 1 both;}
+@keyframes wtvfc-neon-illum{
+  0%{opacity:.14;text-shadow:0 0 1px rgba(255,242,203,.18),0 0 2px rgba(183,61,21,.10),0 2px 2px rgba(0,0,0,.84)}
+  8%{opacity:.92;text-shadow:0 0 5px rgba(255,250,231,.88),0 0 14px rgba(255,208,108,.42),0 0 26px rgba(183,61,21,.20),0 3px 4px rgba(38,6,8,.88),0 9px 22px rgba(0,0,0,.92)}
+  12%{opacity:.28;text-shadow:0 0 2px rgba(255,242,203,.28),0 2px 2px rgba(0,0,0,.86)}
+  18%{opacity:1;text-shadow:0 0 7px rgba(255,252,237,.94),0 0 18px rgba(255,216,132,.50),0 0 32px rgba(183,61,21,.24),0 3px 4px rgba(38,6,8,.90),0 9px 22px rgba(0,0,0,.96)}
+  24%{opacity:.5;text-shadow:0 0 3px rgba(255,242,203,.34),0 2px 2px rgba(0,0,0,.86)}
+  33%{opacity:1;text-shadow:0 0 8px rgba(255,252,237,.96),0 0 20px rgba(255,216,132,.54),0 0 34px rgba(183,61,21,.28),0 3px 4px rgba(38,6,8,.90),0 9px 22px rgba(0,0,0,.96)}
+  100%{opacity:1;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566}
+}
 /* One combined date • time line; retains the original welcome date gold. */
 .welcome-info {position:absolute;top:572px;left:72px;right:72px;display:flex;align-items:center;
  justify-content:center;gap:22px;white-space:nowrap;font-size:56px;line-height:1.1;font-weight:800;
@@ -51,9 +62,19 @@ button,input,textarea{font:inherit}
 .welcome .slot{padding:14px 12px 16px;border-radius:16px;border:1px solid rgba(255,196,88,.20);background:rgba(255,255,255,.03);text-align:center;min-height:176px;display:flex;flex-direction:column;justify-content:center}
 .welcome .wx-time{font-size:28px;line-height:1;font-weight:1000;color:#fff1c8}
 .welcome .wx-main{display:flex;align-items:center;justify-content:center;gap:12px}
-.welcome .wx-icon{font-size:52px;line-height:1;margin:8px 0}
+.welcome .wx-icon{width:62px;height:62px;display:flex;align-items:center;justify-content:center;margin:6px 0 2px;flex:0 0 62px;color:#ffd56d}
+.welcome .wx-icon svg{width:62px;height:62px;overflow:visible;filter:drop-shadow(0 2px 4px rgba(0,0,0,.34))}
 .welcome .wx-temp{font-size:40px;line-height:1;font-weight:900;color:#fff7e5}
 .welcome .wx-pop{margin-top:10px;font-size:20px;line-height:1;font-weight:700;color:#e8edf8}
+/* Animated weather icons */
+.awx .sun-core{fill:#ffd86a}.awx .sun-ray{stroke:#ffd86a;stroke-width:3.6;stroke-linecap:round}.awx .cloud-fill{fill:#eef4ff}.awx .cloud-stroke{stroke:#dce6f7;stroke-width:2;fill:none}.awx .drop{stroke:#77c4ff;stroke-width:3.2;stroke-linecap:round}.awx .flake{fill:#eef7ff}.awx .bolt{fill:#ffd04b}.awx .mist{stroke:#dfe8f6;stroke-width:3.2;stroke-linecap:round}.awx .sun-rays{transform-origin:32px 32px;animation:awx-rotate 16s linear infinite}.awx-sun .sun-core,.awx-partly .sun-core{animation:awx-pulse 3.6s ease-in-out infinite}.awx-cloud .cloud-group,.awx-rain .cloud-group,.awx-drizzle .cloud-group,.awx-storm .cloud-group,.awx-snow .cloud-group{animation:awx-drift 4.2s ease-in-out infinite}.awx-rain .d1{animation:awx-rain 1.05s linear -.1s infinite}.awx-rain .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-rain .d3{animation:awx-rain 1.1s linear -.75s infinite}.awx-drizzle .d1{animation:awx-rain 1.5s linear -.1s infinite}.awx-drizzle .d2{animation:awx-rain 1.7s linear -.45s infinite}.awx-storm .d1{animation:awx-rain 1s linear -.1s infinite}.awx-storm .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-storm .bolt{animation:awx-flash 2.6s steps(1,end) infinite}.awx-snow .f1{animation:awx-snow 2.5s ease-in-out -.2s infinite}.awx-snow .f2{animation:awx-snow 2.7s ease-in-out -.9s infinite}.awx-snow .f3{animation:awx-snow 2.9s ease-in-out -1.2s infinite}.awx-fog .mist1{animation:awx-fog 5s ease-in-out infinite}.awx-fog .mist2{animation:awx-fog 5.5s ease-in-out -.9s infinite}.awx-fog .mist3{animation:awx-fog 6s ease-in-out -1.6s infinite}.awx-partly .cloud-group{animation:awx-drift 4.4s ease-in-out infinite}
+@keyframes awx-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes awx-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.92}}
+@keyframes awx-drift{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+@keyframes awx-rain{0%{opacity:0;transform:translateY(-2px)}20%{opacity:1}100%{opacity:0;transform:translateY(8px)}}
+@keyframes awx-snow{0%{opacity:0;transform:translate(0,-2px)}20%{opacity:1}50%{transform:translate(1px,3px)}100%{opacity:0;transform:translate(-1px,8px)}}
+@keyframes awx-flash{0%,82%,100%{opacity:0}84%,87%{opacity:1}88%,90%{opacity:0}91%,94%{opacity:1}95%{opacity:0}}
+@keyframes awx-fog{0%,100%{transform:translateX(-2px);opacity:.86}50%{transform:translateX(3px);opacity:1}}
 /* Prefer macOS Times Bold (Times-Bold), not Times New Roman Bold. Welcome untouched. */
 .scene:not(.welcome) .content{font-family:Times,'Times New Roman',serif;font-weight:700}
 /* Screen 2: Tonight's Jackpot */
@@ -202,7 +223,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.25: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.26: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -230,7 +251,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.25: sharply defined raised lettering, not a diffuse halo.
+/* v4.26: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -257,7 +278,7 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.25: non-price copy on the metallic-gold screens shifts from pure
+/* v4.26: non-price copy on the metallic-gold screens shifts from pure
    white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
@@ -269,7 +290,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.25: crisp dimensional shadows for WHITE non-price copy.
+/* v4.26: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -286,7 +307,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.25: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.26: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -367,10 +388,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.25">v4.25</div></div></div></div>
+<div class="build-version" aria-label="Version 4.26">v4.26</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.25</h2>
+  <h2>WTVFC Digital Signage · v4.26</h2>
   <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
@@ -511,7 +532,7 @@ button,input,textarea{font:inherit}
     function go(){try{v.currentTime=0;}catch(e){} var vd=(v.duration&&isFinite(v.duration))?v.duration:dur; v.playbackRate=vd/dur; v.loop=false;var p=v.play();if(p&&p.catch)p.catch(function(){});}
     if(v.readyState>=1&&v.duration)go(); else {v.addEventListener('loadedmetadata',go,{once:true});v.load();}
   }
-  function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.remove('play-intro'); sc.classList.toggle('active', i===currentIndex); if(i===currentIndex && sceneOrder[i]!=='welcome'){ void sc.offsetWidth; sc.classList.add('play-intro'); } }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
+  function show(n){ currentIndex=(n+sceneOrder.length)%sceneOrder.length; scenes.forEach(function(sc,i){ sc.classList.remove('play-intro'); sc.classList.toggle('active', i===currentIndex); if(i===currentIndex){ void sc.offsetWidth; sc.classList.add('play-intro'); } }); activateSceneVideo(sceneOrder[currentIndex]); schedule(); }
   function saveData(){ Object.keys(defaults).forEach(function(k){ if(el(k)) data[k]=el(k).value; }); try{localStorage.setItem(storeKey, JSON.stringify(data));}catch(e){} apply(); panel.classList.remove('open'); show(currentIndex); }
   function resetData(){ data=Object.assign({},defaults); try{localStorage.removeItem(storeKey);}catch(e){} apply(); panel.classList.remove('open'); show(0); }
   function formatTime(d){ var h=d.getHours(), m=d.getMinutes(), am=h>=12?'PM':'AM'; h=h%12||12; return h+':'+String(m).padStart(2,'0')+' '+am; }
@@ -522,9 +543,18 @@ button,input,textarea{font:inherit}
     el('clockTime').innerHTML=parts[0]+'<span class="clock-colon">:</span>'+parts.slice(1).join(':');
   }
   setInterval(tickClock,1000); tickClock();
-  function weatherIcon(code){ if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️'; }
+  function weatherIcon(code){
+    if([71,73,75,77,85,86].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-snow" aria-hidden="true"><g class="cloud-group"><path class="cloud-fill" d="M18 41c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/><path class="cloud-stroke" d="M18 41c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/></g><circle class="flake f1" cx="22" cy="50" r="2.5"/><circle class="flake f2" cx="32" cy="53" r="2.5"/><circle class="flake f3" cx="42" cy="50" r="2.5"/></svg>';
+    if([95,96,99].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-storm" aria-hidden="true"><g class="cloud-group"><path class="cloud-fill" d="M17 39c-5.2 0-9.2-3.7-9.2-8.5 0-4.2 3.1-7.7 7.5-8.4 1.8-6.2 7.2-10.5 13.9-10.5 8.2 0 14.9 5.7 16 13.4 4.7.5 8.4 4.2 8.4 8.9 0 5-4.5 9.1-10.1 9.1H17z"/><path class="cloud-stroke" d="M17 39c-5.2 0-9.2-3.7-9.2-8.5 0-4.2 3.1-7.7 7.5-8.4 1.8-6.2 7.2-10.5 13.9-10.5 8.2 0 14.9 5.7 16 13.4 4.7.5 8.4 4.2 8.4 8.9 0 5-4.5 9.1-10.1 9.1H17z"/></g><line class="drop d1" x1="24" y1="42" x2="21" y2="51"/><line class="drop d2" x1="41" y1="42" x2="38" y2="51"/><path class="bolt" d="M31 41h7l-4 8h5l-12 13 4-10h-5z"/></svg>';
+    if([61,63,65,80,81,82].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-rain" aria-hidden="true"><g class="cloud-group"><path class="cloud-fill" d="M18 39c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/><path class="cloud-stroke" d="M18 39c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/></g><line class="drop d1" x1="22" y1="44" x2="19" y2="53"/><line class="drop d2" x1="32" y1="46" x2="29" y2="55"/><line class="drop d3" x1="42" y1="44" x2="39" y2="53"/></svg>';
+    if([51,53,55,56,57].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-drizzle" aria-hidden="true"><g class="cloud-group"><path class="cloud-fill" d="M18 39c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/><path class="cloud-stroke" d="M18 39c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/></g><line class="drop d1" x1="26" y1="45" x2="24" y2="52"/><line class="drop d2" x1="39" y1="45" x2="37" y2="52"/></svg>';
+    if([45,48].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-fog" aria-hidden="true"><line class="mist mist1" x1="14" y1="22" x2="50" y2="22"/><line class="mist mist2" x1="8" y1="32" x2="56" y2="32"/><line class="mist mist3" x1="14" y1="42" x2="50" y2="42"/></svg>';
+    if([1,2].includes(code)) return '<svg viewBox="0 0 64 64" class="awx awx-partly" aria-hidden="true"><g class="sun-rays"><line class="sun-ray" x1="21" y1="7" x2="21" y2="1"/><line class="sun-ray" x1="21" y1="43" x2="21" y2="37"/><line class="sun-ray" x1="3" y1="25" x2="9" y2="25"/><line class="sun-ray" x1="33" y1="25" x2="39" y2="25"/><line class="sun-ray" x1="9" y1="13" x2="13" y2="17"/><line class="sun-ray" x1="29" y1="33" x2="33" y2="37"/><line class="sun-ray" x1="9" y1="37" x2="13" y2="33"/><line class="sun-ray" x1="29" y1="17" x2="33" y2="13"/></g><circle class="sun-core" cx="21" cy="25" r="9"/><g class="cloud-group"><path class="cloud-fill" d="M24 46c-4.8 0-8.7-3.4-8.7-7.7 0-3.8 2.9-7 6.8-7.6 1.6-5.6 6.5-9.5 12.6-9.5 7.4 0 13.4 5.2 14.3 12.1 4.4.5 7.9 3.8 7.9 8.1 0 4.7-4.1 8.6-9.5 8.6H24z"/><path class="cloud-stroke" d="M24 46c-4.8 0-8.7-3.4-8.7-7.7 0-3.8 2.9-7 6.8-7.6 1.6-5.6 6.5-9.5 12.6-9.5 7.4 0 13.4 5.2 14.3 12.1 4.4.5 7.9 3.8 7.9 8.1 0 4.7-4.1 8.6-9.5 8.6H24z"/></g></svg>';
+    if(code===3) return '<svg viewBox="0 0 64 64" class="awx awx-cloud" aria-hidden="true"><g class="cloud-group"><path class="cloud-fill" d="M18 41c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/><path class="cloud-stroke" d="M18 41c-5.6 0-10-4-10-9.1 0-4.5 3.4-8.3 8.1-9 1.9-6.7 7.7-11.3 14.9-11.3 8.7 0 15.7 6.1 16.8 14.2 5 .6 8.9 4.6 8.9 9.4 0 5.3-4.7 9.8-10.8 9.8H18z"/></g></svg>';
+    return '<svg viewBox="0 0 64 64" class="awx awx-sun" aria-hidden="true"><g class="sun-rays"><line class="sun-ray" x1="32" y1="8" x2="32" y2="1"/><line class="sun-ray" x1="32" y1="63" x2="32" y2="56"/><line class="sun-ray" x1="8" y1="32" x2="1" y2="32"/><line class="sun-ray" x1="63" y1="32" x2="56" y2="32"/><line class="sun-ray" x1="14" y1="14" x2="9" y2="9"/><line class="sun-ray" x1="50" y1="50" x2="55" y2="55"/><line class="sun-ray" x1="14" y1="50" x2="9" y2="55"/><line class="sun-ray" x1="50" y1="14" x2="55" y2="9"/></g><circle class="sun-core" cx="32" cy="32" r="12"/></svg>';
+  }
   function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
-  async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=3&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
+  async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=3&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
   loadWeather(); setInterval(loadWeather, 10*60*1000);
   el('prev').addEventListener('click', function(){show(currentIndex-1)}); el('next').addEventListener('click', function(){show(currentIndex+1)}); el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData); el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
   document.addEventListener('keydown', function(e){ if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if(e.key==='ArrowRight') show(currentIndex+1); else if(e.key==='ArrowLeft') show(currentIndex-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); if(!panel.classList.contains('open')) schedule(); else clearTimeout(timer);} else if(e.key.toLowerCase()==='f'){el('fullscreen').click();} else if(e.code==='Space'){ e.preventDefault(); paused=!paused; if(!paused) schedule(); else clearTimeout(timer); } });
