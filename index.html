@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.27</title>
+<title>WTVFC Digital Signage v4.28</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -29,7 +29,7 @@ button,input,textarea{font:inherit}
 .welcome-message {position:absolute;top:417px;left:72px;right:72px;text-align:center;
  font-size:98px;line-height:1.12;font-weight:900;letter-spacing:-2.8px;white-space:nowrap;
  color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
-/* v4.27: EXACT letter-by-letter neon behavior from original animation playground.
+/* v4.28: EXACT letter-by-letter neon behavior from original animation playground.
    Animate only letters inside welcome-message, never date/time. */
 .welcome-message .neon-letter{display:inline-block;white-space:pre;vertical-align:baseline;}
 .welcome.play-intro .welcome-message .neon-letter{
@@ -69,7 +69,7 @@ button,input,textarea{font:inherit}
 .welcome .wx-temp{font-size:40px;line-height:1;font-weight:900;color:#fff7e5}
 .welcome .wx-pop{margin-top:10px;font-size:20px;line-height:1;font-weight:700;color:#e8edf8}
 /* Animated weather icons */
-.awx .sun-core{fill:#ffd86a}.awx .sun-ray{stroke:#ffd86a;stroke-width:3.6;stroke-linecap:round}.awx .cloud-fill{fill:#eef4ff}.awx .cloud-stroke{stroke:#dce6f7;stroke-width:2;fill:none}.awx .drop{stroke:#77c4ff;stroke-width:3.2;stroke-linecap:round}.awx .flake{fill:#eef7ff}.awx .bolt{fill:#ffd04b}.awx .mist{stroke:#dfe8f6;stroke-width:3.2;stroke-linecap:round}.awx .sun-rays{transform-origin:32px 32px;animation:awx-rotate 16s linear infinite}.awx-sun .sun-core,.awx-partly .sun-core{animation:awx-pulse 3.6s ease-in-out infinite}.awx-cloud .cloud-group,.awx-rain .cloud-group,.awx-drizzle .cloud-group,.awx-storm .cloud-group,.awx-snow .cloud-group{animation:awx-drift 4.2s ease-in-out infinite}.awx-rain .d1{animation:awx-rain 1.05s linear -.1s infinite}.awx-rain .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-rain .d3{animation:awx-rain 1.1s linear -.75s infinite}.awx-drizzle .d1{animation:awx-rain 1.5s linear -.1s infinite}.awx-drizzle .d2{animation:awx-rain 1.7s linear -.45s infinite}.awx-storm .d1{animation:awx-rain 1s linear -.1s infinite}.awx-storm .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-storm .bolt{animation:awx-flash 2.6s steps(1,end) infinite}.awx-snow .f1{animation:awx-snow 2.5s ease-in-out -.2s infinite}.awx-snow .f2{animation:awx-snow 2.7s ease-in-out -.9s infinite}.awx-snow .f3{animation:awx-snow 2.9s ease-in-out -1.2s infinite}.awx-fog .mist1{animation:awx-fog 5s ease-in-out infinite}.awx-fog .mist2{animation:awx-fog 5.5s ease-in-out -.9s infinite}.awx-fog .mist3{animation:awx-fog 6s ease-in-out -1.6s infinite}.awx-partly .cloud-group{animation:awx-drift 4.4s ease-in-out infinite}
+.awx .sun-core{fill:#ffd86a}.awx .sun-ray{stroke:#ffd86a;stroke-width:3.6;stroke-linecap:round}.awx .cloud-fill{fill:#eef4ff}.awx .cloud-stroke{stroke:#dce6f7;stroke-width:2;fill:none}.awx .drop{stroke:#77c4ff;stroke-width:3.2;stroke-linecap:round}.awx .flake{fill:#eef7ff}.awx .bolt{fill:#ffd04b}.awx .mist{stroke:#dfe8f6;stroke-width:3.2;stroke-linecap:round}.awx .sun-rays{transform-origin:32px 32px;animation:awx-rotate 16s linear infinite}.awx-sun .sun-core,.awx-partly .sun-core{animation:awx-pulse 3.6s ease-in-out infinite}.awx-cloud .cloud-group,.awx-rain .cloud-group,.awx-drizzle .cloud-group,.awx-storm .cloud-group,.awx-snow .cloud-group{animation:awx-drift 4.2s ease-in-out infinite}.awx-rain .d1{animation:awx-rain 1.05s linear -.1s infinite}.awx-rain .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-rain .d3{animation:awx-rain 1.1s linear -.75s infinite}.awx-drizzle .d1{animation:awx-rain 1.5s linear -.1s infinite}.awx-drizzle .d2{animation:awx-rain 1.7s linear -.45s infinite}.awx-storm .d1{animation:awx-rain 1s linear -.1s infinite}.awx-storm .d2{animation:awx-rain 1.15s linear -.45s infinite}.awx-storm .bolt{animation:awx-flash 2.6s steps(1,end) infinite}.awx-snow .f1{animation:awx-snow 2.5s ease-in-out -.2s infinite}.awx-snow .f2{animation:awx-snow 2.7s ease-in-out -.9s infinite}.awx-snow .f3{animation:awx-snow 2.9s ease-in-out -1.2s infinite}.awx-fog .mist1{animation:awx-fog 5s ease-in-out infinite}.awx-fog .mist2{animation:awx-fog 5.5s ease-in-out -.9s infinite}.awx-fog .mist3{animation:awx-fog 6s ease-in-out -1.6s infinite}.awx-partly .cloud-group{animation:awx-drift 4.4s ease-in-out infinite}.awx-partly .sun-rays{transform-origin:21px 25px;transform-box:view-box}
 @keyframes awx-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes awx-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.92}}
 @keyframes awx-drift{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
@@ -225,7 +225,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.27: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.28: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -253,7 +253,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.27: sharply defined raised lettering, not a diffuse halo.
+/* v4.28: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -280,7 +280,7 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.27: non-price copy on the metallic-gold screens shifts from pure
+/* v4.28: non-price copy on the metallic-gold screens shifts from pure
    white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
@@ -292,7 +292,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.27: crisp dimensional shadows for WHITE non-price copy.
+/* v4.28: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -309,7 +309,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.27: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.28: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -390,10 +390,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.27">v4.27</div></div></div></div>
+<div class="build-version" aria-label="Version 4.28">v4.28</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.27</h2>
+  <h2>WTVFC Digital Signage · v4.28</h2>
   <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
