@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.24</title>
+<title>WTVFC Digital Signage v4.25</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -27,11 +27,11 @@ button,input,textarea{font:inherit}
 /* Welcome screen restored */
 .welcome .scene-bg{background:url('wtvfc-welcome-banner.png') center center/cover no-repeat}
 .welcome-message {position:absolute;top:417px;left:72px;right:72px;text-align:center;
- font-size:117.5px;line-height:1.12;font-weight:900;letter-spacing:-2.8px;white-space:nowrap;
+ font-size:98px;line-height:1.12;font-weight:900;letter-spacing:-2.8px;white-space:nowrap;
  color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
 /* One combined date • time line; retains the original welcome date gold. */
 .welcome-info {position:absolute;top:572px;left:72px;right:72px;display:flex;align-items:center;
- justify-content:center;gap:27px;white-space:nowrap;font-size:66.25px;line-height:1.1;font-weight:800;
+ justify-content:center;gap:22px;white-space:nowrap;font-size:56px;line-height:1.1;font-weight:800;
  letter-spacing:1.5px;text-transform:uppercase;color:#ffd78f;text-shadow:0 4px 12px #000;}
 .welcome-date,.welcome-clock {position:static;white-space:nowrap;color:inherit;font:inherit;letter-spacing:inherit;
  text-shadow:inherit;font-variant-numeric:tabular-nums;}
@@ -202,7 +202,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.24: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.25: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -230,7 +230,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.24: sharply defined raised lettering, not a diffuse halo.
+/* v4.25: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -257,7 +257,7 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.24: non-price copy on the metallic-gold screens shifts from pure
+/* v4.25: non-price copy on the metallic-gold screens shifts from pure
    white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
@@ -269,7 +269,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.24: crisp dimensional shadows for WHITE non-price copy.
+/* v4.25: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -286,7 +286,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.24: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.25: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -367,10 +367,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.24">v4.24</div></div></div></div>
+<div class="build-version" aria-label="Version 4.25">v4.25</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.24</h2>
+  <h2>WTVFC Digital Signage · v4.25</h2>
   <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
@@ -437,30 +437,28 @@ button,input,textarea{font:inherit}
   var goldIsActive=false;
   Object.keys(videos).forEach(function(k){videos[k].loop=false; videos[k].muted=true; videos[k].playsInline=true;});
   function el(id){return document.getElementById(id)}
-  /* Maintain natural font proportions: size each line to its content width,
-     never use scaleX or other non-uniform transforms. */
+  /* Fit natural glyph widths with generous side margins. Only font-size changes;
+     no horizontal transforms. Cap sizes so a shorter date cannot overtake greeting. */
   function fitWelcomeText(){
     var greeting=document.querySelector('.welcome-message');
     var info=document.querySelector('.welcome-info');
     if(!greeting||!info) return;
-    var target=1776; // 72 px = approx. 3/4 inch on each side of 1920x1080 design
-    function greetingWidth(){
-      var range=document.createRange(); range.selectNodeContents(greeting);
-      return range.getBoundingClientRect().width;
+    var target=1660; // 130 px minimum margin on both sides at 1920px
+    function naturalWidth(node){
+      var r=document.createRange(); r.selectNodeContents(node);
+      return r.getBoundingClientRect().width;
     }
-    greeting.style.fontSize='117.5px';
-    var width=greetingWidth();
-    if(width>0) greeting.style.fontSize=(Math.min(150,117.5*target/width)).toFixed(2)+'px';
-    // Fit the entire date • time group, preserving original Times/sans font proportions.
-    // Keep the secondary line distinctly smaller than the greeting.
-    info.style.fontSize='66.25px';
-    var gap=parseFloat(getComputedStyle(info).columnGap)||27;
-    var total=Array.from(info.children).reduce(function(sum,node){return sum+node.getBoundingClientRect().width;},0)+gap*(info.children.length-1);
-    if(total>0){
-      var greetingSize=parseFloat(greeting.style.fontSize);
-      var infoSize=Math.min(84,66.25*target/total,greetingSize*.75);
-      info.style.fontSize=infoSize.toFixed(2)+'px';
-    }
+    greeting.style.fontSize='98px';
+    var gWidth=naturalWidth(greeting);
+    var gSize=gWidth>0 ? Math.min(98,98*target/gWidth) : 90;
+    greeting.style.fontSize=gSize.toFixed(2)+'px';
+    info.style.fontSize='56px';
+    var total=Array.from(info.children).reduce(function(sum,node){return sum+node.getBoundingClientRect().width;},0);
+    var gap=parseFloat(getComputedStyle(info).columnGap)||22;
+    total+=gap*(info.children.length-1);
+    var secondaryTarget=Math.min(target, target*.97);
+    var iSize=total>0 ? Math.min(56,56*secondaryTarget/total,gSize*.68) : 50;
+    info.style.fontSize=iSize.toFixed(2)+'px';
   }
   function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080),f=el('frame'); f.style.width=(1920*s)+'px'; f.style.height=(1080*s)+'px'; el('stage').style.transform='scale('+s+')'; fitWelcomeText();}
   window.addEventListener('resize',fit); fit();
