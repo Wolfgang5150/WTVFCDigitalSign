@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.16</title>
+<title>WTVFC Digital Signage v4.17</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -198,7 +198,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.16: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.17: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -226,7 +226,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.16: sharply defined raised lettering, not a diffuse halo.
+/* v4.17: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -265,7 +265,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#ffffff !important; }
 
-/* v4.16: crisp dimensional shadows for WHITE non-price copy.
+/* v4.17: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -282,7 +282,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.16: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.17: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -360,10 +360,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.16">v4.16</div></div></div></div>
+<div class="build-version" aria-label="Version 4.17">v4.17</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.16</h2>
+  <h2>WTVFC Digital Signage · v4.17</h2>
   <p>Kitchen background refresh, stronger casino-style dimensional lettering, and a new readable framed kitchen panel.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
@@ -489,7 +489,7 @@ button,input,textarea{font:inherit}
   setInterval(tickClock,1000); tickClock();
   function weatherIcon(code){ if([71,73,75,77,85,86].includes(code)) return '❄️'; if([95,96,99].includes(code)) return '⛈️'; if([61,63,65,80,81,82].includes(code)) return '🌧️'; if([51,53,55,56,57].includes(code)) return '🌦️'; if([45,48].includes(code)) return '🌫️'; if([1,2].includes(code)) return '⛅'; if(code===3) return '☁️'; return '☀️'; }
   function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
-  async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=1&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
+  async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=3&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'},{time:'--',temp:'--',pop:'--',icon:'•'}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
   loadWeather(); setInterval(loadWeather, 10*60*1000);
   el('prev').addEventListener('click', function(){show(currentIndex-1)}); el('next').addEventListener('click', function(){show(currentIndex+1)}); el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData); el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
   document.addEventListener('keydown', function(e){ if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if(e.key==='ArrowRight') show(currentIndex+1); else if(e.key==='ArrowLeft') show(currentIndex-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); if(!panel.classList.contains('open')) schedule(); else clearTimeout(timer);} else if(e.key.toLowerCase()==='f'){el('fullscreen').click();} else if(e.code==='Space'){ e.preventDefault(); paused=!paused; if(!paused) schedule(); else clearTimeout(timer); } });
