@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.20</title>
+<title>WTVFC Digital Signage v4.21</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -198,7 +198,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.20: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.21: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -214,9 +214,9 @@ button,input,textarea{font:inherit}
       rgba(255,255,240,.94) 43%, rgba(255,217,82,.65) 45%,
       transparent 48%, transparent 100%),
     linear-gradient(180deg,
-      #fff0b6 0%,#ffe27c 13%,#cc8a14 29%,
-      #ffdd68 42%,#fffbe0 49%,#d89c1c 57%,
-      #a96a0c 72%,#f7be45 85%,#ffeaa0 100%) !important;
+      #fff8dc 0%,#ffeeb0 13%,#e8b649 29%,
+      #ffe589 42%,#fffbe9 49%,#edc458 57%,
+      #d5a02f 72%,#ffe092 85%,#fff2c4 100%) !important;
   background-size:300% 100%,100% 100% !important;
   /* The two layers move independently: flowing reflections across fixed gold texture. */
   -webkit-background-clip:text !important;
@@ -226,7 +226,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.20: sharply defined raised lettering, not a diffuse halo.
+/* v4.21: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -253,7 +253,7 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.20: non-price copy on the metallic-gold screens shifts from pure
+/* v4.21: non-price copy on the metallic-gold screens shifts from pure
    white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
@@ -265,7 +265,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.20: crisp dimensional shadows for WHITE non-price copy.
+/* v4.21: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -282,7 +282,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.20: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.21: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -360,10 +360,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.20">v4.20</div></div></div></div>
+<div class="build-version" aria-label="Version 4.21">v4.21</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.20</h2>
+  <h2>WTVFC Digital Signage · v4.21</h2>
   <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
