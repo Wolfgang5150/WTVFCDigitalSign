@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.18</title>
+<title>WTVFC Digital Signage v4.19</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -198,7 +198,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#ffd78f!important;text-shadow:none!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.18: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.19: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -226,20 +226,20 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.18: sharply defined raised lettering, not a diffuse halo.
+/* v4.19: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
-  filter:drop-shadow(4px 5px 0 rgba(24,10,0,.92))
-         drop-shadow(7px 10px 8px rgba(0,0,0,.44))
-         drop-shadow(0 0 3px rgba(255,248,214,.84))
-         drop-shadow(0 0 10px rgba(255,241,178,.34)) !important;
+  /* One crisp dark offset plus a restrained luminous edge. Avoid stacked
+     long-offset shadows: they draw false tails beneath commas. */
+  filter:drop-shadow(2px 3px 1px rgba(16,9,3,.94))
+         drop-shadow(0 0 4px rgba(255,242,184,.48)) !important;
 }
 .scene.play-intro .motion-gold,
 .scene.play-intro .motion-gold .sup-dollar,
 .scene.play-intro .motion-gold .sup-cents,
 .scene.play-intro .motion-gold .amount-plus {
-  -webkit-text-stroke:.8px rgba(63,28,0,.82);
+  -webkit-text-stroke:.45px rgba(59,27,0,.75);
 }
 
 @keyframes wtvfc-casino-gold {
@@ -265,7 +265,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#ffffff !important; }
 
-/* v4.18: crisp dimensional shadows for WHITE non-price copy.
+/* v4.19: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -282,7 +282,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.18: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.19: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -291,35 +291,6 @@ button,input,textarea{font:inherit}
     3px 4px 0 rgba(14, 8, 4, .96),
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
-}
-
-/* v4.18: keep the complete comma descender in its own unclipped glyph area.
-   The prior tight amount line-height clipped the comma tail while the metallic
-   filter kept rendering its shadow, producing detached diagonal marks. */
-.scene:not(.welcome) .money.amount { overflow:visible; }
-.scene:not(.welcome) .money.amount .money-comma {
-  display:inline-block;
-  line-height:1.18;
-  padding-bottom:.18em;
-  margin-bottom:-.18em;
-  vertical-align:baseline;
-  overflow:visible;
-}
-/* Commas participate in the same continuously moving metallic finish. */
-.scene.play-intro .motion-gold .money-comma {
-  background-image:
-    repeating-linear-gradient(109deg,transparent 0%,transparent 10%,rgba(255,255,233,0) 13%,rgba(255,255,231,.98) 15%,rgba(255,239,154,.60) 17%,transparent 20%,transparent 39%,rgba(255,246,186,.10) 41%,rgba(255,255,240,.94) 43%,rgba(255,217,82,.65) 45%,transparent 48%,transparent 100%),
-    linear-gradient(180deg,#fff0b6 0%,#ffe27c 13%,#cc8a14 29%,#ffdd68 42%,#fffbe0 49%,#d89c1c 57%,#a96a0c 72%,#f7be45 85%,#ffeaa0 100%) !important;
-  background-size:300% 100%,100% 100% !important;
-  -webkit-background-clip:text !important;background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  color:#e7b13b!important;
-  -webkit-text-stroke:.8px rgba(63,28,0,.82);
-  text-shadow:none!important;
-  animation:wtvfc-casino-gold 3s linear infinite!important;
-}
-@media(prefers-reduced-motion:reduce){
-  .scene.play-intro .motion-gold .money-comma{animation:none!important;background-position:45% 0,0 0!important;}
 }
 </style>
 </head>
@@ -389,10 +360,10 @@ button,input,textarea{font:inherit}
     <div class="bottom-line"></div>
   </div>
 </section>
-<div class="build-version" aria-label="Version 4.18">v4.18</div></div></div></div>
+<div class="build-version" aria-label="Version 4.19">v4.19</div></div></div></div>
 <div class="controls"><button id="prev">◀</button><button id="next">▶</button><button id="fullscreen">⛶</button><button id="settings">⚙ Settings</button></div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.18</h2>
+  <h2>WTVFC Digital Signage · v4.19</h2>
   <p>Kitchen background refresh, stronger casino-style dimensional lettering, and a new readable framed kitchen panel.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
@@ -472,7 +443,7 @@ button,input,textarea{font:inherit}
     if(raw.indexOf('.')>-1){ var parts=raw.split('.'); whole=parts[0]; cents=parts[1]; }
     var out='';
     if(hasDollar) out+='<span class="sup-dollar">$</span>';
-    out+=whole.replace(/,/g, '<span class="money-comma">,</span>');
+    out+=whole;
     if(cents) out+='<span class="sup-cents">.'+cents+'</span>';
     if(plus) out+=plus;
     return out;
