@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WTVFC Digital Signage v4.29</title>
+<title>WTVFC Digital Signage v4.30</title>
 <style>
 *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060912;color:#fff}
 body{font-family:Arial,Helvetica,sans-serif;user-select:none}
@@ -29,7 +29,7 @@ button,input,textarea{font:inherit}
 .welcome-message {position:absolute;top:417px;left:72px;right:72px;text-align:center;
  font-size:98px;line-height:1.12;font-weight:900;letter-spacing:-2.8px;white-space:nowrap;
  color:#fff2cb;text-shadow:0 3px 4px #260608,0 9px 22px #000,0 0 22px #b73d1566;}
-/* v4.29: EXACT letter-by-letter neon behavior from original animation playground.
+/* v4.30: EXACT letter-by-letter neon behavior from original animation playground.
    Animate only letters inside welcome-message, never date/time. */
 .welcome-message .neon-letter{display:inline-block;white-space:pre;vertical-align:baseline;}
 .welcome.play-intro .welcome-message .neon-letter{
@@ -115,7 +115,10 @@ button,input,textarea{font:inherit}
 .kitchen .dish-line{font-size:72px;line-height:1.04;font-weight:700;margin:0}
 .kitchen .price-card{position:absolute;right:166px;top:374px;width:620px;height:410px;display:flex;align-items:center;justify-content:center}
 .kitchen .price{font-size:250px;line-height:.9;font-weight:700;margin:0}
-/* v4.29: discreet version-triggered controls; hidden even in Chrome kiosk mode. */
+/* v4.30: unattended signage hides idle mouse even in Chrome --kiosk mode.
+   Any pointer movement immediately restores it; controls/settings keep it visible. */
+body.cursor-idle, body.cursor-idle * { cursor:none !important; }
+/* v4.30: discreet version-triggered controls; hidden even in Chrome kiosk mode. */
 .version-trigger{position:fixed;right:8px;bottom:5px;z-index:35;padding:7px 5px;background:transparent;border:0;border-radius:5px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:200;font-size:14px;letter-spacing:.04em;line-height:1;color:rgba(255,255,255,.57);text-shadow:0 1px 2px rgba(0,0,0,.8);cursor:pointer}
 .version-trigger:hover,.version-trigger:focus-visible,.version-trigger[aria-expanded="true"]{color:#fff2c5;background:rgba(8,13,25,.75);outline:1px solid rgba(255,218,140,.32)}
 .controls{position:fixed;right:12px;bottom:40px;z-index:35;display:flex;flex-direction:column;gap:5px;padding:9px;border:1px solid rgba(255,215,143,.45);border-radius:12px;background:rgba(11,19,36,.96);box-shadow:0 8px 28px #000b;min-width:165px}
@@ -230,7 +233,7 @@ button,input,textarea{font:inherit}
 .scene.jackpot .content.serif .title {color:#fff1c6!important;filter:none;}
 /* 7pt equivalent at the native 1920x1080 canvas, very discreet, always visible. */
 .build-version {position:absolute;z-index:12;right:10px;bottom:8px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;font-weight:200;letter-spacing:.04em;color:rgba(255,255,255,.55);line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.7);}
-/* v4.29: Polished casino gold. Layered burnished/bright gold bands and
+/* v4.30: Polished casino gold. Layered burnished/bright gold bands and
    overlapping traveling specular glints. No fixed !important background-position:
    such a rule blocked keyframe motion in the previous version. */
 .scene.play-intro .motion-gold,
@@ -258,7 +261,7 @@ button,input,textarea{font:inherit}
   text-shadow:none !important;
   animation:wtvfc-casino-gold 3.0s linear infinite !important;
 }
-/* v4.29: sharply defined raised lettering, not a diffuse halo.
+/* v4.30: sharply defined raised lettering, not a diffuse halo.
    A hard bronze offset shadow gives depth; a narrowly feathered champagne
    light adds separation without softening the glyph edge. */
 .scene.play-intro .motion-gold {
@@ -285,7 +288,7 @@ button,input,textarea{font:inherit}
   .scene.play-intro .motion-gold .amount-plus {animation:none!important;background-position:45% 0,0 0!important;}
 }
 
-/* v4.29: non-price copy on the metallic-gold screens shifts from pure
+/* v4.30: non-price copy on the metallic-gold screens shifts from pure
    white to a warm near-white gold that better matches the environment. */
 .scene.jackpot .content.serif .title,
 .scene.jackpot .content.serif .count,
@@ -297,7 +300,7 @@ button,input,textarea{font:inherit}
 .scene.promo .content.serif .title,
 .scene.promo .content.serif .note { color:#fff1c6 !important; }
 
-/* v4.29: crisp dimensional shadows for WHITE non-price copy.
+/* v4.30: crisp dimensional shadows for WHITE non-price copy.
    No filter: Jackpot Slam/Rise & Settle entrance animations stay intact.
    Welcome, Kitchen, and metallic price nodes are not targeted. */
 .scene.jackpot .content.serif .title,
@@ -314,7 +317,7 @@ button,input,textarea{font:inherit}
     6px 8px 5px rgba(0, 0, 0, .78),
     0 14px 22px rgba(0, 0, 0, .46) !important;
 }
-/* v4.29: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
+/* v4.30: kitchen copy gets the same dimensional dark-shadow treatment for depth. */
 .scene.kitchen .content.serif .headline,
 .scene.kitchen .content.serif .dish-title,
 .scene.kitchen .content.serif .dish-line,
@@ -396,7 +399,7 @@ button,input,textarea{font:inherit}
   </div>
 </section>
 </div></div></div>
-<button type="button" class="version-trigger" id="versionToggle" aria-expanded="false" aria-controls="kioskControls" aria-label="Open signage controls, version 4.29">v4.29</button>
+<button type="button" class="version-trigger" id="versionToggle" aria-expanded="false" aria-controls="kioskControls" aria-label="Open signage controls, version 4.29">v4.30</button>
 <div class="controls" id="kioskControls" hidden>
   <button id="prev" type="button">◀ Previous</button>
   <button id="next" type="button">▶ Next</button>
@@ -404,7 +407,7 @@ button,input,textarea{font:inherit}
   <button id="settings" type="button">⚙ Settings</button>
 </div>
 <aside id="panel" class="panel">
-  <h2>WTVFC Digital Signage · v4.29</h2>
+  <h2>WTVFC Digital Signage · v4.30</h2>
   <p>Comma rendering cleanup, warmer near-white gold secondary copy, and refined metallic amount separation.</p>
   <h3>Screen Timing (seconds)</h3>
   <div class="grid2">
@@ -583,10 +586,27 @@ button,input,textarea{font:inherit}
   function renderForecast(items){ var row=el('forecastRow'); row.innerHTML=''; items.forEach(function(item){ var cell=document.createElement('div'); cell.className='slot'; cell.innerHTML='<div class="wx-time">'+item.time+'</div><div class="wx-main"><div class="wx-icon">'+item.icon+'</div><div class="wx-temp">'+item.temp+'°</div></div><div class="wx-pop">Precip '+item.pop+'%</div>'; row.appendChild(cell); }); }
   async function loadWeather(){ try{ var url='https://api.open-meteo.com/v1/forecast?latitude=40.1259&longitude=-79.8665&hourly=temperature_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&forecast_days=3&timezone=America%2FNew_York'; var res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error('weather failed'); var json=await res.json(); var times=json.hourly.time||[], temps=json.hourly.temperature_2m||[], pops=json.hourly.precipitation_probability||[], codes=json.hourly.weather_code||[]; var now=new Date(); var slots=[]; for(var i=0;i<times.length && slots.length<4;i++){ var t=new Date(times[i]); if(t>=now){ slots.push({ time:t.toLocaleTimeString([], {hour:'numeric'}), temp:Math.round(temps[i]), pop:Math.round(pops[i]||0), icon:weatherIcon(Number(codes[i]||0)) }); } } if(!slots.length) throw new Error('no data'); renderForecast(slots); el('weatherUpdated').textContent='Updated '+formatTime(new Date()); el('weatherStatus').textContent='Weather loaded.'; }catch(e){ renderForecast([{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)},{time:'--',temp:'--',pop:'--',icon:weatherIcon(3)}]); el('weatherUpdated').textContent='Weather unavailable'; el('weatherStatus').textContent='Unable to load forecast.'; } }
   loadWeather(); setInterval(loadWeather, 10*60*1000);
+  // --kiosk does not expose the Fullscreen API, so inactivity controls cursor
+  // visibility independently of document.fullscreenElement.
+  var cursorIdleTimer=null;
+  function showCursor(){
+    document.body.classList.remove('cursor-idle');
+    clearTimeout(cursorIdleTimer);
+    if(!panel.classList.contains('open') && kioskControls.hidden){
+      cursorIdleTimer=setTimeout(function(){
+        if(!panel.classList.contains('open') && kioskControls.hidden) document.body.classList.add('cursor-idle');
+      },3000);
+    }
+  }
+  document.addEventListener('pointermove',showCursor,{passive:true});
+  document.addEventListener('pointerdown',showCursor,{passive:true});
+  document.addEventListener('keydown',showCursor);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)showCursor();});
   var versionToggle=el('versionToggle'), kioskControls=el('kioskControls');
   function setControlsOpen(open){
     kioskControls.hidden=!open;
     versionToggle.setAttribute('aria-expanded',String(open));
+    showCursor();
   }
   versionToggle.addEventListener('click',function(e){e.stopPropagation();setControlsOpen(kioskControls.hidden);});
   kioskControls.addEventListener('click',function(e){
@@ -602,7 +622,7 @@ button,input,textarea{font:inherit}
   el('prev').addEventListener('click', function(){show(currentIndex-1)}); el('next').addEventListener('click', function(){show(currentIndex+1)}); el('settings').addEventListener('click', function(){panel.classList.add('open'); clearTimeout(timer);}); el('close').addEventListener('click', function(){panel.classList.remove('open'); schedule();}); el('save').addEventListener('click', saveData); el('reset').addEventListener('click', resetData); el('fullscreen').addEventListener('click', function(){var st=el('stage'); if(document.fullscreenElement){document.exitFullscreen();} else if(st.requestFullscreen){st.requestFullscreen().catch(function(){});} });
   document.addEventListener('keydown', function(e){ if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if(e.key==='ArrowRight') show(currentIndex+1); else if(e.key==='ArrowLeft') show(currentIndex-1); else if(e.key.toLowerCase()==='s'){panel.classList.toggle('open'); if(!panel.classList.contains('open')) schedule(); else clearTimeout(timer);} else if(e.key.toLowerCase()==='f'){el('fullscreen').click();} else if(e.code==='Space'){ e.preventDefault(); paused=!paused; if(!paused) schedule(); else clearTimeout(timer); } });
   document.addEventListener('visibilitychange', function(){ if(document.hidden){clearTimeout(timer); stopAllVideos(); goldVideo.pause();} else {show(currentIndex);} });
-  apply(); fitWelcomeText(); show(0);
+  apply(); fitWelcomeText(); show(0); showCursor();
 })();
 </script>
 </body>
